@@ -13,17 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# This Makefile.protos has rules to generate go code for otlp
-# exporter. It does it by copying the proto files from
-# `exporters/otlp/internal/opentelemetry-proto` (which is a
-# submodule that needs to be checked out) into `gen/proto`, changing
-# the go_package option to a valid string, generating the go files and
-# finally copying the files into the module. The files are not
-# generated in place, because protoc generates a too-deep directory
-# structure.
+# This Makefile has rules to generate go code for otlp exporter. It does it by
+# copying the proto files from `opentelemetry-proto` (which is a submodule that
+# needs to be checked out) into `gen/proto`, changing the go_package option to
+# a valid string, generating the go files and finally copying the files into
+# the module. The files are not generated in place, because protoc generates a
+# too-deep directory structure.
 #
-# Currently, all the generated code is in
-# `exporters/otlp/internal/opentelemetry-proto-gen`.
+# Currently, all the generated code is place in the base directory.
 #
 # Prereqs: wget (for downloading the zip file with protoc binary),
 # unzip (for unpacking the archive), rsync (for copying back the
