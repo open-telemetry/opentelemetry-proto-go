@@ -22,14 +22,10 @@
 #
 # Currently, all the generated code is place in the base directory.
 #
-# Prereqs: wget (for downloading the zip file with protoc binary),
-# unzip (for unpacking the archive), rsync (for copying back the
-# generated files).
+# Prereqs: docker, rsync (for copying back the generated files).
 
 PROTOC_VERSION := 3.14.0
 
-TOOLS_DIR                       := $(abspath ./.tools)
-TOOLS_MOD_DIR                   := ./internal/tools
 PROTOBUF_VERSION                := v1
 OTEL_PROTO_SUBMODULE            := opentelemetry-proto
 GEN_TEMP_DIR                    := gen
@@ -44,45 +40,19 @@ PROTOBUF_TEMP_DIR  := $(GEN_TEMP_DIR)/go
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 
+# Function to execute a command. Note the empty line before endef to make sure each command
+# gets executed separately instead of concatenated with previous one.
+# Accepts command to execute as first parameter.
+define exec-command
+$(1)
+
+endef
+
+OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.2.1
+PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
+PROTO_INCLUDES := -I/usr/include/github.com/gogo/protobuf
+
 .DEFAULT_GOAL := protobuf
-
-UNAME_S := $(shell uname -s)
-UNAME_M := $(shell uname -m)
-
-ifeq ($(UNAME_S),Linux)
-
-PROTOC_OS := linux
-PROTOC_ARCH := $(UNAME_M)
-
-else ifeq ($(UNAME_S),Darwin)
-
-PROTOC_OS := osx
-PROTOC_ARCH := x86_64
-
-endif
-
-PROTOC_ZIP_URL := https://github.com/protocolbuffers/protobuf/releases/download/v$(PROTOC_VERSION)/protoc-$(PROTOC_VERSION)-$(PROTOC_OS)-$(PROTOC_ARCH).zip
-
-$(TOOLS_DIR)/PROTOC_$(PROTOC_VERSION):
-	@rm -f "$(TOOLS_DIR)"/PROTOC_* && \
-	touch "$@"
-
-# Depend on a versioned file (like PROTOC_3.14.0), so when version
-# gets bumped, we will depend on a nonexistent file and thus download
-# a newer version.
-$(TOOLS_DIR)/protoc/bin/protoc: $(TOOLS_DIR)/PROTOC_$(PROTOC_VERSION)
-	echo "Fetching protoc $(PROTOC_VERSION)" && \
-	rm -rf $(TOOLS_DIR)/protoc && \
-	wget -O $(TOOLS_DIR)/protoc.zip $(PROTOC_ZIP_URL) && \
-	unzip $(TOOLS_DIR)/protoc.zip -d $(TOOLS_DIR)/protoc-tmp && \
-	rm $(TOOLS_DIR)/protoc.zip && \
-	touch $(TOOLS_DIR)/protoc-tmp/bin/protoc && \
-	mv $(TOOLS_DIR)/protoc-tmp $(TOOLS_DIR)/protoc
-
-$(TOOLS_DIR)/protoc-gen-gogofast: $(TOOLS_MOD_DIR)/go.mod $(TOOLS_MOD_DIR)/go.sum $(TOOLS_MOD_DIR)/tools.go
-	cd $(TOOLS_MOD_DIR) && \
-	go build -o $(TOOLS_DIR)/protoc-gen-gogofast github.com/gogo/protobuf/protoc-gen-gogofast && \
-	go mod tidy
 
 # The sed expression for replacing the go_package option in proto
 # file with a one that's valid for us.
@@ -104,14 +74,13 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	mv "$@.tmp" "$@"
 
 .PHONY: gen-protobuf
-gen-protobuf: $(SOURCE_PROTO_FILES) $(TOOLS_DIR)/protoc-gen-gogofast $(TOOLS_DIR)/protoc/bin/protoc
-	@ \
-	mkdir -p "$(PROTOBUF_TEMP_DIR)"; \
-	set -e; for f in $^; do \
-	  if [[ "$${f}" == $(TOOLS_DIR)/* ]]; then continue; fi; \
-	  echo "protoc $${f#"$(PROTO_SOURCE_DIR)/"}"; \
-	  PATH="$(TOOLS_DIR):$${PATH}" $(TOOLS_DIR)/protoc/bin/protoc --proto_path="$(PROTO_SOURCE_DIR)" --gogofast_out="plugins=grpc:$(PROTOBUF_TEMP_DIR)" "$${f}"; \
-	done
+gen-protobuf: $(SOURCE_PROTO_FILES)
+	rm -rf ./$(PROTOBUF_TEMP_DIR)
+	mkdir -p ./$(PROTOBUF_TEMP_DIR)
+	$(foreach file,$(SOURCE_PROTO_FILES),$(call exec-command,$(PROTOC) $(PROTO_INCLUDES) --gogo_out=plugins=grpc:./$(PROTOBUF_TEMP_DIR) $(file)))
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
 
 .PHONY: copy-protobufs
 copy-protobufs:
