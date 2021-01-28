@@ -59,7 +59,7 @@ PROTO_INCLUDES := -I/usr/include/github.com/gogo/protobuf
 SED_EXPR := 's,go_package = "github.com/open-telemetry/opentelemetry-proto/gen/go/,go_package = "go.opentelemetry.io/proto/,'
 
 .PHONY: protobuf
-protobuf: protobuf-source gen-protobuf copy-protobufs
+protobuf: protobuf-source gen-protobuf copy-protobufs build-mod
 
 .PHONY: protobuf-source
 protobuf-source: $(SOURCE_PROTO_FILES)
@@ -84,7 +84,11 @@ gen-protobuf: $(SOURCE_PROTO_FILES)
 
 .PHONY: copy-protobufs
 copy-protobufs:
-	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto .
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/ .
+
+.PHONY: build-mod
+build-mod:
+	@go get ./...
 
 .PHONY: clean
 clean:
