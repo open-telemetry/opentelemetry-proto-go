@@ -39,6 +39,8 @@ PROTOBUF_GEN_DIR   := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR  := $(GEN_TEMP_DIR)/go
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
+GO_MOD_ROOT		   := go.opentelemetry.io/proto
+OTLP_OUTPUT_DIR    := otlp
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -50,19 +52,18 @@ endef
 
 OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.2.1
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
-PROTO_INCLUDES := -I/usr/include/github.com/gogo/protobuf
 
 .DEFAULT_GOAL := protobuf
 
-# The sed expression for replacing the go_package option in proto
-# file with a one that's valid for us.
-SED_EXPR := 's,go_package = "github.com/open-telemetry/opentelemetry-proto/gen/go/,go_package = "go.opentelemetry.io/proto/,'
-
 .PHONY: protobuf
-protobuf: protobuf-source gen-protobuf copy-protobufs build-mod
+protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf
 
 .PHONY: protobuf-source
 protobuf-source: $(SOURCE_PROTO_FILES)
+
+# The sed expression for replacing the go_package option in proto
+# file with a one that's valid for us.
+SED_EXPR := 's,go_package = "github.com/open-telemetry/opentelemetry-proto/gen/go/,go_package = "$(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/,'
 
 # This copies proto files from submodule into $(PROTO_SOURCE_DIR),
 # thus satisfying the $(SOURCE_PROTO_FILES) prerequisite. The copies
@@ -73,23 +74,24 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	sed -e $(SED_EXPR) "$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
-.PHONY: gen-protobuf
-gen-protobuf: $(SOURCE_PROTO_FILES)
+.PHONY: gen-otlp-protobuf
+gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
-	$(foreach file,$(SOURCE_PROTO_FILES),$(call exec-command,$(PROTOC) $(PROTO_INCLUDES) --gogo_out=plugins=grpc:./$(PROTOBUF_TEMP_DIR) $(file)))
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
+	$(foreach file,$(SOURCE_PROTO_FILES),$(call exec-command,$(PROTOC) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
 
-.PHONY: copy-protobufs
-copy-protobufs:
-	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/ .
 
-.PHONY: build-mod
-build-mod:
-	@go get ./...
+.PHONY: copy-otlp-protobuf
+copy-otlp-protobuf:
+	rm -rf ./$(OTLP_OUTPUT_DIR)
+	mkdir -p ./$(OTLP_OUTPUT_DIR)
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
+	cd ./$(OTLP_OUTPUT_DIR) && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)
+	@cd ./$(OTLP_OUTPUT_DIR) && go get ./...
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR)
+	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)
