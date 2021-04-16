@@ -325,7 +325,7 @@ func (x *InstrumentationLibraryLogs) GetLogs() []*LogRecord {
 }
 
 // A log record according to OpenTelemetry Log Data Model:
-// https://github.com/open-telemetry/oteps/blob/master/text/logs/0097-log-data-model.md
+// https://github.com/open-telemetry/oteps/blob/main/text/logs/0097-log-data-model.md
 type LogRecord struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
