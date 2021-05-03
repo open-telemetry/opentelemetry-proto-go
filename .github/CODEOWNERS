@@ -1,0 +1,15 @@
+#####################################################
+#
+# Team of approvers for this project.
+#
+#####################################################
+#
+# Learn about membership in OpenTelemetry community:
+#  https://github.com/open-telemetry/community/blob/main/community-membership.md
+#
+#
+# Learn about CODEOWNERS file format:
+#  https://help.github.com/en/articles/about-code-owners
+#
+
+* @open-telemetry/proto-go-approvers/
