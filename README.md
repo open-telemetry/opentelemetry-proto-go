@@ -14,5 +14,6 @@ When [opentelemetry-proto](https://github.com/open-telemetry/opentelemetry-proto
 ```
 git config -f .gitmodules submodule.opentelemetry-proto.branch v0.7.0
 git submodule update
+update OTLP_VERSION variable on Makefile with the new version
 make clean gen-protobuf
 ```

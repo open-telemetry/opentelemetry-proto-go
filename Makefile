@@ -41,6 +41,9 @@ PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 GO_MOD_ROOT		   := go.opentelemetry.io/proto
 OTLP_OUTPUT_DIR    := otlp
+OTLP_VERSION            := v0.9.1
+GO_VERSION         := 1.14
+SIGNALS            := metrics trace logs
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -90,7 +93,26 @@ copy-otlp-protobuf:
 	mkdir -p ./$(OTLP_OUTPUT_DIR)
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR) && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)
-	@cd ./$(OTLP_OUTPUT_DIR) && go get ./...
+	@cd ./$(OTLP_OUTPUT_DIR) && go mod edit -go=$(GO_VERSION) && go get ./...
+	for signal in $(SIGNALS) ; do \
+	    	ls && cd ./$(OTLP_OUTPUT_DIR)/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal} \
+        		&& go mod edit -go=$(GO_VERSION) -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)@$(OTLP_VERSION) \
+        		&& go mod edit -replace $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)=../ \
+        		&& go get ./... \
+        		&& cd ../.. ; \
+	done
+	for signal in $(SIGNALS) ; do \
+	    	ls && cd ./$(OTLP_OUTPUT_DIR)/collector/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/collector/$${signal} \
+        		&& go mod edit -go=$(GO_VERSION) -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)@$(OTLP_VERSION) \
+        		&& go mod edit -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal}@$(OTLP_VERSION) \
+        		&& go mod edit -replace $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)=../../ \
+        		&& go mod edit -replace $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal}=../../$${signal} \
+        		&& echo "package $${signal}\n\nimport _ \"go.opentelemetry.io/proto/otlp/common/v1\"" > blank.go \
+        		&& go get ./... \
+        		&& cd ../../.. ; \
+	done
+	@cd ./$(OTLP_OUTPUT_DIR) && go mod tidy
+
 
 .PHONY: clean
 clean:
