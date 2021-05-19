@@ -95,14 +95,14 @@ copy-otlp-protobuf:
 	cd ./$(OTLP_OUTPUT_DIR) && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)
 	@cd ./$(OTLP_OUTPUT_DIR) && go mod edit -go=$(GO_VERSION) && go get ./...
 	for signal in $(SIGNALS) ; do \
-	    	ls && cd ./$(OTLP_OUTPUT_DIR)/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal} \
+	    	cd ./$(OTLP_OUTPUT_DIR)/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal} \
         		&& go mod edit -go=$(GO_VERSION) -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)@$(OTLP_VERSION) \
         		&& go mod edit -replace $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)=../ \
         		&& go get ./... \
         		&& cd ../.. ; \
 	done
 	for signal in $(SIGNALS) ; do \
-	    	ls && cd ./$(OTLP_OUTPUT_DIR)/collector/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/collector/$${signal} \
+	    	cd ./$(OTLP_OUTPUT_DIR)/collector/$${signal} && go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/collector/$${signal} \
         		&& go mod edit -go=$(GO_VERSION) -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)@$(OTLP_VERSION) \
         		&& go mod edit -require $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)/$${signal}@$(OTLP_VERSION) \
         		&& go mod edit -replace $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR)=../../ \
