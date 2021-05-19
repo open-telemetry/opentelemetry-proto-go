@@ -100,7 +100,7 @@ clean:
 check-clean-work-tree:
 	@if ! git diff --quiet; then \
 	  echo; \
-	  echo 'Working tree is not clean, did you forget to run "make precommit"?'; \
+	  echo 'Working tree is not clean, did you forget to run "make protobuf"?'; \
 	  echo; \
 	  git status; \
 	  exit 1; \
