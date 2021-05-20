@@ -20,5 +20,5 @@ protobufs.
 ```sh
 git config -f .gitmodules submodule.opentelemetry-proto.branch v0.7.0
 git submodule update --init
-make clean gen-otlp-protobuf copy-otlp-protobu
+make clean protobuf
 ```
