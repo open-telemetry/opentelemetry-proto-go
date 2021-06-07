@@ -1,10 +1,11 @@
 # opentelemetry-proto-go
+
 Generated code for OpenTelemetry protobuf data model
 
-# Usage
+## Usage
+
 You can import the generated code directly in your project
-```
-import (
-	tracepb "go.opentelemetry.io/proto/otlp/trace/v1"
-)
+
+```go
+import tracepb "go.opentelemetry.io/proto/otlp/trace/v1"
 ```
