@@ -96,3 +96,13 @@ copy-otlp-protobuf:
 .PHONY: clean
 clean:
 	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)
+
+.PHONY: check-clean-work-tree
+check-clean-work-tree:
+	@if ! git diff --quiet; then \
+	  echo; \
+	  echo 'Working tree is not clean, did you forget to run "make protobuf"?'; \
+	  echo; \
+	  git status; \
+	  exit 1; \
+	fi

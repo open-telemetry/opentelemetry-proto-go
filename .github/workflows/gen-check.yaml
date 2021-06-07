@@ -1,0 +1,22 @@
+name: Clean Generation
+on:
+  pull_request:
+env:
+  # Default minimum version of Go to support.
+  DEFAULT_GO_VERSION: 1.14
+jobs:
+  generate-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2.1.3
+        with:
+          go-version: ${{ env.DEFAULT_GO_VERSION }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Generate
+        run: make clean protobuf
+      - name: Check Clean Work Tree
+        run: make check-clean-work-tree
