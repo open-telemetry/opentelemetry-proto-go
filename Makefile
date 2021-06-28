@@ -106,3 +106,18 @@ check-clean-work-tree:
 	  git status; \
 	  exit 1; \
 	fi
+
+.PHONY: dependabot-check
+dependabot-check:
+	@result=$$( \
+		for f in $$( find . -type f -name go.mod -exec dirname {} \; | sed 's/^.//' ); \
+			do grep -q "directory: \+$$f" .github/dependabot.yml \
+			|| echo "$$f"; \
+		done; \
+	); \
+	if [ -n "$$result" ]; then \
+		echo "missing go.mod dependabot check:"; echo "$$result"; \
+		echo "new modules need to be added to the .github/dependabot.yml file"; \
+		exit 1; \
+	fi
+
