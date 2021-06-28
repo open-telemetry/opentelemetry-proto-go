@@ -7,5 +7,7 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
+      with:
+        submodules: true
     - name: Run check
       run: make dependabot-check
