@@ -13,8 +13,10 @@ Update the submodule and regenerate the code.
 ```sh
 export VERSION=<new-version>
 git config -f .gitmodules submodule.opentelemetry-proto.branch $VERSION
-git submodule update
-make clean gen-otlp-protobuf copy-otlp-protobu
+cd opentelemetry-proto
+git checkout $VERSION
+cd ..
+make clean gen-otlp-protobuf copy-otlp-protobuf
 ```
 
 Verify the changes.
