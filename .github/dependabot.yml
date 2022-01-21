@@ -5,7 +5,6 @@ updates:
     labels:
       - dependencies
       - actions
-      - "Skip Changelog"
     schedule:
       day: sunday
       interval: weekly
@@ -14,7 +13,6 @@ updates:
     labels:
       - dependencies
       - go
-      - "Skip Changelog"
     schedule:
       day: sunday
       interval: weekly
@@ -23,7 +21,6 @@ updates:
     labels:
       - dependencies
       - go
-      - "Skip Changelog"
     schedule:
       day: sunday
       interval: weekly
