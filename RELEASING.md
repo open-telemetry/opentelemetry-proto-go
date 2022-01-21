@@ -16,7 +16,7 @@ git config -f .gitmodules submodule.opentelemetry-proto.branch $VERSION
 cd opentelemetry-proto
 git checkout $VERSION
 cd ..
-make clean gen-otlp-protobuf copy-otlp-protobuf
+make clean protobuf
 ```
 
 Verify the changes.
