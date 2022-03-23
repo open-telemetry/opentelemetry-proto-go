@@ -51,7 +51,7 @@ $(1)
 
 endef
 
-OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.2.1
+OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.11.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
 
 .DEFAULT_GOAL := protobuf
