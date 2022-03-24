@@ -41,10 +41,10 @@ PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 GO_MOD_ROOT		   := go.opentelemetry.io/proto
 OTLP_OUTPUT_DIR    := otlp
-GO_VERSION         := 1.14
 # TODO: Remove this when support for Go <1.17 is dropped. Versions > v2.7.0 of
 # github.com/grpc-ecosystem/grpc-gateway/v2 require Go 1.17.
-GO_REQUIRES        := github.com/grpc-ecosystem/grpc-gateway/v2@v2.7.0
+OTLP_REQUIRES      := github.com/grpc-ecosystem/grpc-gateway/v2@v2.7.0
+GO_VERSION         := 1.14
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -95,8 +95,9 @@ copy-otlp-protobuf:
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR) \
 		&& go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR) \
-		&& go mod edit -go=$(GO_VERSION) -require=$(GO_REQUIRES) \
-		&& go get ./...
+		&& go mod edit -go=$(GO_VERSION) \
+		&& go get ./... \
+		&& go get $(OTLP_REQUIRES)
 
 .PHONY: clean
 clean:
