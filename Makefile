@@ -96,7 +96,7 @@ copy-otlp-protobuf:
 	cd ./$(OTLP_OUTPUT_DIR) \
 		&& go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR) \
 		&& go mod edit -go=$(GO_VERSION) -replace=$(OTLP_REPLACE) \
-		&& go mod tidy \
+		&& go mod tidy
 
 .PHONY: clean
 clean:
