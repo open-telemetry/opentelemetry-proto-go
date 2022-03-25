@@ -44,7 +44,7 @@ OTLP_OUTPUT_DIR    := otlp
 GO_VERSION         := 1.14
 # TODO: Remove this when support for Go <1.17 is dropped. Versions > v2.7.0 of
 # github.com/grpc-ecosystem/grpc-gateway/v2 require Go 1.17.
-OTLP_REPLACE       := github.com/grpc-ecosystem/grpc-gateway/v2=github.com/grpc-ecosystem/grpc-gateway/v2@v2.7.0
+OTLP_REQUIRE       := github.com/grpc-ecosystem/grpc-gateway/v2@v2.7.0
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -95,7 +95,7 @@ copy-otlp-protobuf:
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR) \
 		&& go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR) \
-		&& go mod edit -go=$(GO_VERSION) -replace=$(OTLP_REPLACE) \
+		&& go mod edit -go=$(GO_VERSION) -require=$(OTLP_REQUIRE) \
 		&& go mod tidy
 
 .PHONY: clean
