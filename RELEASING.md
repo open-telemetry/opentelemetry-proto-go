@@ -8,62 +8,61 @@ have been updated and the generated code needs to be updated.
 
 ## Create a Release Pull Request
 
-Update the submodule and regenerate the code.
+1. Update the submodule and regenerate the code.
 
-```sh
-export VERSION=<new-version>
-git config -f .gitmodules submodule.opentelemetry-proto.branch $VERSION
-cd opentelemetry-proto
-git checkout $VERSION
-cd ..
-make clean protobuf
-```
-
-Verify the changes.
-
-```sh
-git diff main
-```
-
-If everything looks good, push the changes to GitHub and open a pull request.
-
-- Title: `Release {{VERSION}}`
-- Body:
-
-   ```markdown
-   Release of the [{{VERSION}}][otlp] version of the OTLP.
-
-   [otlp]: https://github.com/open-telemetry/opentelemetry-proto/releases/tag/{{VERSION}}
+   ```sh
+   make sync VERSION=<new-version>
    ```
+
+2. Update [`versions.yaml`]. Ensure the correct modules versions are updated
+   and the [`versions.yaml`] syntax is correct.
+
+   ```sh
+   make verify
+   ```
+
+3. Verify the changes.
+
+   ```sh
+   git diff main
+   ```
+
+4. If everything looks good, push the changes to GitHub and open a pull request.
+
+   - Title: `Release {{VERSION}}`
+   - Body:
+
+      ```markdown
+      Release of the [{{VERSION}}][otlp] version of the OTLP.
+
+      [otlp]: https://github.com/open-telemetry/opentelemetry-proto/releases/tag/{{VERSION}}
+      ```
 
 ## Tag Release
 
 Once the pull request with all the generated code changes has been approved
-and merged tag the merged commit.
+and merged use the [`multimod`] utility to tag all modules according to
+[`versions.yaml`].
 
-***IMPORTANT***: It is critical you use the same tag as the
-opentelemetry-proto submodule. Failure to do so will leave things in a broken
-state.
+1. For each module set that will be released, run the `add-tags` make target
+   using the `<commit-hash>` of the commit on the main branch for the merged
+   Pull Request.
 
-***IMPORTANT***: [There is currently no way to remove an incorrectly tagged
-version of a Go module](https://github.com/golang/go/issues/34189). It is
-critical you make sure the version you push upstream is correct. [Failure to
-do so will lead to minor emergencies and tough to work
-around](https://github.com/open-telemetry/opentelemetry-go/issues/331).
+   ```sh
+   make add-tags MODSET=<module set> COMMIT=<commit hash>
+   ```
 
-Run the tag.sh script using the `<commit-hash>` of the commit on the main
-branch for the merged Pull Request.
+   It should only be necessary to provide an explicit `COMMIT` value if the
+   current `HEAD` of your working directory is not the correct commit.
 
-```sh
-./tag.sh $VERSION <commit-hash>
-```
+2. Push tags to the upstream remote (not your fork:
+   `github.com/open-telemetry/opentelemetry-go-contrib.git`). Make sure you
+   push all sub-modules as well.
 
-Push all generated tags to the upstream remote (not your fork!).
-
-```sh
-git push upstream $VERSION
-git push upstream otlp/$VERSION
-```
+   ```sh
+   export VERSION="<version>"
+   for t in $( git tag -l | grep "$VERSION" ); do git push upstream "$t"; done
+   ```
 
 ## Release
 
@@ -77,3 +76,6 @@ Create a GitHub release for the new `<new tag>` on GitHub.
 
    [otlp]: https://github.com/open-telemetry/opentelemetry-proto/releases/tag/{{VERSION}}
    ```
+
+[`versions.yaml`]: ./versions.yaml
+[`multimod`]: https://pkg.go.dev/go.opentelemetry.io/build-tools/multimod
