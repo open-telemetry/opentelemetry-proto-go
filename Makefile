@@ -71,11 +71,14 @@ $(TOOLS)/%: | $(TOOLS)
 	cd $(TOOLS_MOD_DIR) && \
 	$(GO) build -o $@ $(PACKAGE)
 
+MULTIMOD = $(TOOLS)/multimod
+$(TOOLS)/multimod: PACKAGE=go.opentelemetry.io/build-tools/multimod
+
 DBOTCONF = $(TOOLS)/dbotconf
 $(TOOLS)/dbotconf: PACKAGE=go.opentelemetry.io/build-tools/dbotconf
 
 .PHONY: tools
-tools: $(DBOTCONF)
+tools: $(DBOTCONF) $(MULTIMOD)
 
 .PHONY: protobuf
 protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf
@@ -138,3 +141,28 @@ dependabot-check: | $(DBOTCONF)
 .PHONY: dependabot-generate
 dependabot-generate: | $(DBOTCONF)
 	@$(DBOTCONF) generate > $(DEPENDABOT_CONFIG)
+
+# Releasing
+
+.PHONY: submodule-version
+submodule-version:
+	@[ "$(VERSION)" ] || ( echo "VERSION unset: set to target opentelemetry-proto release tag"; exit 1 )
+	@echo "upgrading opentelemetry-proto submodule to $(VERSION)"
+	@cd opentelemetry-proto \
+		&& git fetch \
+		&& git checkout $(VERSION) \
+		&& cd .. \
+		&& git config -f .gitmodules submodule.opentelemetry-proto.branch $(VERSION)
+
+.PHONY: sync
+sync: submodule-version clean protobuf
+
+.PHONY: verify-versions
+verify-versions: | $(MULTIMOD)
+	$(MULTIMOD) verify
+
+COMMIT ?= "HEAD"
+.PHONY: add-tags
+add-tags: | $(MULTIMOD)
+	@[ "${MODSET}" ] || ( echo "MODSET unset: set to taget module set from versions.yaml"; exit 1 )
+	$(MULTIMOD) verify && $(MULTIMOD) tag -m ${MODSET} -c ${COMMIT}
