@@ -948,6 +948,8 @@ type NumberDataPoint struct {
 
 	// The set of key/value pairs that uniquely identify the timeseries from
 	// where this point belongs. The list may be empty (may contain 0 elements).
+	// Attribute keys MUST be unique (it is not allowed to have more than one
+	// attribute with the same key).
 	Attributes []*v11.KeyValue `protobuf:"bytes,7,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	// StartTimeUnixNano is optional but strongly encouraged, see the
 	// the detailed comments above Metric.
@@ -1096,6 +1098,8 @@ type HistogramDataPoint struct {
 
 	// The set of key/value pairs that uniquely identify the timeseries from
 	// where this point belongs. The list may be empty (may contain 0 elements).
+	// Attribute keys MUST be unique (it is not allowed to have more than one
+	// attribute with the same key).
 	Attributes []*v11.KeyValue `protobuf:"bytes,9,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	// StartTimeUnixNano is optional but strongly encouraged, see the
 	// the detailed comments above Metric.
@@ -1258,6 +1262,8 @@ type ExponentialHistogramDataPoint struct {
 
 	// The set of key/value pairs that uniquely identify the timeseries from
 	// where this point belongs. The list may be empty (may contain 0 elements).
+	// Attribute keys MUST be unique (it is not allowed to have more than one
+	// attribute with the same key).
 	Attributes []*v11.KeyValue `protobuf:"bytes,1,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	// StartTimeUnixNano is optional but strongly encouraged, see the
 	// the detailed comments above Metric.
@@ -1438,6 +1444,8 @@ type SummaryDataPoint struct {
 
 	// The set of key/value pairs that uniquely identify the timeseries from
 	// where this point belongs. The list may be empty (may contain 0 elements).
+	// Attribute keys MUST be unique (it is not allowed to have more than one
+	// attribute with the same key).
 	Attributes []*v11.KeyValue `protobuf:"bytes,7,rep,name=attributes,proto3" json:"attributes,omitempty"`
 	// StartTimeUnixNano is optional but strongly encouraged, see the
 	// the detailed comments above Metric.
