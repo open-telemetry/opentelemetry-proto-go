@@ -8,7 +8,7 @@ have been updated and the generated code needs to be updated.
 
 ## Create a Release Pull Request
 
-1. Update the submodule and regenerate the code.
+1. Update the [`opentelemetry-proto`] submodule and regenerate the code.
 
    ```sh
    make sync VERSION=<new-version>
@@ -79,3 +79,4 @@ Create a GitHub release for the new `<new tag>` on GitHub.
 
 [`versions.yaml`]: ./versions.yaml
 [`multimod`]: https://pkg.go.dev/go.opentelemetry.io/build-tools/multimod
+[`opentelemetry-proto`]: https://github.com/open-telemetry/opentelemetry-proto
