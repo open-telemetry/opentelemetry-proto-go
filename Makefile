@@ -26,6 +26,7 @@
 
 PROTOC_VERSION := 3.14.0
 
+TOOLS_MOD_DIR                   := ./internal/tools
 PROTOBUF_VERSION                := v1
 OTEL_PROTO_SUBMODULE            := opentelemetry-proto
 GEN_TEMP_DIR                    := gen
@@ -35,6 +36,7 @@ ifeq ($(strip $(SUBMODULE_PROTO_FILES)),)
 $(error Submodule at $(OTEL_PROTO_SUBMODULE) is not checked out, use "git submodule update --init")
 endif
 
+GO                 := go
 PROTOBUF_GEN_DIR   := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR  := $(GEN_TEMP_DIR)/go
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
@@ -58,6 +60,22 @@ OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.11.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
 
 .DEFAULT_GOAL := protobuf
+
+# Tools
+
+TOOLS = $(CURDIR)/.tools
+
+$(TOOLS):
+	@mkdir -p $@
+$(TOOLS)/%: | $(TOOLS)
+	cd $(TOOLS_MOD_DIR) && \
+	$(GO) build -o $@ $(PACKAGE)
+
+DBOTCONF = $(TOOLS)/dbotconf
+$(TOOLS)/dbotconf: PACKAGE=go.opentelemetry.io/build-tools/dbotconf
+
+.PHONY: tools
+tools: $(DBOTCONF)
 
 .PHONY: protobuf
 protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf
@@ -112,17 +130,11 @@ check-clean-work-tree:
 	  exit 1; \
 	fi
 
+DEPENDABOT_CONFIG = .github/dependabot.yml
 .PHONY: dependabot-check
-dependabot-check:
-	@result=$$( \
-		for f in $$( find . -type f -name go.mod -exec dirname {} \; | sed 's/^.//' ); \
-			do grep -q "directory: \+$$f" .github/dependabot.yml \
-			|| echo "$$f"; \
-		done; \
-	); \
-	if [ -n "$$result" ]; then \
-		echo "missing go.mod dependabot check:"; echo "$$result"; \
-		echo "new modules need to be added to the .github/dependabot.yml file"; \
-		exit 1; \
-	fi
+dependabot-check: | $(DBOTCONF)
+	@$(DBOTCONF) verify $(DEPENDABOT_CONFIG) || printf "\n(run: make dependabot-generate)\n"
 
+.PHONY: dependabot-generate
+dependabot-generate: | $(DBOTCONF)
+	@$(DBOTCONF) generate > $(DEPENDABOT_CONFIG)
