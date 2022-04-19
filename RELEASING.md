@@ -18,7 +18,7 @@ have been updated and the generated code needs to be updated.
    and the [`versions.yaml`] syntax is correct.
 
    ```sh
-   make verify
+   make verify-versions
    ```
 
 3. Verify the changes.
