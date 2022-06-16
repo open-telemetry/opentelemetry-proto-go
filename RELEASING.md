@@ -14,8 +14,8 @@ have been updated and the generated code needs to be updated.
    make sync VERSION=<new-version>
    ```
 
-2. Update [`versions.yaml`]. Ensure the correct modules versions are updated
-   and the [`versions.yaml`] syntax is correct.
+2. Edit [`versions.yaml`] with the new version number.  Then, ensure the correct modules versions 
+   are updated and the [`versions.yaml`] syntax is correct.
 
    ```sh
    make verify-versions
@@ -56,7 +56,7 @@ and merged use the [`multimod`] utility to tag all modules according to
    current `HEAD` of your working directory is not the correct commit.
 
 2. Push tags to the upstream remote (not your fork:
-   `github.com/open-telemetry/opentelemetry-go-contrib.git`). Make sure you
+   `github.com/open-telemetry/opentelemetry-go-proto.git`). Make sure you
    push all sub-modules as well.
 
    ```sh
