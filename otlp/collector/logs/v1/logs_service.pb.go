@@ -18,9 +18,6 @@
 // 	protoc        v3.17.3
 // source: opentelemetry/proto/collector/logs/v1/logs_service.proto
 
-// NOTE: This proto is experimental and is subject to change at this point.
-// Please do not use it at the moment.
-
 package v1
 
 import (
