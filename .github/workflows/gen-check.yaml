@@ -3,7 +3,7 @@ on:
   pull_request:
 env:
   # Default minimum version of Go to support.
-  DEFAULT_GO_VERSION: 1.14
+  DEFAULT_GO_VERSION: 1.17
 jobs:
   generate-and-check:
     runs-on: ubuntu-latest
