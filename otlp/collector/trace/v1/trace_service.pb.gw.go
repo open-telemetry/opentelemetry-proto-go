@@ -79,7 +79,7 @@ func RegisterTraceServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/opentelemetry.proto.collector.trace.v1.TraceService/Export", runtime.WithHTTPPathPattern("/v1/trace"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/opentelemetry.proto.collector.trace.v1.TraceService/Export", runtime.WithHTTPPathPattern("/v1/traces"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -143,7 +143,7 @@ func RegisterTraceServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/opentelemetry.proto.collector.trace.v1.TraceService/Export", runtime.WithHTTPPathPattern("/v1/trace"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/opentelemetry.proto.collector.trace.v1.TraceService/Export", runtime.WithHTTPPathPattern("/v1/traces"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -163,7 +163,7 @@ func RegisterTraceServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_TraceService_Export_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "trace"}, ""))
+	pattern_TraceService_Export_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "traces"}, ""))
 )
 
 var (
