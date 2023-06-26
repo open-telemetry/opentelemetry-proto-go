@@ -44,25 +44,9 @@ Once the pull request with all the generated code changes has been approved
 and merged use the [`multimod`] utility to tag all modules according to
 [`versions.yaml`].
 
-1. For each module set that will be released, run the `add-tags` make target
-   using the `<commit-hash>` of the commit on the main branch for the merged
-   Pull Request.
-
-   ```sh
-   make add-tags MODSET=<module set> COMMIT=<commit hash>
-   ```
-
-   It should only be necessary to provide an explicit `COMMIT` value if the
-   current `HEAD` of your working directory is not the correct commit.
-
-2. Push tags to the upstream remote (not your fork:
-   `github.com/open-telemetry/opentelemetry-go-proto.git`). Make sure you
-   push all sub-modules as well.
-
-   ```sh
-   export VERSION="<version>"
-   for t in $( git tag -l | grep "$VERSION" ); do git push upstream "$t"; done
-   ```
+```sh
+make push-tags REMOTE=<upstream> COMMIT=<hash>
+```
 
 ## Release
 

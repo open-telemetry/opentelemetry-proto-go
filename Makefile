@@ -159,7 +159,11 @@ verify-versions: | $(MULTIMOD)
 	$(MULTIMOD) verify
 
 COMMIT ?= "HEAD"
-.PHONY: add-tags
-add-tags: | $(MULTIMOD)
-	@[ "${MODSET}" ] || ( echo "MODSET unset: set to taget module set from versions.yaml"; exit 1 )
-	$(MULTIMOD) verify && $(MULTIMOD) tag -m ${MODSET} -c ${COMMIT}
+REMOTE ?= upstream
+.PHONY: push-tags
+push-tags: | $(MULTIMOD)
+	$(MULTIMOD) verify
+	set -e; for tag in `$(MULTIMOD) tag -m all -c ${COMMIT} --print-tags | grep -v "Using" `; do \
+		echo "pushing tag $${tag}"; \
+		git push ${REMOTE} $${tag}; \
+	done;
