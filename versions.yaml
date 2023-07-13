@@ -14,7 +14,7 @@
 
 module-sets:
   all:
-    version: v0.20.0
+    version: v1.0.0
     modules:
       - go.opentelemetry.io/proto
       - go.opentelemetry.io/proto/otlp
