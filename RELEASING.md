@@ -14,7 +14,7 @@ have been updated and the generated code needs to be updated.
    make sync VERSION=<new-version>
    ```
 
-2. Edit [`versions.yaml`] with the new version number.  Then, ensure the correct modules versions 
+2. Edit [`versions.yaml`] with the new version number.  Then, ensure the correct modules versions
    are updated and the [`versions.yaml`] syntax is correct.
 
    ```sh
