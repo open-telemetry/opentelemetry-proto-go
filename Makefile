@@ -114,7 +114,7 @@ copy-otlp-protobuf:
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)
+	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
