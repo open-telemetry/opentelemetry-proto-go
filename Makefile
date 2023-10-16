@@ -108,17 +108,13 @@ gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 
 .PHONY: copy-otlp-protobuf
 copy-otlp-protobuf:
-	rm -rf ./$(OTLP_OUTPUT_DIR)
-	mkdir -p ./$(OTLP_OUTPUT_DIR)
+	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
-	cd ./$(OTLP_OUTPUT_DIR) \
-		&& go mod init $(GO_MOD_ROOT)/$(OTLP_OUTPUT_DIR) \
-		&& go mod edit -go=$(GO_VERSION) \
-		&& go mod tidy
+	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)
+	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
