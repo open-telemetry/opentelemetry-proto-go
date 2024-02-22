@@ -108,13 +108,18 @@ gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 
 .PHONY: copy-otlp-protobuf
 copy-otlp-protobuf:
-	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
-	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
-	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
+	find $(OTLP_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
+	find $(OTLP_OUTPUT_DIR) -type d -empty -delete
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/v2/ ./$(OTLP_OUTPUT_DIR)
+	cd ./$(OTLP_OUTPUT_DIR) && go mod tidy
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/collector/v2/ ./$(OTLP_OUTPUT_DIR)/collector
+	cd ./$(OTLP_OUTPUT_DIR)/collector && go mod tidy
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
+	rm -rf $(GEN_TEMP_DIR) 
+	find $(OTLP_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
+	find $(OTLP_OUTPUT_DIR) -type d -empty -delete
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
