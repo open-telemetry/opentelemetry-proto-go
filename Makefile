@@ -38,7 +38,7 @@ endif
 
 GO                := go
 GO_VERSION        := 1.17
-GO_MOD_ROOT		  := go.opentelemetry.io/proto
+GO_MOD_ROOT       := go.opentelemetry.io/proto
 PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
 
