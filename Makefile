@@ -36,14 +36,19 @@ ifeq ($(strip $(SUBMODULE_PROTO_FILES)),)
 $(error Submodule at $(OTEL_PROTO_SUBMODULE) is not checked out, use "git submodule update --init")
 endif
 
-GO                 := go
-PROTOBUF_GEN_DIR   := opentelemetry-proto-gen
-PROTOBUF_TEMP_DIR  := $(GEN_TEMP_DIR)/go
+GO                := go
+GO_VERSION        := 1.17
+GO_MOD_ROOT		  := go.opentelemetry.io/proto
+PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
+PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
+
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
-GO_MOD_ROOT		   := go.opentelemetry.io/proto
 OTLP_OUTPUT_DIR    := otlp
-GO_VERSION         := 1.17
+
+PROTOLIGHT_SOURCE_DIR   := $(GEN_TEMP_DIR)/light/proto
+SOURCE_PROTOLIGHT_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOLIGHT_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
+OTLPLIGHT_OUTPUT_DIR    := light/otlp
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -55,6 +60,7 @@ endef
 
 OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.23.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
+PROTOC_LIGHT := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTOLIGHT_SOURCE_DIR)"
 
 .DEFAULT_GOAL := protobuf
 
@@ -78,7 +84,7 @@ $(TOOLS)/dbotconf: PACKAGE=go.opentelemetry.io/build-tools/dbotconf
 tools: $(DBOTCONF) $(MULTIMOD)
 
 .PHONY: protobuf
-protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf
+protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-light copy-otlp-protobuf-light
 
 .PHONY: protobuf-source
 protobuf-source: $(SOURCE_PROTO_FILES)
@@ -96,6 +102,19 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	sed -e $(SED_EXPR) "$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
+# The sed expression for replacing the go_package option in proto
+# file with a one that's valid for us.
+SED_EXPR_LIGHT := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPLIGHT_OUTPUT_DIR)/,'
+
+# This copies proto files from submodule into $(PROTO_SOURCE_DIR),
+# thus satisfying the $(SOURCE_PROTOLIGHT_FILES) prerequisite. The copies
+# have their package name replaced by go.opentelemetry.io/proto.
+$(PROTOLIGHT_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
+	@ \
+	mkdir -p $(@D); \
+	sed -e $(SED_EXPR_LIGHT) "$<" >"$@.tmp"; \
+	mv "$@.tmp" "$@"
+
 .PHONY: gen-otlp-protobuf
 gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
@@ -111,10 +130,29 @@ copy-otlp-protobuf:
 	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
+	
+.PHONY: gen-otlp-protobuf-light
+gen-otlp-protobuf-light: $(SOURCE_PROTOLIGHT_FILES)
+	rm -rf ./$(PROTOBUF_TEMP_DIR)
+	mkdir -p ./$(PROTOBUF_TEMP_DIR)
+	$(foreach file,$(SOURCE_PROTOLIGHT_FILES),$(call exec-command,$(PROTOC_LIGHT) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
+	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
+	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
+	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
+
+.PHONY: copy-otlp-protobuf-light
+copy-otlp-protobuf-light:
+	find $(OTLPLIGHT_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
+	find $(OTLPLIGHT_OUTPUT_DIR) -type d -empty -delete
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/light/otlp/ ./$(OTLPLIGHT_OUTPUT_DIR)
+	cd ./$(OTLPLIGHT_OUTPUT_DIR)	&& go mod tidy
+	cd ./$(OTLPLIGHT_OUTPUT_DIR)/collector	&& go mod tidy
 
 .PHONY: clean
 clean:
 	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
+	find $(OTLPLIGHT_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
+	find $(OTLPLIGHT_OUTPUT_DIR) -type d -empty -delete
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
