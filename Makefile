@@ -139,14 +139,13 @@ gen-otlp-protobuf-light: $(SOURCE_PROTOLIGHT_FILES)
 
 .PHONY: copy-otlp-protobuf-light
 copy-otlp-protobuf-light:
-	rm -rf $(GEN_TEMP_DIR) $(OTLPLIGHT_OUTPUT_DIR)/*/
+	rm -rf $(OTLPLIGHT_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/light/otlp/ ./$(OTLPLIGHT_OUTPUT_DIR)
 	cd ./$(OTLPLIGHT_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
-	rm -rf $(GEN_TEMP_DIR) $(OTLPLIGHT_OUTPUT_DIR)/*/
+	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPLIGHT_OUTPUT_DIR)/*/
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
