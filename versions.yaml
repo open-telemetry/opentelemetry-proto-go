@@ -18,7 +18,6 @@ module-sets:
     modules:
       - go.opentelemetry.io/proto
       - go.opentelemetry.io/proto/light/otlp
-      - go.opentelemetry.io/proto/light/otlp/collector
       - go.opentelemetry.io/proto/otlp
 excluded-modules:
   - go.opentelemetry.io/proto/internal/tools

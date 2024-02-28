@@ -136,14 +136,10 @@ gen-otlp-protobuf-light: $(SOURCE_PROTOLIGHT_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
 	$(foreach file,$(SOURCE_PROTOLIGHT_FILES),$(call exec-command,$(PROTOC_LIGHT) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
-	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
-	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
-	$(PROTOC_LIGHT) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTOLIGHT_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
 
 .PHONY: copy-otlp-protobuf-light
 copy-otlp-protobuf-light:
-	find $(OTLPLIGHT_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
-	find $(OTLPLIGHT_OUTPUT_DIR) -type d -empty -delete
+	rm -rf $(GEN_TEMP_DIR) $(OTLPLIGHT_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/light/otlp/ ./$(OTLPLIGHT_OUTPUT_DIR)
 	cd ./$(OTLPLIGHT_OUTPUT_DIR)	&& go mod tidy
 	cd ./$(OTLPLIGHT_OUTPUT_DIR)/collector	&& go mod tidy
@@ -151,8 +147,7 @@ copy-otlp-protobuf-light:
 .PHONY: clean
 clean:
 	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/
-	find $(OTLPLIGHT_OUTPUT_DIR) -type f | grep -v go.mod | xargs --no-run-if-empty rm
-	find $(OTLPLIGHT_OUTPUT_DIR) -type d -empty -delete
+	rm -rf $(GEN_TEMP_DIR) $(OTLPLIGHT_OUTPUT_DIR)/*/
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
