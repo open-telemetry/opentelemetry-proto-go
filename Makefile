@@ -142,7 +142,6 @@ copy-otlp-protobuf-light:
 	rm -rf $(GEN_TEMP_DIR) $(OTLPLIGHT_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/light/otlp/ ./$(OTLPLIGHT_OUTPUT_DIR)
 	cd ./$(OTLPLIGHT_OUTPUT_DIR)	&& go mod tidy
-	cd ./$(OTLPLIGHT_OUTPUT_DIR)/collector	&& go mod tidy
 
 .PHONY: clean
 clean:
