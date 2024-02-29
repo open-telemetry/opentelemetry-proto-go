@@ -17,7 +17,7 @@ module-sets:
     version: v1.1.0
     modules:
       - go.opentelemetry.io/proto
-      - go.opentelemetry.io/proto/light/otlp
       - go.opentelemetry.io/proto/otlp
+      - go.opentelemetry.io/proto/slim/otlp
 excluded-modules:
   - go.opentelemetry.io/proto/internal/tools

@@ -46,9 +46,9 @@ PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 OTLP_OUTPUT_DIR    := otlp
 
-PROTOLIGHT_SOURCE_DIR   := $(GEN_TEMP_DIR)/light/proto
-SOURCE_PROTOLIGHT_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOLIGHT_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
-OTLPLIGHT_OUTPUT_DIR    := light/otlp
+PROTOSLIM_SOURCE_DIR   := $(GEN_TEMP_DIR)/slim/proto
+SOURCE_PROTOSLIM_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOSLIM_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
+OTLPSLIM_OUTPUT_DIR    := slim/otlp
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -60,7 +60,7 @@ endef
 
 OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.23.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
-PROTOC_LIGHT := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTOLIGHT_SOURCE_DIR)"
+PROTOC_SLIM := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTOSLIM_SOURCE_DIR)"
 
 .DEFAULT_GOAL := protobuf
 
@@ -84,7 +84,7 @@ $(TOOLS)/dbotconf: PACKAGE=go.opentelemetry.io/build-tools/dbotconf
 tools: $(DBOTCONF) $(MULTIMOD)
 
 .PHONY: protobuf
-protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-light copy-otlp-protobuf-light
+protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-slim copy-otlp-protobuf-slim
 
 .PHONY: protobuf-source
 protobuf-source: $(SOURCE_PROTO_FILES)
@@ -104,15 +104,15 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 
 # The sed expression for replacing the go_package option in proto
 # file with a one that's valid for us.
-SED_EXPR_LIGHT := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPLIGHT_OUTPUT_DIR)/,'
+SED_EXPR_SLIM := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPSLIM_OUTPUT_DIR)/,'
 
 # This copies proto files from submodule into $(PROTO_SOURCE_DIR),
-# thus satisfying the $(SOURCE_PROTOLIGHT_FILES) prerequisite. The copies
+# thus satisfying the $(SOURCE_PROTOSLIM_FILES) prerequisite. The copies
 # have their package name replaced by go.opentelemetry.io/proto.
-$(PROTOLIGHT_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
+$(PROTOSLIM_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	@ \
 	mkdir -p $(@D); \
-	sed -e $(SED_EXPR_LIGHT) "$<" >"$@.tmp"; \
+	sed -e $(SED_EXPR_SLIM) "$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
 .PHONY: gen-otlp-protobuf
@@ -131,21 +131,21 @@ copy-otlp-protobuf:
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
 	
-.PHONY: gen-otlp-protobuf-light
-gen-otlp-protobuf-light: $(SOURCE_PROTOLIGHT_FILES)
+.PHONY: gen-otlp-protobuf-slim
+gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
-	$(foreach file,$(SOURCE_PROTOLIGHT_FILES),$(call exec-command,$(PROTOC_LIGHT) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
+	$(foreach file,$(SOURCE_PROTOSLIM_FILES),$(call exec-command,$(PROTOC_SLIM) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
 
-.PHONY: copy-otlp-protobuf-light
-copy-otlp-protobuf-light:
-	rm -rf $(OTLPLIGHT_OUTPUT_DIR)/*/
-	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/light/otlp/ ./$(OTLPLIGHT_OUTPUT_DIR)
-	cd ./$(OTLPLIGHT_OUTPUT_DIR)	&& go mod tidy
+.PHONY: copy-otlp-protobuf-slim
+copy-otlp-protobuf-slim:
+	rm -rf $(OTLPSLIM_OUTPUT_DIR)/*/
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/slim/otlp/ ./$(OTLPSLIM_OUTPUT_DIR)
+	cd ./$(OTLPSLIM_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: clean
 clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPLIGHT_OUTPUT_DIR)/*/
+	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:

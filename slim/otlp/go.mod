@@ -1,4 +1,4 @@
-module go.opentelemetry.io/proto/light/otlp
+module go.opentelemetry.io/proto/slim/otlp
 
 go 1.17
 
