@@ -21,8 +21,6 @@ Meaning modules will comply with [semver 2.0](https://semver.org/spec/v2.0.0.htm
     If the protobuf definition stabilizes, the package will be replaced with a stable "non-experimental" package.
     If the protobuf definition is removed, the package will be removed without a replacement.
 
-might not be kept indefinitely.
-
 ## Getting Started
 
 Install the latest version in your project.
