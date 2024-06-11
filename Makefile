@@ -27,7 +27,7 @@
 PROTOC_VERSION := 3.14.0
 
 TOOLS_MOD_DIR                   := ./internal/tools
-PROTOBUF_VERSION                := v1
+PROTOBUF_VERSION                := v1*
 OTEL_PROTO_SUBMODULE            := opentelemetry-proto
 GEN_TEMP_DIR                    := gen
 SUBMODULE_PROTO_FILES           := $(wildcard $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/*/$(PROTOBUF_VERSION)/*.proto) $(wildcard $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/*/$(PROTOBUF_VERSION)/*.proto)
@@ -123,6 +123,7 @@ gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
 	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
 	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/profiles/v1experimental/profiles_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/profiles/v1experimental/profiles_service.proto
 
 
 .PHONY: copy-otlp-protobuf
