@@ -11,15 +11,6 @@ updates:
       interval: weekly
       day: sunday
   - package-ecosystem: gomod
-    directory: /
-    labels:
-      - dependencies
-      - go
-      - Skip Changelog
-    schedule:
-      interval: weekly
-      day: sunday
-  - package-ecosystem: gomod
     directory: /internal/tools
     labels:
       - dependencies
@@ -30,6 +21,69 @@ updates:
       day: sunday
   - package-ecosystem: gomod
     directory: /otlp
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/collector
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/common
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/logs
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/metrics
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/profiles
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/resource
+    labels:
+      - dependencies
+      - go
+      - Skip Changelog
+    schedule:
+      interval: weekly
+      day: sunday
+  - package-ecosystem: gomod
+    directory: /otlp/trace
     labels:
       - dependencies
       - go
