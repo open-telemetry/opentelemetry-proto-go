@@ -31,6 +31,7 @@ PROTOBUF_VERSION                := v1*
 OTEL_PROTO_SUBMODULE            := opentelemetry-proto
 GEN_TEMP_DIR                    := gen
 SUBMODULE_PROTO_FILES           := $(wildcard $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/*/$(PROTOBUF_VERSION)/*.proto) $(wildcard $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/*/$(PROTOBUF_VERSION)/*.proto)
+ALL_GO_MOD_DIRS := $(shell find . -type f -name 'go.mod' -exec dirname {} \; | sort)
 
 ifeq ($(strip $(SUBMODULE_PROTO_FILES)),)
 $(error Submodule at $(OTEL_PROTO_SUBMODULE) is not checked out, use "git submodule update --init")
@@ -174,6 +175,14 @@ dependabot-check: | $(DBOTCONF)
 .PHONY: dependabot-generate
 dependabot-generate: | $(DBOTCONF)
 	@$(DBOTCONF) generate > $(DEPENDABOT_CONFIG)
+
+.PHONY: go-mod-tidy
+go-mod-tidy: $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
+go-mod-tidy/%: DIR=$*
+go-mod-tidy/%: crosslink
+	@echo "$(GO) mod tidy in $(DIR)" \
+		&& cd $(DIR) \
+		&& $(GO) mod tidy -compat=1.21
 
 # Releasing
 
