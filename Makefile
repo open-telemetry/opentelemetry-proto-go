@@ -150,7 +150,7 @@ gen-modules/%:
 	@echo "Initializing module in $(DIR)" \
 		&& cd $(DIR) \
 		&& rm -f go.mod go.sum \
-		&& $(GO) mod init go.opentelemetry.io/proto/$(DIR)
+		&& $(GO) mod init go.opentelemetry.io/proto/$(DIR:/=)
 
 .PHONY: copy-otlp-protobuf-slim
 copy-otlp-protobuf-slim:
