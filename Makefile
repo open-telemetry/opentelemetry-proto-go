@@ -46,6 +46,7 @@ PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 OTLP_OUTPUT_DIR    := otlp
+OTLP_EXPECTED_MODULES := $(dir $(wildcard $(OTLP_OUTPUT_DIR)/*/))
 
 PROTOSLIM_SOURCE_DIR   := $(GEN_TEMP_DIR)/slim/proto
 SOURCE_PROTOSLIM_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOSLIM_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
@@ -142,6 +143,15 @@ gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
 	$(foreach file,$(SOURCE_PROTOSLIM_FILES),$(call exec-command,$(PROTOC_SLIM) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
 
+.PHONY: gen-modules
+gen-modules: $(OTLP_EXPECTED_MODULES:%=gen-modules/%)
+gen-modules/%: DIR=$*
+gen-modules/%:
+	@echo "Initializing module in $(DIR)" \
+		&& cd $(DIR) \
+		&& rm -f go.mod go.sum \
+		&& $(GO) mod init go.opentelemetry.io/proto/$(DIR)
+
 .PHONY: copy-otlp-protobuf-slim
 copy-otlp-protobuf-slim:
 	rm -rf $(OTLPSLIM_OUTPUT_DIR)/*/
@@ -167,6 +177,22 @@ crosslink: $(CROSSLINK)
 	@echo "Executing crosslink"
 	$(CROSSLINK) --root=$(shell pwd) --prune
 
+.PHONY: full-replace
+full-replace: $(OTLP_EXPECTED_MODULES:%=full-replace/%)
+full-replace/%: DIR=$*
+full-replace/%:
+	@echo "$(GO) mod replace all $(DIR)" \
+		&& cd $(DIR) \
+		&& $(GO) mod edit \
+		-replace go.opentelemetry.io/proto/otlp/collector=../collector \
+		-replace go.opentelemetry.io/proto/otlp/common=../common \
+		-replace go.opentelemetry.io/proto/otlp/logs=../logs \
+		-replace go.opentelemetry.io/proto/otlp/metrics=../metrics \
+		-replace go.opentelemetry.io/proto/otlp/profiles=../profiles \
+		-replace go.opentelemetry.io/proto/otlp/resource=../resource \
+		-replace go.opentelemetry.io/proto/otlp/trace=../trace \
+		-replace go.opentelemetry.io/proto/otlp=../
+
 DEPENDABOT_CONFIG = .github/dependabot.yml
 .PHONY: dependabot-check
 dependabot-check: | $(DBOTCONF)
@@ -179,7 +205,7 @@ dependabot-generate: | $(DBOTCONF)
 .PHONY: go-mod-tidy
 go-mod-tidy: $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
 go-mod-tidy/%: DIR=$*
-go-mod-tidy/%: crosslink
+go-mod-tidy/%:
 	@echo "$(GO) mod tidy in $(DIR)" \
 		&& cd $(DIR) \
 		&& $(GO) mod tidy -compat=1.21

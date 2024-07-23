@@ -17,6 +17,6 @@ jobs:
         with:
           submodules: true
       - name: Generate
-        run: make clean protobuf
+        run: make clean protobuf gen-modules full-replace crosslink go-mod-tidy
       - name: Check Clean Work Tree
         run: make check-clean-work-tree
