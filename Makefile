@@ -80,8 +80,11 @@ $(TOOLS)/multimod: PACKAGE=go.opentelemetry.io/build-tools/multimod
 DBOTCONF = $(TOOLS)/dbotconf
 $(TOOLS)/dbotconf: PACKAGE=go.opentelemetry.io/build-tools/dbotconf
 
+CROSSLINK = $(TOOLS)/crosslink
+$(TOOLS)/crosslink: PACKAGE=go.opentelemetry.io/build-tools/crosslink
+
 .PHONY: tools
-tools: $(DBOTCONF) $(MULTIMOD)
+tools: $(DBOTCONF) $(MULTIMOD) $(CROSSLINK)
 
 .PHONY: protobuf
 protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-slim copy-otlp-protobuf-slim
@@ -131,7 +134,7 @@ copy-otlp-protobuf:
 	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
-	
+
 .PHONY: gen-otlp-protobuf-slim
 gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
@@ -157,6 +160,11 @@ check-clean-work-tree:
 	  git status; \
 	  exit 1; \
 	fi
+
+.PHONY: crosslink
+crosslink: $(CROSSLINK)
+	@echo "Executing crosslink"
+	$(CROSSLINK) --root=$(shell pwd) --prune
 
 DEPENDABOT_CONFIG = .github/dependabot.yml
 .PHONY: dependabot-check
