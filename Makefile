@@ -37,7 +37,7 @@ ifeq ($(strip $(SUBMODULE_PROTO_FILES)),)
 $(error Submodule at $(OTEL_PROTO_SUBMODULE) is not checked out, use "git submodule update --init")
 endif
 
-GO                := go1.21.12
+GO                := go
 GO_MOD_ROOT       := go.opentelemetry.io/proto
 PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
@@ -45,7 +45,7 @@ PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
 PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 OTLP_OUTPUT_DIR    := otlp
-OTLP_EXPECTED_MODULES := $(dir $(wildcard $(OTLP_OUTPUT_DIR)/*/))
+OTLP_EXPECTED_MODULES := $(sort $(dir $(wildcard $(OTLP_OUTPUT_DIR)/*/)))
 
 PROTOSLIM_SOURCE_DIR   := $(GEN_TEMP_DIR)/slim/proto
 SOURCE_PROTOSLIM_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOSLIM_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
