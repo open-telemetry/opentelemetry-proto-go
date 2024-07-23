@@ -1,6 +1,18 @@
 module go.opentelemetry.io/proto/otlp/collector
 
-go 1.21
+go 1.21.12
+
+replace go.opentelemetry.io/proto/otlp/common => ../common
+
+replace go.opentelemetry.io/proto/otlp/logs => ../logs
+
+replace go.opentelemetry.io/proto/otlp/metrics => ../metrics
+
+replace go.opentelemetry.io/proto/otlp/profiles => ../profiles
+
+replace go.opentelemetry.io/proto/otlp/resource => ../resource
+
+replace go.opentelemetry.io/proto/otlp/trace => ../trace
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
@@ -21,15 +33,3 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20240528184218-531527333157 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
 )
-
-replace go.opentelemetry.io/proto/otlp/common => ../common
-
-replace go.opentelemetry.io/proto/otlp/logs => ../logs
-
-replace go.opentelemetry.io/proto/otlp/metrics => ../metrics
-
-replace go.opentelemetry.io/proto/otlp/profiles => ../profiles
-
-replace go.opentelemetry.io/proto/otlp/resource => ../resource
-
-replace go.opentelemetry.io/proto/otlp/trace => ../trace

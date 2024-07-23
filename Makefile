@@ -37,8 +37,7 @@ ifeq ($(strip $(SUBMODULE_PROTO_FILES)),)
 $(error Submodule at $(OTEL_PROTO_SUBMODULE) is not checked out, use "git submodule update --init")
 endif
 
-GO                := go
-GO_VERSION        := 1.17
+GO                := go1.21.12
 GO_MOD_ROOT       := go.opentelemetry.io/proto
 PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
