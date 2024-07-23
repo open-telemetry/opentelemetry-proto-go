@@ -175,7 +175,7 @@ check-clean-work-tree:
 .PHONY: crosslink
 crosslink: $(CROSSLINK)
 	@echo "Executing crosslink"
-	$(CROSSLINK) --root=$(shell pwd) --prune
+	$(CROSSLINK) --root=$(shell pwd)/otlp --prune
 
 .PHONY: full-replace
 full-replace: $(OTLP_EXPECTED_MODULES:%=full-replace/%)
