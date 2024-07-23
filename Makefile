@@ -192,7 +192,7 @@ full-replace/%:
 		-replace go.opentelemetry.io/proto/otlp/resource=../resource \
 		-replace go.opentelemetry.io/proto/otlp/trace=../trace \
 		-replace go.opentelemetry.io/proto/otlp=../ \
-		&& $(GO) mod edit -dropreplace go.opentelemetry.io/proto/$(DIR)
+		&& $(GO) mod edit -dropreplace go.opentelemetry.io/proto/$(DIR:/=)
 
 
 DEPENDABOT_CONFIG = .github/dependabot.yml
