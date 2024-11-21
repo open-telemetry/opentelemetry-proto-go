@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.1.0
 // - protoc             v3.21.6
-// source: opentelemetry/proto/collector/profiles/v1experimental/profiles_service.proto
+// source: opentelemetry/proto/collector/profiles/v1development/profiles_service.proto
 
-package v1experimental
+package v1development
 
 import (
 	context "context"
@@ -37,7 +37,7 @@ func NewProfilesServiceClient(cc grpc.ClientConnInterface) ProfilesServiceClient
 
 func (c *profilesServiceClient) Export(ctx context.Context, in *ExportProfilesServiceRequest, opts ...grpc.CallOption) (*ExportProfilesServiceResponse, error) {
 	out := new(ExportProfilesServiceResponse)
-	err := c.cc.Invoke(ctx, "/opentelemetry.proto.collector.profiles.v1experimental.ProfilesService/Export", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/opentelemetry.proto.collector.profiles.v1development.ProfilesService/Export", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +84,7 @@ func _ProfilesService_Export_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/opentelemetry.proto.collector.profiles.v1experimental.ProfilesService/Export",
+		FullMethod: "/opentelemetry.proto.collector.profiles.v1development.ProfilesService/Export",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfilesServiceServer).Export(ctx, req.(*ExportProfilesServiceRequest))
@@ -96,7 +96,7 @@ func _ProfilesService_Export_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProfilesService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "opentelemetry.proto.collector.profiles.v1experimental.ProfilesService",
+	ServiceName: "opentelemetry.proto.collector.profiles.v1development.ProfilesService",
 	HandlerType: (*ProfilesServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -105,5 +105,5 @@ var ProfilesService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "opentelemetry/proto/collector/profiles/v1experimental/profiles_service.proto",
+	Metadata: "opentelemetry/proto/collector/profiles/v1development/profiles_service.proto",
 }

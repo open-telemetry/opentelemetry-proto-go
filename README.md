@@ -14,7 +14,7 @@ Versioning of modules in this project will be idiomatic of a Go project using [G
 They will use [semantic import versioning](https://github.com/golang/go/wiki/Modules#semantic-import-versioning).
 Meaning modules will comply with [semver 2.0](https://semver.org/spec/v2.0.0.html) with the following exception:
 
-- Packages with an `experimental` suffix do not comply with [semver 2.0](https://semver.org/spec/v2.0.0.html).
+- Packages with an `experimental` or `development` suffix do not comply with [semver 2.0](https://semver.org/spec/v2.0.0.html).
   - Backwards incompatible changes may be introduced to these packages between minor versions.
   - These packages are intended to be temporary.
     They will be deprecated and removed when the protobuf definition stabilizes or is removed.
