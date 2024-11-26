@@ -18,6 +18,5 @@
 package tools // import "go.opentelemetry.io/proto/internal/tools"
 
 import (
-	_ "go.opentelemetry.io/build-tools/dbotconf"
 	_ "go.opentelemetry.io/build-tools/multimod"
 )

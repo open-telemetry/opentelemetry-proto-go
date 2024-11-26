@@ -1,0 +1,36 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended"
+	],
+	"ignorePaths": [],
+	"labels": ["Skip Changelog", "actions", "dependencies"],
+	"postUpdateOptions" : [
+		"gomodTidy"
+	],
+	"packageRules": [
+		{
+			"matchManagers": ["gomod"],
+			"matchDepTypes": ["indirect"],
+			"enabled": true
+		},
+		{
+			"matchFileNames": ["internal/tools/**"],
+			"matchManagers": ["gomod"],
+			"matchDepTypes": ["indirect"],
+			"enabled": false
+		},
+		{
+			"matchFileNames": ["otlp/**"],
+			"matchManagers": ["gomod"],
+			"matchDepTypes": ["indirect"],
+			"enabled": false
+		},
+		{
+			"matchFileNames": ["slim/otlp/**"],
+			"matchManagers": ["gomod"],
+			"matchDepTypes": ["indirect"],
+			"enabled": false
+		}
+	]
+}
