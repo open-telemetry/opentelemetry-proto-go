@@ -19,18 +19,6 @@
 			"matchManagers": ["gomod"],
 			"matchDepTypes": ["indirect"],
 			"enabled": false
-		},
-		{
-			"matchFileNames": ["otlp/**"],
-			"matchManagers": ["gomod"],
-			"matchDepTypes": ["indirect"],
-			"enabled": false
-		},
-		{
-			"matchFileNames": ["slim/otlp/**"],
-			"matchManagers": ["gomod"],
-			"matchDepTypes": ["indirect"],
-			"enabled": false
 		}
 	]
 }
