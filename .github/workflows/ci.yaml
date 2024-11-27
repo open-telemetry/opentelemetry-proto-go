@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
       - name: Generate
-        run: make clean protobuf
+        run: make clean protobuf go-mod-tidy
       - name: Check Clean Work Tree
         run: make check-clean-work-tree
   compatibility-test:
@@ -39,7 +39,7 @@ jobs:
         check-latest: true
         cache-dependency-path: "**/go.sum"
     - name: Generate
-      run: make clean protobuf
+      run: make clean protobuf go-mod-tidy
     - name: Run tests
       run: make test
   test-compatibility:
