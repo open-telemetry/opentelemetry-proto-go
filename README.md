@@ -65,10 +65,10 @@ stop ensuring compatibility with these versions in the following manner:
 
 This project is tested on the following systems.
 
-| OS       | Go Version | Architecture |
-| -------- | ---------- | ------------ |
-| Ubuntu   | 1.23       | amd64        |
-| Ubuntu   | 1.22       | amd64        |
+| OS       | Go Version |
+| -------- | ---------- |
+| Ubuntu   | 1.23       |
+| Ubuntu   | 1.22       |
 
 While this project should work for other systems, no compatibility guarantees
 are made for those systems currently.
