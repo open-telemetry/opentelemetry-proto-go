@@ -39,6 +39,10 @@ endif
 GO                := go
 GO_VERSION        := 1.17
 GO_MOD_ROOT       := go.opentelemetry.io/proto
+ALL_GO_MOD_DIRS := $(shell find . -type f -name 'go.mod' -exec dirname {} \; | sort)
+OTEL_GO_MOD_DIRS := $(filter-out $(TOOLS_MOD_DIR), $(ALL_GO_MOD_DIRS))
+TIMEOUT = 60
+
 PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
 PROTOBUF_TEMP_DIR := $(GEN_TEMP_DIR)/go
 
@@ -144,6 +148,21 @@ copy-otlp-protobuf-slim:
 .PHONY: clean
 clean:
 	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
+
+.PHONY: go-mod-tidy
+go-mod-tidy: $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
+go-mod-tidy/%: DIR=$*
+go-mod-tidy/%:
+	@echo "$(GO) mod tidy in $(DIR)" \
+		&& cd $(DIR) \
+		&& $(GO) mod tidy -compat=1.21
+
+test: $(OTEL_GO_MOD_DIRS:%=test/%)
+test/%: DIR=$*
+test/%:
+	@echo "$(GO) test -timeout $(TIMEOUT)s $(ARGS) $(DIR)/..." \
+		&& cd $(DIR) \
+		&& $(GO) test -timeout $(TIMEOUT)s $(ARGS) ./...
 
 .PHONY: check-clean-work-tree
 check-clean-work-tree:
