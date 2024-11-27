@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
       - name: Generate
-        run: make clean protobuf go-mod-tidy
+        run: make clean protobuf
       - name: Check Clean Work Tree
         run: make check-clean-work-tree
   compatibility-test:
