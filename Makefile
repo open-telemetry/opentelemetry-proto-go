@@ -145,6 +145,16 @@ copy-otlp-protobuf-slim:
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/slim/otlp/ ./$(OTLPSLIM_OUTPUT_DIR)
 	cd ./$(OTLPSLIM_OUTPUT_DIR)	&& go mod tidy
 
+.PHONY: toolchain-check
+toolchain-check:
+	@toolchainRes=$$(for f in $(ALL_GO_MOD_DIRS); do \
+	           awk '/^toolchain/ { found=1; next } END { if (found) print FILENAME }' $$f/go.mod; \
+	done); \
+	if [ -n "$${toolchainRes}" ]; then \
+			echo "toolchain checking failed:"; echo "$${toolchainRes}"; \
+			exit 1; \
+	fi
+
 .PHONY: clean
 clean:
 	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/

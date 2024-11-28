@@ -20,8 +20,8 @@ jobs:
           submodules: true
       - name: Generate
         run: make clean protobuf
-      - name: Check Clean Work Tree
-        run: make check-clean-work-tree
+      - name: Check
+        run: make toolchain-check check-clean-work-tree
   compatibility-test:
     strategy:
       matrix:
