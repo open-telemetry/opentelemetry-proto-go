@@ -159,7 +159,8 @@ clean-gen:
 	rm -rf $(GEN_TEMP_DIR)
 
 .PHONY: clean
-clean: clean-gen
+clean:
+	rm -rf $(GEN_TEMP_DIR)
 	rm -rf $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
 
 .PHONY: go-mod-tidy
