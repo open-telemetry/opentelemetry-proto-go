@@ -1,6 +1,6 @@
 module go.opentelemetry.io/proto/slim/otlp
 
-go 1.17
+go 1.22.0
 
 require google.golang.org/protobuf v1.35.2
 
