@@ -21,7 +21,7 @@ jobs:
       - name: Generate
         run: make clean protobuf
       - name: Check
-        run: make toolchain-check check-clean-work-tree
+        run: make toolchain-check verify-versions check-clean-work-tree
   compatibility-test:
     strategy:
       matrix:
