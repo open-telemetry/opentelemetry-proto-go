@@ -155,12 +155,16 @@ toolchain-check:
 			exit 1; \
 	fi
 
+.PHONY: clean-gen
+clean-gen:
+	rm -rf $(GEN_TEMP_DIR)
+
 .PHONY: clean
-clean:
-	rm -rf $(GEN_TEMP_DIR) $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
+clean: clean-gen
+	rm -rf $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
 
 .PHONY: go-mod-tidy
-go-mod-tidy: $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
+go-mod-tidy: clean-gen $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
 go-mod-tidy/%: DIR=$*
 go-mod-tidy/%:
 	@echo "$(GO) mod tidy in $(DIR)" \
