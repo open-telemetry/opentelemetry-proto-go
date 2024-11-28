@@ -39,7 +39,8 @@ endif
 GO                := go
 GO_MOD_ROOT       := go.opentelemetry.io/proto
 ALL_GO_MOD_DIRS := $(shell find . -type f -name 'go.mod' -exec dirname {} \; | sort)
-OTEL_GO_MOD_DIRS := $(filter-out $(TOOLS_MOD_DIR), $(ALL_GO_MOD_DIRS))
+ALL_GO_SUB_MOD_DIRS := $(shell find . -type f -name 'go.mod' -mindepth 2 -exec dirname {} \; | sort)
+OTEL_GO_MOD_DIRS := $(filter-out $(TOOLS_MOD_DIR), $(ALL_GO_SUB_MOD_DIRS))
 TIMEOUT = 60
 
 PROTOBUF_GEN_DIR  := opentelemetry-proto-gen
@@ -159,7 +160,8 @@ clean-gen:
 	rm -rf $(GEN_TEMP_DIR)
 
 .PHONY: clean
-clean: clean-gen
+clean:
+	rm -rf $(GEN_TEMP_DIR)
 	rm -rf $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
 
 .PHONY: go-mod-tidy
