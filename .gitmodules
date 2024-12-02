@@ -1,4 +1,4 @@
 [submodule "opentelemetry-proto"]
 	path = opentelemetry-proto
 	url = https://github.com/open-telemetry/opentelemetry-proto
-	branch = v1.3.1
+	branch = v1.4.0
