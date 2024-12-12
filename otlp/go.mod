@@ -4,7 +4,7 @@ go 1.22.7
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.24.0
-	google.golang.org/grpc v1.68.0
+	google.golang.org/grpc v1.69.0
 	google.golang.org/protobuf v1.35.2
 )
 
