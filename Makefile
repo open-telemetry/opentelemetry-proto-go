@@ -39,7 +39,7 @@ endif
 GO                := go
 GO_MOD_ROOT       := go.opentelemetry.io/proto
 ALL_GO_MOD_DIRS := $(shell find . -type f -name 'go.mod' -exec dirname {} \; | sort)
-ALL_GO_SUB_MOD_DIRS := $(shell find . -type f -name 'go.mod' -mindepth 2 -exec dirname {} \; | sort)
+ALL_GO_SUB_MOD_DIRS := $(shell find . -mindepth 2 -type f -name 'go.mod'  -exec dirname {} \; | sort)
 OTEL_GO_MOD_DIRS := $(filter-out $(TOOLS_MOD_DIR), $(ALL_GO_SUB_MOD_DIRS))
 TIMEOUT = 60
 
