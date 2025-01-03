@@ -4,21 +4,42 @@ package v1
 
 import slim "go.opentelemetry.io/proto/slim/otlp/metrics/v1"
 
-type (
-	MetricsData                   = slim.MetricsData
-	ResourceMetrics               = slim.ResourceMetrics
-	ScopeMetrics                  = slim.ScopeMetrics
-	Metric                        = slim.Metric
-	Gauge                         = slim.Gauge
-	Sum                           = slim.Sum
-	Histogram                     = slim.Histogram
-	ExponentialHistogram          = slim.ExponentialHistogram
-	Summary                       = slim.Summary
-	NumberDataPoint               = slim.NumberDataPoint
-	HistogramDataPoint            = slim.HistogramDataPoint
-	ExponentialHistogramDataPoint = slim.ExponentialHistogramDataPoint
-	SummaryDataPoint              = slim.SummaryDataPoint
-	Exemplar                      = slim.Exemplar
-	AggregationTemporality        = slim.AggregationTemporality
-	DataPointFlags                = slim.DataPointFlags
+type MetricsData = slim.MetricsData
+type ResourceMetrics = slim.ResourceMetrics
+type ScopeMetrics = slim.ScopeMetrics
+type Metric = slim.Metric
+type Metric_Gauge = slim.Metric_Gauge
+type Metric_Sum = slim.Metric_Sum
+type Metric_Histogram = slim.Metric_Histogram
+type Metric_ExponentialHistogram = slim.Metric_ExponentialHistogram
+type Metric_Summary = slim.Metric_Summary
+type Gauge = slim.Gauge
+type Sum = slim.Sum
+type Histogram = slim.Histogram
+type ExponentialHistogram = slim.ExponentialHistogram
+type Summary = slim.Summary
+type NumberDataPoint = slim.NumberDataPoint
+type NumberDataPoint_AsDouble = slim.NumberDataPoint_AsDouble
+type NumberDataPoint_AsInt = slim.NumberDataPoint_AsInt
+type HistogramDataPoint = slim.HistogramDataPoint
+type ExponentialHistogramDataPoint = slim.ExponentialHistogramDataPoint
+type ExponentialHistogramDataPoint_Buckets = slim.ExponentialHistogramDataPoint_Buckets
+type SummaryDataPoint = slim.SummaryDataPoint
+type SummaryDataPoint_ValueAtQuantile = slim.SummaryDataPoint_ValueAtQuantile
+type Exemplar = slim.Exemplar
+type Exemplar_AsDouble = slim.Exemplar_AsDouble
+type Exemplar_AsInt = slim.Exemplar_AsInt
+type AggregationTemporality = slim.AggregationTemporality
+
+const (
+	AggregationTemporality_AGGREGATION_TEMPORALITY_UNSPECIFIED = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_UNSPECIFIED
+	AggregationTemporality_AGGREGATION_TEMPORALITY_DELTA       = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_DELTA
+	AggregationTemporality_AGGREGATION_TEMPORALITY_CUMULATIVE  = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_CUMULATIVE
+)
+
+type DataPointFlags = slim.DataPointFlags
+
+const (
+	DataPointFlags_DATA_POINT_FLAGS_DO_NOT_USE             = slim.DataPointFlags_DATA_POINT_FLAGS_DO_NOT_USE
+	DataPointFlags_DATA_POINT_FLAGS_NO_RECORDED_VALUE_MASK = slim.DataPointFlags_DATA_POINT_FLAGS_NO_RECORDED_VALUE_MASK
 )

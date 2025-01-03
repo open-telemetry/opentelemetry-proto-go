@@ -4,6 +4,4 @@ package v1
 
 import slim "go.opentelemetry.io/proto/slim/otlp/resource/v1"
 
-type (
-	Resource = slim.Resource
-)
+type Resource = slim.Resource

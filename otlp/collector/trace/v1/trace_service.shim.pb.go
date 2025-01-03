@@ -4,8 +4,6 @@ package v1
 
 import slim "go.opentelemetry.io/proto/slim/otlp/collector/trace/v1"
 
-type (
-	ExportTraceServiceRequest  = slim.ExportTraceServiceRequest
-	ExportTraceServiceResponse = slim.ExportTraceServiceResponse
-	ExportTracePartialSuccess  = slim.ExportTracePartialSuccess
-)
+type ExportTraceServiceRequest = slim.ExportTraceServiceRequest
+type ExportTraceServiceResponse = slim.ExportTraceServiceResponse
+type ExportTracePartialSuccess = slim.ExportTracePartialSuccess

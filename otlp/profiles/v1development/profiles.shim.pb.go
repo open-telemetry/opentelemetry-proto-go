@@ -4,18 +4,22 @@ package v1development
 
 import slim "go.opentelemetry.io/proto/slim/otlp/profiles/v1development"
 
-type (
-	ProfilesData           = slim.ProfilesData
-	ResourceProfiles       = slim.ResourceProfiles
-	ScopeProfiles          = slim.ScopeProfiles
-	Profile                = slim.Profile
-	AttributeUnit          = slim.AttributeUnit
-	Link                   = slim.Link
-	ValueType              = slim.ValueType
-	Sample                 = slim.Sample
-	Mapping                = slim.Mapping
-	Location               = slim.Location
-	Line                   = slim.Line
-	Function               = slim.Function
-	AggregationTemporality = slim.AggregationTemporality
+type ProfilesData = slim.ProfilesData
+type ResourceProfiles = slim.ResourceProfiles
+type ScopeProfiles = slim.ScopeProfiles
+type Profile = slim.Profile
+type AttributeUnit = slim.AttributeUnit
+type Link = slim.Link
+type ValueType = slim.ValueType
+type Sample = slim.Sample
+type Mapping = slim.Mapping
+type Location = slim.Location
+type Line = slim.Line
+type Function = slim.Function
+type AggregationTemporality = slim.AggregationTemporality
+
+const (
+	AggregationTemporality_AGGREGATION_TEMPORALITY_UNSPECIFIED = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_UNSPECIFIED
+	AggregationTemporality_AGGREGATION_TEMPORALITY_DELTA       = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_DELTA
+	AggregationTemporality_AGGREGATION_TEMPORALITY_CUMULATIVE  = slim.AggregationTemporality_AGGREGATION_TEMPORALITY_CUMULATIVE
 )

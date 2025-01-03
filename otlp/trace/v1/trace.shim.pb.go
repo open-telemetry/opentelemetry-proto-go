@@ -4,11 +4,37 @@ package v1
 
 import slim "go.opentelemetry.io/proto/slim/otlp/trace/v1"
 
-type (
-	TracesData    = slim.TracesData
-	ResourceSpans = slim.ResourceSpans
-	ScopeSpans    = slim.ScopeSpans
-	Span          = slim.Span
-	Status        = slim.Status
-	SpanFlags     = slim.SpanFlags
+type TracesData = slim.TracesData
+type ResourceSpans = slim.ResourceSpans
+type ScopeSpans = slim.ScopeSpans
+type Span = slim.Span
+type Span_SpanKind = slim.Span_SpanKind
+
+const (
+	Span_SPAN_KIND_UNSPECIFIED = slim.Span_SPAN_KIND_UNSPECIFIED
+	Span_SPAN_KIND_INTERNAL    = slim.Span_SPAN_KIND_INTERNAL
+	Span_SPAN_KIND_SERVER      = slim.Span_SPAN_KIND_SERVER
+	Span_SPAN_KIND_CLIENT      = slim.Span_SPAN_KIND_CLIENT
+	Span_SPAN_KIND_PRODUCER    = slim.Span_SPAN_KIND_PRODUCER
+	Span_SPAN_KIND_CONSUMER    = slim.Span_SPAN_KIND_CONSUMER
+)
+
+type Span_Event = slim.Span_Event
+type Span_Link = slim.Span_Link
+type Status = slim.Status
+type Status_StatusCode = slim.Status_StatusCode
+
+const (
+	Status_STATUS_CODE_UNSET = slim.Status_STATUS_CODE_UNSET
+	Status_STATUS_CODE_OK    = slim.Status_STATUS_CODE_OK
+	Status_STATUS_CODE_ERROR = slim.Status_STATUS_CODE_ERROR
+)
+
+type SpanFlags = slim.SpanFlags
+
+const (
+	SpanFlags_SPAN_FLAGS_DO_NOT_USE                 = slim.SpanFlags_SPAN_FLAGS_DO_NOT_USE
+	SpanFlags_SPAN_FLAGS_TRACE_FLAGS_MASK           = slim.SpanFlags_SPAN_FLAGS_TRACE_FLAGS_MASK
+	SpanFlags_SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK = slim.SpanFlags_SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK
+	SpanFlags_SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK     = slim.SpanFlags_SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK
 )

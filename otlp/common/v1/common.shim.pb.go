@@ -4,10 +4,15 @@ package v1
 
 import slim "go.opentelemetry.io/proto/slim/otlp/common/v1"
 
-type (
-	AnyValue             = slim.AnyValue
-	ArrayValue           = slim.ArrayValue
-	KeyValueList         = slim.KeyValueList
-	KeyValue             = slim.KeyValue
-	InstrumentationScope = slim.InstrumentationScope
-)
+type AnyValue = slim.AnyValue
+type AnyValue_StringValue = slim.AnyValue_StringValue
+type AnyValue_BoolValue = slim.AnyValue_BoolValue
+type AnyValue_IntValue = slim.AnyValue_IntValue
+type AnyValue_DoubleValue = slim.AnyValue_DoubleValue
+type AnyValue_ArrayValue = slim.AnyValue_ArrayValue
+type AnyValue_KvlistValue = slim.AnyValue_KvlistValue
+type AnyValue_BytesValue = slim.AnyValue_BytesValue
+type ArrayValue = slim.ArrayValue
+type KeyValueList = slim.KeyValueList
+type KeyValue = slim.KeyValue
+type InstrumentationScope = slim.InstrumentationScope

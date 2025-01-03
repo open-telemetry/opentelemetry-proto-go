@@ -4,8 +4,6 @@ package v1development
 
 import slim "go.opentelemetry.io/proto/slim/otlp/collector/profiles/v1development"
 
-type (
-	ExportProfilesServiceRequest  = slim.ExportProfilesServiceRequest
-	ExportProfilesServiceResponse = slim.ExportProfilesServiceResponse
-	ExportProfilesPartialSuccess  = slim.ExportProfilesPartialSuccess
-)
+type ExportProfilesServiceRequest = slim.ExportProfilesServiceRequest
+type ExportProfilesServiceResponse = slim.ExportProfilesServiceResponse
+type ExportProfilesPartialSuccess = slim.ExportProfilesPartialSuccess
