@@ -1,2 +1,3 @@
 .tools/
 gen/
+go.work*

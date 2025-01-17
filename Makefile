@@ -50,9 +50,7 @@ PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 OTLP_OUTPUT_DIR    := otlp
 
-PROTOSLIM_SOURCE_DIR   := $(GEN_TEMP_DIR)/slim/proto
-SOURCE_PROTOSLIM_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOSLIM_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
-OTLPSLIM_OUTPUT_DIR    := slim/otlp
+OTLPGRPC_OUTPUT_DIR  := otlpgrpc
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -64,7 +62,6 @@ endef
 
 OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.23.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
-PROTOC_SLIM := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTOSLIM_SOURCE_DIR)"
 
 .DEFAULT_GOAL := protobuf
 
@@ -85,7 +82,7 @@ $(TOOLS)/multimod: PACKAGE=go.opentelemetry.io/build-tools/multimod
 tools: $(MULTIMOD)
 
 .PHONY: protobuf
-protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-slim copy-otlp-protobuf-slim
+protobuf: protobuf-source gen-otlp-protobuf copy-otlp-protobuf gen-otlp-protobuf-grpc copy-otlp-protobuf-grpc
 
 .PHONY: protobuf-source
 protobuf-source: $(SOURCE_PROTO_FILES)
@@ -103,47 +100,31 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	sed -e $(SED_EXPR) "$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
-# The sed expression for replacing the go_package option in proto
-# file with a one that's valid for us.
-SED_EXPR_SLIM := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPSLIM_OUTPUT_DIR)/,'
-
-# This copies proto files from submodule into $(PROTO_SOURCE_DIR),
-# thus satisfying the $(SOURCE_PROTOSLIM_FILES) prerequisite. The copies
-# have their package name replaced by go.opentelemetry.io/proto.
-$(PROTOSLIM_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
-	@ \
-	mkdir -p $(@D); \
-	sed -e $(SED_EXPR_SLIM) "$<" >"$@.tmp"; \
-	mv "$@.tmp" "$@"
-
 .PHONY: gen-otlp-protobuf
 gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
 	$(foreach file,$(SOURCE_PROTO_FILES),$(call exec-command,$(PROTOC) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
-	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/profiles/v1development/profiles_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go_out=./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/profiles/v1development/profiles_service.proto
 
+.PHONY: gen-otlp-protobuf-grpc
+gen-otlp-protobuf-grpc: $(SOURCE_PROTO_FILES)
+	rm -rf ./$(PROTOBUF_TEMP_DIR)
+	mkdir -p ./$(PROTOBUF_TEMP_DIR)
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/trace/v1/trace_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/trace/v1/trace_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/metrics/v1/metrics_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/metrics/v1/metrics_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/logs/v1/logs_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/logs/v1/logs_service.proto
+	$(PROTOC) --grpc-gateway_out=logtostderr=true,grpc_api_configuration=$(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/collector/profiles/v1development/profiles_service_http.yaml:./$(PROTOBUF_TEMP_DIR) --go-grpc_out=./$(PROTOBUF_TEMP_DIR) $(PROTO_SOURCE_DIR)/opentelemetry/proto/collector/profiles/v1development/profiles_service.proto
+
+.PHONY: copy-otlp-protobuf-grpc
+copy-otlp-protobuf-grpc: clean-grpc-out
+	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/collector/ ./$(OTLPGRPC_OUTPUT_DIR)
+	cd ./$(OTLPGRPC_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: copy-otlp-protobuf
 copy-otlp-protobuf:
 	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
-
-.PHONY: gen-otlp-protobuf-slim
-gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
-	rm -rf ./$(PROTOBUF_TEMP_DIR)
-	mkdir -p ./$(PROTOBUF_TEMP_DIR)
-	$(foreach file,$(SOURCE_PROTOSLIM_FILES),$(call exec-command,$(PROTOC_SLIM) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
-
-.PHONY: copy-otlp-protobuf-slim
-copy-otlp-protobuf-slim:
-	rm -rf $(OTLPSLIM_OUTPUT_DIR)/*/
-	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/slim/otlp/ ./$(OTLPSLIM_OUTPUT_DIR)
-	cd ./$(OTLPSLIM_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: toolchain-check
 toolchain-check:
@@ -159,10 +140,14 @@ toolchain-check:
 clean-gen:
 	rm -rf $(GEN_TEMP_DIR)
 
+.PHONE: clean-grpc-out
+clean-grpc-out:
+	find $(OTLPGRPC_OUTPUT_DIR)/*/ -not -type d -not -name "shim.go" | xargs -I'{}' rm -rf '{}'
+
 .PHONY: clean
-clean:
+clean:  clean-grpc-out
 	rm -rf $(GEN_TEMP_DIR)
-	rm -rf $(OTLP_OUTPUT_DIR)/*/ $(OTLPSLIM_OUTPUT_DIR)/*/
+	rm -rf $(OTLP_OUTPUT_DIR)/*/
 
 .PHONY: go-mod-tidy
 go-mod-tidy: clean-gen $(ALL_GO_MOD_DIRS:%=go-mod-tidy/%)
@@ -217,3 +202,8 @@ push-tags: | $(MULTIMOD)
 		echo "pushing tag $${tag}"; \
 		git push ${REMOTE} $${tag}; \
 	done;
+
+.PHONY: go-work
+go-work:
+	go work init || true
+	go work use -r ./
