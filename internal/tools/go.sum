@@ -110,10 +110,10 @@ github.com/subosito/gotenv v1.6.0 h1:9NlTDc1FTs4qu0DDq7AEtTPNw6SVm7uBMsUCUjABIf8
 github.com/subosito/gotenv v1.6.0/go.mod h1:Dk4QP5c2W3ibzajGcXpNraDfq2IrhjMIvMSWPKKo0FU=
 github.com/xanzy/ssh-agent v0.3.3 h1:+/15pJfg/RsTxqYcX6fHqOXZwwMP+2VyYWJeWM2qQFM=
 github.com/xanzy/ssh-agent v0.3.3/go.mod h1:6dzNDKs0J9rVPHPhaGCukekBHKqfl+L3KghI1Bc68Uw=
-go.opentelemetry.io/build-tools v0.16.0 h1:KxKRH+jOSNbRDRESkibfpaKmaVb1GsXhf0pQfPZE5zI=
-go.opentelemetry.io/build-tools v0.16.0/go.mod h1:ZhuNyO/aAkGEFTfNhH7Nhv7fIWpxIOp8t7XshpPWiOU=
-go.opentelemetry.io/build-tools/multimod v0.16.0 h1:o205mGH61VXebXeiIPXwxeHRCm332TZqRb8gmypI6po=
-go.opentelemetry.io/build-tools/multimod v0.16.0/go.mod h1:dDZzMmgPYCVJOHbWDZP29DH/aLFiKdPclisVLylTIH0=
+go.opentelemetry.io/build-tools v0.17.0 h1:mCOZ3YQswjcetUeoMTijn2QPVzwx02Gk1WD200g99lg=
+go.opentelemetry.io/build-tools v0.17.0/go.mod h1:ZhuNyO/aAkGEFTfNhH7Nhv7fIWpxIOp8t7XshpPWiOU=
+go.opentelemetry.io/build-tools/multimod v0.17.0 h1:z0TWbNLcKu1eLx0Pgour/WFA0m+trsRkJ0llM5MsTug=
+go.opentelemetry.io/build-tools/multimod v0.17.0/go.mod h1:ImevmVCDyVInTn7L9lN+qVtGs/6cOMQA/Cf3jX1miQA=
 go.uber.org/multierr v1.11.0 h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=
 go.uber.org/multierr v1.11.0/go.mod h1:20+QtiLqy0Nd6FdQB9TLXag12DsQkrbs3htMFfDN80Y=
 golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d/go.mod h1:IxCIyHEi3zRg3s0A5j5BB6A9Jmi73HwBIUl50j+osU4=

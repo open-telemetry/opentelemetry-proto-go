@@ -2,7 +2,7 @@ module go.opentelemetry.io/proto/internal/tools
 
 go 1.22.0
 
-require go.opentelemetry.io/build-tools/multimod v0.16.0
+require go.opentelemetry.io/build-tools/multimod v0.17.0
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
@@ -36,7 +36,7 @@ require (
 	github.com/spf13/viper v1.19.0 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
-	go.opentelemetry.io/build-tools v0.16.0 // indirect
+	go.opentelemetry.io/build-tools v0.17.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
