@@ -1,6 +1,7 @@
 module go.opentelemetry.io/proto/internal/tools
 
 go 1.22.0
+toolchain go1.24.1
 
 require go.opentelemetry.io/build-tools/multimod v0.18.0
 
@@ -41,7 +42,7 @@ require (
 	golang.org/x/crypto v0.35.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/net v0.34.0 // indirect
+	golang.org/x/net v0.36.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
