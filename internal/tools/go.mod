@@ -1,7 +1,6 @@
 module go.opentelemetry.io/proto/internal/tools
 
 go 1.22.0
-toolchain go1.24.1
 
 require go.opentelemetry.io/build-tools/multimod v0.18.0
 
