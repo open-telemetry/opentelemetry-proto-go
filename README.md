@@ -67,8 +67,8 @@ This project is tested on the following systems.
 
 | OS       | Go Version |
 | -------- | ---------- |
+| Ubuntu   | 1.24       |
 | Ubuntu   | 1.23       |
-| Ubuntu   | 1.22       |
 
 While this project should work for other systems, no compatibility guarantees
 are made for those systems currently.
