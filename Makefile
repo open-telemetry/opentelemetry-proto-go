@@ -62,7 +62,9 @@ $(1)
 
 endef
 
-OTEL_DOCKER_PROTOBUF ?= otel/build-protobuf:0.23.0
+DEPENDENCIES_DOCKERFILE=./dependencies.Dockerfile
+OTEL_DOCKER_PROTOBUF := $(shell awk '$$4=="build-protobuf" {print $$2}' $(DEPENDENCIES_DOCKERFILE))
+
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTO_SOURCE_DIR)"
 PROTOC_SLIM := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${OTEL_DOCKER_PROTOBUF} --proto_path="$(PROTOSLIM_SOURCE_DIR)"
 
