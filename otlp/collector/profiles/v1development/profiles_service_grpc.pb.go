@@ -22,8 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProfilesServiceClient interface {
-	// For performance reasons, it is recommended to keep this RPC
-	// alive for the entire life of the application.
 	Export(ctx context.Context, in *ExportProfilesServiceRequest, opts ...grpc.CallOption) (*ExportProfilesServiceResponse, error)
 }
 
@@ -48,8 +46,6 @@ func (c *profilesServiceClient) Export(ctx context.Context, in *ExportProfilesSe
 // All implementations must embed UnimplementedProfilesServiceServer
 // for forward compatibility
 type ProfilesServiceServer interface {
-	// For performance reasons, it is recommended to keep this RPC
-	// alive for the entire life of the application.
 	Export(context.Context, *ExportProfilesServiceRequest) (*ExportProfilesServiceResponse, error)
 	mustEmbedUnimplementedProfilesServiceServer()
 }
