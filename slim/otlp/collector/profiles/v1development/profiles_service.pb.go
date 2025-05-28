@@ -46,6 +46,8 @@ type ExportProfilesServiceRequest struct {
 	// data from multiple origins typically batch the data before forwarding further and
 	// in that case this array will contain multiple elements.
 	ResourceProfiles []*v1development.ResourceProfiles `protobuf:"bytes,1,rep,name=resource_profiles,json=resourceProfiles,proto3" json:"resource_profiles,omitempty"`
+	// The reference table containing all data shared by profiles across the message being sent.
+	Dictionary *v1development.ProfilesDictionary `protobuf:"bytes,2,opt,name=dictionary,proto3" json:"dictionary,omitempty"`
 }
 
 func (x *ExportProfilesServiceRequest) Reset() {
@@ -83,6 +85,13 @@ func (*ExportProfilesServiceRequest) Descriptor() ([]byte, []int) {
 func (x *ExportProfilesServiceRequest) GetResourceProfiles() []*v1development.ResourceProfiles {
 	if x != nil {
 		return x.ResourceProfiles
+	}
+	return nil
+}
+
+func (x *ExportProfilesServiceRequest) GetDictionary() *v1development.ProfilesDictionary {
+	if x != nil {
+		return x.Dictionary
 	}
 	return nil
 }
@@ -229,7 +238,7 @@ var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_p
 	0x65, 0x6e, 0x74, 0x1a, 0x39, 0x6f, 0x70, 0x65, 0x6e, 0x74, 0x65, 0x6c, 0x65, 0x6d, 0x65, 0x74,
 	0x72, 0x79, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
 	0x73, 0x2f, 0x76, 0x31, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x6d, 0x65, 0x6e, 0x74, 0x2f,
-	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x89,
+	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xe9,
 	0x01, 0x0a, 0x1c, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
 	0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x69, 0x0a, 0x11, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x70, 0x72, 0x6f, 0x66,
@@ -238,7 +247,13 @@ var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_p
 	0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x64, 0x65, 0x76, 0x65,
 	0x6c, 0x6f, 0x70, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
 	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x10, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x9c, 0x01, 0x0a, 0x1d, 0x45,
+	0x63, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x12, 0x5e, 0x0a, 0x0a, 0x64, 0x69,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x72, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x3e,
+	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x74, 0x65, 0x6c, 0x65, 0x6d, 0x65, 0x74, 0x72, 0x79, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x73, 0x44, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x72, 0x79, 0x52, 0x0a,
+	0x64, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x72, 0x79, 0x22, 0x9c, 0x01, 0x0a, 0x1d, 0x45,
 	0x78, 0x70, 0x6f, 0x72, 0x74, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x7b, 0x0a, 0x0f,
 	0x70, 0x61, 0x72, 0x74, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18,
@@ -298,21 +313,23 @@ func file_opentelemetry_proto_collector_profiles_v1development_profiles_service_
 
 var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_goTypes = []interface{}{
-	(*ExportProfilesServiceRequest)(nil),   // 0: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
-	(*ExportProfilesServiceResponse)(nil),  // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
-	(*ExportProfilesPartialSuccess)(nil),   // 2: opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
-	(*v1development.ResourceProfiles)(nil), // 3: opentelemetry.proto.profiles.v1development.ResourceProfiles
+	(*ExportProfilesServiceRequest)(nil),     // 0: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
+	(*ExportProfilesServiceResponse)(nil),    // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
+	(*ExportProfilesPartialSuccess)(nil),     // 2: opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
+	(*v1development.ResourceProfiles)(nil),   // 3: opentelemetry.proto.profiles.v1development.ResourceProfiles
+	(*v1development.ProfilesDictionary)(nil), // 4: opentelemetry.proto.profiles.v1development.ProfilesDictionary
 }
 var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_depIdxs = []int32{
 	3, // 0: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest.resource_profiles:type_name -> opentelemetry.proto.profiles.v1development.ResourceProfiles
-	2, // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse.partial_success:type_name -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
-	0, // 2: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:input_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
-	1, // 3: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:output_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest.dictionary:type_name -> opentelemetry.proto.profiles.v1development.ProfilesDictionary
+	2, // 2: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse.partial_success:type_name -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
+	0, // 3: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:input_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
+	1, // 4: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:output_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_init() }
