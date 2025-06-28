@@ -72,3 +72,17 @@ This project is tested on the following systems.
 
 While this project should work for other systems, no compatibility guarantees
 are made for those systems currently.
+
+## Maintainers
+
+- [Mike Goldsmith](https://github.com/MikeGoldsmith), Honeycomb
+- [Tyler Yahn](https://github.com/MrAlias), Splunk
+- [OpenTelemetry Go Maintainers](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md#maintainers)
+
+For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
+
+## Approvers
+
+- [Robert Pająk](https://github.com/pellared), Splunk
+
+For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
