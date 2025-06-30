@@ -75,8 +75,8 @@ are made for those systems currently.
 
 ## Maintainers
 
-- [Mike Goldsmith](https://github.com/MikeGoldsmith), Honeycomb
 - [OpenTelemetry Go Maintainers](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md#maintainers)
+- [Mike Goldsmith](https://github.com/MikeGoldsmith), Honeycomb
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
 
