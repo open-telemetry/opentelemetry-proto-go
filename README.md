@@ -76,7 +76,6 @@ are made for those systems currently.
 ## Maintainers
 
 - [Mike Goldsmith](https://github.com/MikeGoldsmith), Honeycomb
-- [Tyler Yahn](https://github.com/MrAlias), Splunk
 - [OpenTelemetry Go Maintainers](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md#maintainers)
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
