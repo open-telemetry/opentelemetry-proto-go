@@ -4,6 +4,8 @@ on:
     branches:
       - main
   pull_request:
+permissions:
+  contents: read
 env:
   DEFAULT_GO_VERSION: "~1.24.0"
 jobs:
