@@ -23,6 +23,8 @@ module-sets:
     version: 0.0.0
     modules:
       - go.opentelemetry.io/proto/otlp/profiles
-      - go.opentelemetry.io/proto/collector/profiles
+      - go.opentelemetry.io/proto/otlp/collector/profiles
+      - go.opentelemetry.io/proto/slim/otlp/profiles
+      - go.opentelemetry.io/proto/slim/otlp/collector/profiles
 excluded-modules:
   - go.opentelemetry.io/proto/internal/tools
