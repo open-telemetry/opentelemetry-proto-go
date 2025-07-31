@@ -217,7 +217,9 @@ REMOTE ?= upstream
 .PHONY: push-tags
 push-tags: | $(MULTIMOD)
 	$(MULTIMOD) verify
-	set -e; for tag in `$(MULTIMOD) tag -m all -c ${COMMIT} --print-tags | grep -v "Using" `; do \
-		echo "pushing tag $${tag}"; \
-		git push ${REMOTE} $${tag}; \
-	done;
+	for module in stable unstable; do \
+		for tag in `$(MULTIMOD) tag -m $$module -c ${COMMIT} --print-tags | grep -v "Using"`; do \
+			echo "pushing tag $$tag"; \
+			git push ${REMOTE} $$tag; \
+		done; \
+	done
