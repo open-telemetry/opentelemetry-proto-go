@@ -5,7 +5,7 @@ go 1.23.0
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
 	google.golang.org/grpc v1.74.2
-	google.golang.org/protobuf v1.36.6
+	google.golang.org/protobuf v1.36.7
 )
 
 require (

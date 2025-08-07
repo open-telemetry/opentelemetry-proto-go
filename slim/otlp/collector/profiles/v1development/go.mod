@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	go.opentelemetry.io/proto/slim/otlp/profiles/v1development v0.0.0-20250721084824-6f76ca90124d
-	google.golang.org/protobuf v1.36.6
+	google.golang.org/protobuf v1.36.7
 )
 
 require go.opentelemetry.io/proto/slim/otlp v1.7.1 // indirect
