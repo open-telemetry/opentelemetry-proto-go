@@ -35,7 +35,7 @@ require (
 	github.com/spf13/viper v1.20.1 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
-	go.opentelemetry.io/build-tools v0.26.1 // indirect
+	go.opentelemetry.io/build-tools v0.26.2 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.41.0 // indirect
 	golang.org/x/mod v0.27.0 // indirect
