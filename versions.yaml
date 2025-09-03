@@ -14,13 +14,13 @@
 
 module-sets:
   stable:
-    version: v1.7.1
+    version: v1.8.0
     modules:
       - go.opentelemetry.io/proto
       - go.opentelemetry.io/proto/otlp
       - go.opentelemetry.io/proto/slim/otlp
   unstable:
-    version: v0.0.1
+    version: v0.1.0
     modules:
       - go.opentelemetry.io/proto/otlp/profiles/v1development
       - go.opentelemetry.io/proto/otlp/collector/profiles/v1development
