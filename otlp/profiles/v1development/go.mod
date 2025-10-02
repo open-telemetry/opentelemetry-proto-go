@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	go.opentelemetry.io/proto/otlp v1.8.0
-	google.golang.org/protobuf v1.36.9
+	google.golang.org/protobuf v1.36.10
 )
 
 replace go.opentelemetry.io/proto/otlp => ../../
