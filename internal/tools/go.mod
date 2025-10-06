@@ -2,7 +2,7 @@ module go.opentelemetry.io/proto/internal/tools
 
 go 1.23.0
 
-require go.opentelemetry.io/build-tools/multimod v0.26.2
+require go.opentelemetry.io/build-tools/multimod v0.28.1
 
 require (
 	dario.cat/mergo v1.0.2 // indirect
