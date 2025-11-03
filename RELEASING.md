@@ -8,26 +8,53 @@ have been updated and the generated code needs to be updated.
 
 ## Create a Release Pull Request
 
-1. Update the [`opentelemetry-proto`] submodule and regenerate the code.
+1. Create a new branch off of `main` for the release.
+
+   ```sh
+   git checkout main
+   git pull origin main
+   git checkout -b release-<new-version>
+   ```
+
+2. Update the [`opentelemetry-proto`] submodule and regenerate the code.
 
    ```sh
    make sync VERSION=<new-version>
    ```
 
-2. Edit [`versions.yaml`] with the new version number.  Then, ensure the correct modules versions
-   are updated and the [`versions.yaml`] syntax is correct.
+   Commit the changes.
+
+3. Edit [`versions.yaml`] with the new version number. Then, ensure the correct
+   modules versions are updated and the [`versions.yaml`] syntax is correct.
 
    ```sh
    make verify-versions
    ```
 
-3. Verify the changes.
+   Commit the changes.
 
-   ```sh
-   git diff main
+4. Run the `prerelease` make target to update all cross-dependencies.
+
+   ```
+   make prerelease
    ```
 
-4. If everything looks good, push the changes to GitHub and open a pull request.
+   This will create a branch for each module set (i.e.
+   `prerelease_<module-set>_<new-tag>`).
+
+   Verify the changes on each branch.
+
+   ```sh
+   git diff ...prerelease_<module-set>_<new-tag>
+   ```
+
+   If these changes look correct, merge them.
+
+   ```sh
+   git merge prerelease_<module-set>_<new-tag>
+   ```
+
+5. Push the changes to GitHub and open a pull request.
 
    - Title: `Release {{VERSION}}`
    - Body:
