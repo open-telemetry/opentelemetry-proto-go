@@ -69,7 +69,6 @@ This project is tested on the following systems.
 | -------- | ---------- |
 | Ubuntu   | 1.25       |
 | Ubuntu   | 1.24       |
-| Ubuntu   | 1.23       |
 
 While this project should work for other systems, no compatibility guarantees
 are made for those systems currently.

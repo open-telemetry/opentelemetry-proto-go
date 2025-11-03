@@ -1,6 +1,6 @@
 module go.opentelemetry.io/proto/slim/otlp/profiles/v1development
 
-go 1.23.0
+go 1.24.0
 
 require (
 	go.opentelemetry.io/proto/slim/otlp v1.8.0
