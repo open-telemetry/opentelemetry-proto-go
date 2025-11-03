@@ -1,3 +1,3 @@
 module go.opentelemetry.io/proto
 
-go 1.23.0
+go 1.24.0
