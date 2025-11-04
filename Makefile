@@ -212,11 +212,14 @@ sync: submodule-version clean protobuf
 verify-versions: | $(MULTIMOD)
 	$(MULTIMOD) verify
 
+.PHONY: prerelease
+prerelease: verify-versions
+	$(MULTIMOD) prerelease -a
+
 COMMIT ?= "HEAD"
 REMOTE ?= upstream
 .PHONY: push-tags
-push-tags: | $(MULTIMOD)
-	$(MULTIMOD) verify
+push-tags: verify-versions | $(MULTIMOD)
 	for module in stable unstable; do \
 		for tag in `$(MULTIMOD) tag -m $$module -c ${COMMIT} --print-tags | grep -v "Using"`; do \
 			echo "pushing tag $$tag"; \
