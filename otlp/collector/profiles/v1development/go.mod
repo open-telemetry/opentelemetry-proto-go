@@ -3,7 +3,7 @@ module go.opentelemetry.io/proto/otlp/collector/profiles/v1development
 go 1.24.0
 
 require (
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.5
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.6
 	go.opentelemetry.io/proto/otlp/profiles/v1development v0.0.0-20250721084824-6f76ca90124d
 	google.golang.org/grpc v1.78.0
 	google.golang.org/protobuf v1.36.11
