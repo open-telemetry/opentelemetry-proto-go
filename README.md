@@ -67,6 +67,7 @@ This project is tested on the following systems.
 
 | OS       | Go Version |
 | -------- | ---------- |
+| Ubuntu   | 1.26       |
 | Ubuntu   | 1.25       |
 | Ubuntu   | 1.24       |
 
