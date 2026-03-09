@@ -453,9 +453,14 @@ type Profile struct {
 	SampleType *ValueType `protobuf:"bytes,1,opt,name=sample_type,json=sampleType,proto3" json:"sample_type,omitempty"`
 	// The set of samples recorded in this profile.
 	Samples []*Sample `protobuf:"bytes,2,rep,name=samples,proto3" json:"samples,omitempty"`
-	// Time of collection (UTC) represented as nanoseconds past the epoch.
+	// Time of collection. Value is UNIX Epoch time in nanoseconds since 00:00:00
+	// UTC on 1 January 1970.
 	TimeUnixNano uint64 `protobuf:"fixed64,3,opt,name=time_unix_nano,json=timeUnixNano,proto3" json:"time_unix_nano,omitempty"`
-	// Duration of the profile, if a duration makes sense.
+	// Duration of the profile. For instant profiles like live heap snapshot, the
+	// duration can be zero but it may be preferable to set time_unix_nano to the
+	// process start time and duration_nano to the relative time when the profile
+	// was gathered. This ensures Sample.timestamps_unix_nano values such as
+	// allocation timestamp fall into the profile time range.
 	DurationNano uint64 `protobuf:"varint,4,opt,name=duration_nano,json=durationNano,proto3" json:"duration_nano,omitempty"`
 	// The kind of events between sampled occurrences.
 	// e.g [ "cpu","cycles" ] or [ "heap","bytes" ]
@@ -736,7 +741,11 @@ func (x *ValueType) GetUnitStrindex() int32 {
 // both fields are populated, they MUST contain the same number of elements, and
 // the elements at the same index MUST refer to the same event.
 //
-// Examples of different ways of representing a sample with the total value of 10:
+// For the purposes of efficiently representing aggregated data observations, a Sample is regarded
+// as having a shared identity and an associated collection of per-observation data points.
+// Samples having the same identity SHOULD be combined by inserting timestamps and values to the data arrays.
+//
+// Examples of different ways ('shapes') of representing a sample with the total value of 10:
 //
 // Report of a stacktrace at 10 timestamps (consumers must assume the value is 1 for each point):
 //    values: []
@@ -749,6 +758,10 @@ func (x *ValueType) GetUnitStrindex() int32 {
 // Report of a stacktrace at 4 timestamps where each point records a specific value:
 //    values: [2, 2, 3, 3]
 //    timestamps_unix_nano: [1, 2, 3, 4]
+//
+// All Samples for a Profile SHOULD have the same shape, i.e. all data observation series should consistently
+// adopt the same data recording style.
+//
 type Sample struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -756,15 +769,17 @@ type Sample struct {
 
 	// Reference to stack in ProfilesDictionary.stack_table.
 	StackIndex int32 `protobuf:"varint,1,opt,name=stack_index,json=stackIndex,proto3" json:"stack_index,omitempty"`
-	// The type and unit of each value is defined by Profile.sample_type.
-	Values []int64 `protobuf:"varint,2,rep,packed,name=values,proto3" json:"values,omitempty"`
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
-	AttributeIndices []int32 `protobuf:"varint,3,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
+	AttributeIndices []int32 `protobuf:"varint,2,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	// Reference to link in ProfilesDictionary.link_table. [optional]
 	// It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
-	LinkIndex int32 `protobuf:"varint,4,opt,name=link_index,json=linkIndex,proto3" json:"link_index,omitempty"`
-	// Timestamps associated with Sample represented in nanoseconds. These
-	// timestamps should fall within the Profile's time range.
+	LinkIndex int32 `protobuf:"varint,3,opt,name=link_index,json=linkIndex,proto3" json:"link_index,omitempty"`
+	// The type and unit of each value is defined by Profile.sample_type.
+	Values []int64 `protobuf:"varint,4,rep,packed,name=values,proto3" json:"values,omitempty"`
+	// Timestamps associated with Sample. Value is UNIX Epoch time in nanoseconds
+	// since 00:00:00 UTC on 1 January 1970. The timestamps should fall within the
+	// [Profile.time_unix_nano, Profile.time_unix_nano + Profile.duration_nano)
+	// time range.
 	TimestampsUnixNano []uint64 `protobuf:"fixed64,5,rep,packed,name=timestamps_unix_nano,json=timestampsUnixNano,proto3" json:"timestamps_unix_nano,omitempty"`
 }
 
@@ -807,13 +822,6 @@ func (x *Sample) GetStackIndex() int32 {
 	return 0
 }
 
-func (x *Sample) GetValues() []int64 {
-	if x != nil {
-		return x.Values
-	}
-	return nil
-}
-
 func (x *Sample) GetAttributeIndices() []int32 {
 	if x != nil {
 		return x.AttributeIndices
@@ -826,6 +834,13 @@ func (x *Sample) GetLinkIndex() int32 {
 		return x.LinkIndex
 	}
 	return 0
+}
+
+func (x *Sample) GetValues() []int64 {
+	if x != nil {
+		return x.Values
+	}
+	return nil
 }
 
 func (x *Sample) GetTimestampsUnixNano() []uint64 {
@@ -1419,13 +1434,13 @@ var file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc = []b
 	0x64, 0x65, 0x78, 0x22, 0xbf, 0x01, 0x0a, 0x06, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x1f,
 	0x0a, 0x0b, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x12,
-	0x16, 0x0a, 0x06, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x03, 0x52,
-	0x06, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x12, 0x2b, 0x0a, 0x11, 0x61, 0x74, 0x74, 0x72, 0x69,
-	0x62, 0x75, 0x74, 0x65, 0x5f, 0x69, 0x6e, 0x64, 0x69, 0x63, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03,
-	0x28, 0x05, 0x52, 0x10, 0x61, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x49, 0x6e, 0x64,
-	0x69, 0x63, 0x65, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x6c, 0x69, 0x6e, 0x6b, 0x5f, 0x69, 0x6e, 0x64,
-	0x65, 0x78, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x6c, 0x69, 0x6e, 0x6b, 0x49, 0x6e,
-	0x64, 0x65, 0x78, 0x12, 0x30, 0x0a, 0x14, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
+	0x2b, 0x0a, 0x11, 0x61, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x5f, 0x69, 0x6e, 0x64,
+	0x69, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x05, 0x52, 0x10, 0x61, 0x74, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x65, 0x49, 0x6e, 0x64, 0x69, 0x63, 0x65, 0x73, 0x12, 0x1d, 0x0a, 0x0a,
+	0x6c, 0x69, 0x6e, 0x6b, 0x5f, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x09, 0x6c, 0x69, 0x6e, 0x6b, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x12, 0x16, 0x0a, 0x06, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x03, 0x52, 0x06, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x73, 0x12, 0x30, 0x0a, 0x14, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
 	0x73, 0x5f, 0x75, 0x6e, 0x69, 0x78, 0x5f, 0x6e, 0x61, 0x6e, 0x6f, 0x18, 0x05, 0x20, 0x03, 0x28,
 	0x06, 0x52, 0x12, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x73, 0x55, 0x6e, 0x69,
 	0x78, 0x4e, 0x61, 0x6e, 0x6f, 0x22, 0xca, 0x01, 0x0a, 0x07, 0x4d, 0x61, 0x70, 0x70, 0x69, 0x6e,
