@@ -3,7 +3,7 @@ module go.opentelemetry.io/proto/slim/otlp/collector/profiles/v1development
 go 1.24.0
 
 require (
-	go.opentelemetry.io/proto/slim/otlp/profiles/v1development v0.0.0-20250721084824-6f76ca90124d
+	go.opentelemetry.io/proto/slim/otlp/profiles/v1development v0.3.0
 	google.golang.org/protobuf v1.36.11
 )
 
