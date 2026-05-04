@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.29.0
 	go.opentelemetry.io/proto/otlp/profiles/v1development v0.3.0
-	google.golang.org/grpc v1.80.0
+	google.golang.org/grpc v1.81.0
 	google.golang.org/protobuf v1.36.11
 )
 
