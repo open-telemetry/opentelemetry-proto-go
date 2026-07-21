@@ -52,30 +52,32 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// ProfilesDictionary represents the profiles data shared across the
-// entire message being sent. The following applies to all fields in this
-// message:
+// ProfilesDictionary contains all the dictionary tables that are shared
+// across the entire ProfilesData message.
+//
+// The following applies to all fields in this message:
 //
 // - A dictionary is an array of dictionary items. Users of the dictionary
 //   compactly reference the items using the index within the array.
 //
-// - A dictionary MUST have a zero value encoded as the first element. This
+// - The element at index 0 MUST be the zero value for the dictionary's element
+//   type (e.g. `""` for `string_table`, `Location{}` for `location_table`). This
 //   allows for _index fields pointing into the dictionary to use a 0 pointer
 //   value to indicate 'null' / 'not set'. Unless otherwise defined, a 'zero
 //   value' message value is one with all default field values, so as to
 //   minimize wire encoded size.
 //
-// - There SHOULD NOT be dupes in a dictionary. The identity of dictionary
-//   items is based on their value, recursively as needed. If a particular
-//   implementation does emit duplicated items, it MUST NOT attempt to give them
-//   meaning based on the index or order. A profile processor may remove
-//   duplicate items and this MUST NOT have any observable effects for
-//   consumers.
+// - There SHOULD NOT be duplicate items in a dictionary. The identity of a
+//   dictionary item is based on its value, recursively as needed. If a particular
+//   implementation does emit duplicate items, it MUST NOT attempt to give them
+//   meaning based on the index or order. A profile processor MAY remove
+//   duplicates and this MUST NOT have any observable effects for consumers.
 //
 // - There SHOULD NOT be orphaned (unreferenced) items in a dictionary. A
-//   profile processor may remove ("garbage-collect") orphaned items and this
+//   profile processor MAY remove ("garbage-collect") orphaned items and this
 //   MUST NOT have any observable effects for consumers.
 //
+// Status: [Alpha]
 type ProfilesDictionary struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -84,30 +86,36 @@ type ProfilesDictionary struct {
 	// Mappings from address ranges to the image/binary/library mapped
 	// into that address range referenced by locations via Location.mapping_index.
 	//
-	// mapping_table[0] must always be zero value (Mapping{}) and present.
+	// mapping_table[0] MUST be the zero value (Mapping{}) and present.
 	MappingTable []*Mapping `protobuf:"bytes,1,rep,name=mapping_table,json=mappingTable,proto3" json:"mapping_table,omitempty"`
 	// Locations referenced by samples via Stack.location_indices.
 	//
-	// location_table[0] must always be zero value (Location{}) and present.
+	// location_table[0] MUST be the zero value (Location{}) and present.
 	LocationTable []*Location `protobuf:"bytes,2,rep,name=location_table,json=locationTable,proto3" json:"location_table,omitempty"`
 	// Functions referenced by locations via Line.function_index.
 	//
-	// function_table[0] must always be zero value (Function{}) and present.
+	// function_table[0] MUST be the zero value (Function{}) and present.
 	FunctionTable []*Function `protobuf:"bytes,3,rep,name=function_table,json=functionTable,proto3" json:"function_table,omitempty"`
 	// Links referenced by samples via Sample.link_index.
 	//
-	// link_table[0] must always be zero value (Link{}) and present.
+	// link_table[0] MUST be the zero value (Link{}) and present.
+	// Note that whilst Link{trace_id=array[0], span_id=array[0]} and
+	// Link{trace_id=array[16], span_id=array[8]} filled with zero-value bytes
+	// are both appropriate zero/invalid values per the trace.proto:Span definition,
+	// the latter SHOULD be used for link_table[0] for better compatibility with codecs
+	// strictly expecting 16/8 byte array lengths.
 	LinkTable []*Link `protobuf:"bytes,4,rep,name=link_table,json=linkTable,proto3" json:"link_table,omitempty"`
 	// A common table for strings referenced by various messages.
 	//
-	// string_table[0] must always be "" and present.
+	// string_table[0] MUST be "" and present.
 	StringTable []string `protobuf:"bytes,5,rep,name=string_table,json=stringTable,proto3" json:"string_table,omitempty"`
 	// A common table for attributes referenced by the Profile, Sample, Mapping
-	// and Location messages below through attribute_indices field. Each entry is
-	// a key/value pair with an optional unit. Since this is a dictionary table,
-	// multiple entries with the same key may be present, unlike direct attribute
-	// tables like Resource.attributes. The referencing attribute_indices fields,
-	// though, do maintain the key uniqueness requirement.
+	// and Location messages, through their attribute_indices field. Each entry is
+	// a key/value pair with an optional unit in UCUM format. Since this is a
+	// dictionary table, multiple entries with the same key MAY be present,
+	// unlike direct attribute tables like Resource.attributes.
+	// However, the referencing attribute_indices fields MUST maintain the key
+	// uniqueness requirement.
 	//
 	// It's recommended to use attributes for variables with bounded cardinality,
 	// such as categorical variables
@@ -121,11 +129,11 @@ type ProfilesDictionary struct {
 	//     "abc.com/myattribute": true
 	//     "allocation_size": 128 bytes
 	//
-	// attribute_table[0] must always be zero value (KeyValueAndUnit{}) and present.
+	// attribute_table[0] MUST be the zero value (KeyValueAndUnit{}) and present.
 	AttributeTable []*KeyValueAndUnit `protobuf:"bytes,6,rep,name=attribute_table,json=attributeTable,proto3" json:"attribute_table,omitempty"`
 	// Stacks referenced by samples via Sample.stack_index.
 	//
-	// stack_table[0] must always be zero value (Stack{}) and present.
+	// stack_table[0] MUST be the zero value (Stack{}) and present.
 	StackTable []*Stack `protobuf:"bytes,7,rep,name=stack_table,json=stackTable,proto3" json:"stack_table,omitempty"`
 }
 
@@ -220,6 +228,8 @@ func (x *ProfilesDictionary) GetStackTable() []*Stack {
 //
 // When new fields are added into this message, the OTLP request MUST be updated
 // as well.
+//
+// Status: [Alpha]
 type ProfilesData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -232,10 +242,10 @@ type ProfilesData struct {
 	// from non-containerized processes.
 	// Other resource groupings are possible as well and clarified via
 	// Resource.attributes and semantic conventions.
-	// Tools that visualize profiles should prefer displaying
+	// Tools that visualize profiles SHOULD prefer displaying
 	// resources_profiles[0].scope_profiles[0].profiles[0] by default.
 	ResourceProfiles []*ResourceProfiles `protobuf:"bytes,1,rep,name=resource_profiles,json=resourceProfiles,proto3" json:"resource_profiles,omitempty"`
-	// One instance of ProfilesDictionary
+	// A single instance of ProfilesDictionary shared across the entire message.
 	Dictionary *ProfilesDictionary `protobuf:"bytes,2,opt,name=dictionary,proto3" json:"dictionary,omitempty"`
 }
 
@@ -286,6 +296,8 @@ func (x *ProfilesData) GetDictionary() *ProfilesDictionary {
 }
 
 // A collection of ScopeProfiles from a Resource.
+//
+// Status: [Alpha]
 type ResourceProfiles struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -294,14 +306,14 @@ type ResourceProfiles struct {
 	// The resource for the profiles in this message.
 	// If this field is not set then no resource info is known.
 	Resource *v1.Resource `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
-	// A list of ScopeProfiles that originate from a resource.
+	// A list of ScopeProfiles that originate from this resource.
 	ScopeProfiles []*ScopeProfiles `protobuf:"bytes,2,rep,name=scope_profiles,json=scopeProfiles,proto3" json:"scope_profiles,omitempty"`
 	// The Schema URL, if known. This is the identifier of the Schema that the resource data
 	// is recorded in. Notably, the last part of the URL path is the version number of the
 	// schema: http[s]://server[:port]/path/<version>. To learn more about Schema URL see
 	// https://opentelemetry.io/docs/specs/otel/schemas/#schema-url
 	// This schema_url applies to the data in the "resource" field. It does not apply
-	// to the data in the "scope_profiles" field which have their own schema_url field.
+	// to the data in the "scope_profiles" field, which has its own schema_url field.
 	SchemaUrl string `protobuf:"bytes,3,opt,name=schema_url,json=schemaUrl,proto3" json:"schema_url,omitempty"`
 }
 
@@ -359,6 +371,8 @@ func (x *ResourceProfiles) GetSchemaUrl() string {
 }
 
 // A collection of Profiles produced by an InstrumentationScope.
+//
+// Status: [Alpha]
 type ScopeProfiles struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -368,7 +382,7 @@ type ScopeProfiles struct {
 	// Semantically when InstrumentationScope isn't set, it is equivalent with
 	// an empty instrumentation scope name (unknown).
 	Scope *v11.InstrumentationScope `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
-	// A list of Profiles that originate from an instrumentation scope.
+	// A list of Profiles that originate from this instrumentation scope.
 	Profiles []*Profile `protobuf:"bytes,2,rep,name=profiles,proto3" json:"profiles,omitempty"`
 	// The Schema URL, if known. This is the identifier of the Schema that the profile data
 	// is recorded in. Notably, the last part of the URL path is the version number of the
@@ -437,9 +451,7 @@ func (x *ScopeProfiles) GetSchemaUrl() string {
 // metadata. It modifies and annotates pprof Profile with OpenTelemetry
 // specific fields.
 //
-// Note that whilst fields in this message retain the name and field id from pprof in most cases
-// for ease of understanding data migration, it is not intended that pprof:Profile and
-// OpenTelemetry:Profile encoding be wire compatible.
+// Status: [Alpha]
 type Profile struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -453,22 +465,34 @@ type Profile struct {
 	SampleType *ValueType `protobuf:"bytes,1,opt,name=sample_type,json=sampleType,proto3" json:"sample_type,omitempty"`
 	// The set of samples recorded in this profile.
 	Samples []*Sample `protobuf:"bytes,2,rep,name=samples,proto3" json:"samples,omitempty"`
-	// Time of collection. Value is UNIX Epoch time in nanoseconds since 00:00:00
-	// UTC on 1 January 1970.
+	// Time of collection (UTC) as nanoseconds since the UNIX epoch.
 	TimeUnixNano uint64 `protobuf:"fixed64,3,opt,name=time_unix_nano,json=timeUnixNano,proto3" json:"time_unix_nano,omitempty"`
-	// Duration of the profile. For instant profiles like live heap snapshot, the
-	// duration can be zero but it may be preferable to set time_unix_nano to the
-	// process start time and duration_nano to the relative time when the profile
-	// was gathered. This ensures Sample.timestamps_unix_nano values such as
-	// allocation timestamp fall into the profile time range.
+	// Duration of the profile in nanoseconds. For instant profiles like
+	// live heap snapshot, the duration can be zero but it may be preferable
+	// to set time_unix_nano to the process start time and duration_nano to
+	// the relative time when the profile was gathered so that Sample.timestamps_unix_nano
+	// values fall within the profile time range.
 	DurationNano uint64 `protobuf:"varint,4,opt,name=duration_nano,json=durationNano,proto3" json:"duration_nano,omitempty"`
-	// The kind of events between sampled occurrences.
-	// e.g [ "cpu","cycles" ] or [ "heap","bytes" ]
+	// The type and the unit of the events between sampled occurrences for
+	// periodic sampling profiles. It can be the same as sample_type or it can be
+	// different depending on the case, for example:
+	// - sample_type=(cpu, milliseconds), period_type=(cpu, milliseconds),
+	//   period=10 signals that we sample the program every 10 milliseconds and
+	//   capture samples that each represent that sampling distance.
+	// - sample_type=(off_cpu, nanoseconds), period_type=(context_switch, count),
+	//   period=1000 describes a profile where sampling is done every so often in
+	//   terms of context switches, but the recorded metric is the time spent by
+	//   the thread off CPU.
+	// - sample_type=(inuse_space, bytes), period_type=(allocated_bytes, bytes),
+	//   period=262144 might represent a heap profile where the recorded sample
+	//   metric is the size of the live heap while the periodic sampling is done
+	//   using the number of cumulatively allocated bytes.
 	PeriodType *ValueType `protobuf:"bytes,5,opt,name=period_type,json=periodType,proto3" json:"period_type,omitempty"`
-	// The number of events between sampled occurrences.
+	// The distance between sampled occurrences for periodic sampling profiles.
+	// The value is of the period_type type and unit.
 	Period int64 `protobuf:"varint,6,opt,name=period,proto3" json:"period,omitempty"`
 	// A globally unique identifier for a profile. The ID is a 16-byte array. An ID with
-	// all zeroes is considered invalid. It may be used for deduplication and signal
+	// all zeroes is considered invalid. It MAY be used for deduplication and signal
 	// correlation purposes. It is acceptable to treat two profiles with different values
 	// in this field as not equal, even if they represented the same object at an earlier
 	// time.
@@ -478,28 +502,20 @@ type Profile struct {
 	// can be discarded because their keys are too long or because there are too many
 	// attributes. If this value is 0, then no attributes were dropped.
 	DroppedAttributesCount uint32 `protobuf:"varint,8,opt,name=dropped_attributes_count,json=droppedAttributesCount,proto3" json:"dropped_attributes_count,omitempty"`
-	// The original payload format. See also original_payload. Optional, but the
-	// format and the bytes must be set or unset together.
+	// The original payload format. See also original_payload. It MUST be set
+	// together with original_payload or both left unset [optional].
 	//
 	// The allowed values for the format string are defined by the OpenTelemetry
 	// specification. Some examples are "jfr", "pprof", "linux_perf".
 	//
-	// The original payload may be optionally provided when the conversion to the
-	// OLTP format was done from a different format with some loss of the fidelity
-	// and the receiver may want to store the original payload to allow future
-	// lossless export or reinterpretation. Some examples of the original format
-	// are JFR (Java Flight Recorder), pprof, Linux perf.
-	//
-	// Even when the original payload is in a format that is semantically close to
-	// OTLP, such as pprof, a conversion may still be lossy in some cases (e.g. if
-	// the pprof file contains custom extensions or conventions).
-	//
-	// The original payload can be large in size, so including the original
-	// payload should be configurable by the profiler or collector options. The
-	// default behavior should be to not include the original payload.
+	// The original_payload MAY be used when converting from a source format (e.g. JFR)
+	// that carries information which cannot be losslessly represented in the
+	// Profiles format. Including the original data allows receivers to store or
+	// reexport the data without loss. Because the original payload can be large,
+	// its inclusion is optional.
 	OriginalPayloadFormat string `protobuf:"bytes,9,opt,name=original_payload_format,json=originalPayloadFormat,proto3" json:"original_payload_format,omitempty"`
-	// The original payload bytes. See also original_payload_format. Optional, but
-	// format and the bytes must be set or unset together.
+	// The original payload bytes. See also original_payload_format. It MUST be set
+	// together with original_payload_format or both left unset [optional].
 	OriginalPayload []byte `protobuf:"bytes,10,opt,name=original_payload,json=originalPayload,proto3" json:"original_payload,omitempty"`
 	// References to attributes in attribute_table. [optional]
 	AttributeIndices []int32 `protobuf:"varint,11,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
@@ -616,12 +632,14 @@ func (x *Profile) GetAttributeIndices() []int32 {
 
 // A pointer from a profile Sample to a trace Span.
 // Connects a profile sample to a trace span, identified by unique trace and span IDs.
+//
+// Status: [Alpha]
 type Link struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A unique identifier of a trace that this linked span is part of. The ID is a
+	// A unique identifier of the trace that this linked span is part of. The ID is a
 	// 16-byte array.
 	TraceId []byte `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
 	// A unique identifier for the linked span. The ID is an 8-byte array.
@@ -675,6 +693,8 @@ func (x *Link) GetSpanId() []byte {
 }
 
 // ValueType describes the type and units of a value.
+//
+// Status: [Alpha]
 type ValueType struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -737,31 +757,33 @@ func (x *ValueType) GetUnitStrindex() int32 {
 // information like the thread-id, some indicator of a higher level request
 // being handled etc.
 //
-// A Sample MUST have have at least one values or timestamps_unix_nano entry. If
-// both fields are populated, they MUST contain the same number of elements, and
-// the elements at the same index MUST refer to the same event.
+// A Sample MUST have have at least one entry in values or timestamps_unix_nano.
+// If both fields are populated, they MUST contain the same number of elements,
+// and the elements at the same index MUST refer to the same event.
 //
 // For the purposes of efficiently representing aggregated data observations, a Sample is regarded
 // as having a shared identity and an associated collection of per-observation data points.
-// Samples having the same identity SHOULD be combined by inserting timestamps and values to the data arrays.
+// A Sample's identity (i.e. primary key) is the tuple of {stack_index, set_of(attribute_indices), link_index}.
+// Samples having the same identity SHOULD be combined by appending timestamps and values to the data arrays.
 //
 // Examples of different ways ('shapes') of representing a sample with the total value of 10:
 //
-// Report of a stacktrace at 10 timestamps (consumers must assume the value is 1 for each point):
+// Timestamps only (consumers must assume the value is 1 for each timestamp):
 //    values: []
 //    timestamps_unix_nano: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 //
-// Report of a stacktrace with an aggregated value without timestamps:
-//   values: [10]
+// Single aggregated value without timestamps (one element representing the total):
+//    values: [10]
 //    timestamps_unix_nano: []
 //
-// Report of a stacktrace at 4 timestamps where each point records a specific value:
+// Per-timestamp value (each point in time records a specific value):
 //    values: [2, 2, 3, 3]
 //    timestamps_unix_nano: [1, 2, 3, 4]
 //
 // All Samples for a Profile SHOULD have the same shape, i.e. all data observation series should consistently
 // adopt the same data recording style.
 //
+// Status: [Alpha]
 type Sample struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -772,14 +794,12 @@ type Sample struct {
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
 	AttributeIndices []int32 `protobuf:"varint,2,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	// Reference to link in ProfilesDictionary.link_table. [optional]
-	// It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
+	// 0 means no link exists.
 	LinkIndex int32 `protobuf:"varint,3,opt,name=link_index,json=linkIndex,proto3" json:"link_index,omitempty"`
-	// The type and unit of each value is defined by Profile.sample_type.
+	// Measured values. The type and unit of each value is defined by Profile.sample_type.
 	Values []int64 `protobuf:"varint,4,rep,packed,name=values,proto3" json:"values,omitempty"`
-	// Timestamps associated with Sample. Value is UNIX Epoch time in nanoseconds
-	// since 00:00:00 UTC on 1 January 1970. The timestamps should fall within the
-	// [Profile.time_unix_nano, Profile.time_unix_nano + Profile.duration_nano)
-	// time range.
+	// Timestamps (UTC) as nanoseconds since the UNIX epoch. The timestamps SHOULD fall within the
+	// [Profile.time_unix_nano, Profile.time_unix_nano + Profile.duration_nano) interval.
 	TimestampsUnixNano []uint64 `protobuf:"fixed64,5,rep,packed,name=timestamps_unix_nano,json=timestampsUnixNano,proto3" json:"timestamps_unix_nano,omitempty"`
 }
 
@@ -852,6 +872,8 @@ func (x *Sample) GetTimestampsUnixNano() []uint64 {
 
 // Describes the mapping of a binary in memory, including its address range,
 // file offset, and metadata like build ID
+//
+// Status: [Alpha]
 type Mapping struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -864,8 +886,8 @@ type Mapping struct {
 	// Offset in the binary that corresponds to the first mapped address.
 	FileOffset uint64 `protobuf:"varint,3,opt,name=file_offset,json=fileOffset,proto3" json:"file_offset,omitempty"`
 	// The object this entry is loaded from.  This can be a filename on
-	// disk for the main binary and shared libraries, or virtual
-	// abstractions like "[vdso]".
+	// disk for the main binary and shared libraries, or a virtual
+	// abstraction like "[vdso]".
 	FilenameStrindex int32 `protobuf:"varint,4,opt,name=filename_strindex,json=filenameStrindex,proto3" json:"filename_strindex,omitempty"` // Index into ProfilesDictionary.string_table.
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
 	AttributeIndices []int32 `protobuf:"varint,5,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
@@ -938,7 +960,13 @@ func (x *Mapping) GetAttributeIndices() []int32 {
 	return nil
 }
 
-// A Stack represents a stack trace as a list of locations.
+// A Stack represents a stack trace as a list of locations (leaf first).
+// For example, the stack trace resulting from the call stack
+// main -> foo -> bar would be encoded into the location_indices list
+// [2, 1, 0] which references the locations in location_table as:
+// [Location{"main"}, Location{"foo"}, Location{"bar"}].
+//
+// Status: [Alpha]
 type Stack struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -988,23 +1016,24 @@ func (x *Stack) GetLocationIndices() []int32 {
 	return nil
 }
 
-// Describes function and line table debug information.
+// Contains function and line table debug information for a single frame.
+//
+// Status: [Alpha]
 type Location struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Reference to mapping in ProfilesDictionary.mapping_table.
-	// It can be unset / set to 0 if the mapping is unknown or not applicable for
-	// this profile type, as mapping_table[0] is always a 'null' default mapping.
+	// 0 means unknown or not applicable.
 	MappingIndex int32 `protobuf:"varint,1,opt,name=mapping_index,json=mappingIndex,proto3" json:"mapping_index,omitempty"`
 	// The instruction address for this location, if available.  It
-	// should be within [Mapping.memory_start...Mapping.memory_limit]
+	// SHOULD be within [Mapping.memory_start, Mapping.memory_limit]
 	// for the corresponding mapping. A non-leaf address may be in the
 	// middle of a call instruction. It is up to display tools to find
 	// the beginning of the instruction if necessary.
 	Address uint64 `protobuf:"varint,2,opt,name=address,proto3" json:"address,omitempty"`
-	// Multiple line indicates this location has inlined functions,
+	// Multiple lines indicate this location has inlined functions,
 	// where the last entry represents the caller into which the
 	// preceding entries were inlined.
 	//
@@ -1077,6 +1106,8 @@ func (x *Location) GetAttributeIndices() []int32 {
 }
 
 // Details a specific line in a source code, linked to a function.
+//
+// Status: [Alpha]
 type Line struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1084,9 +1115,9 @@ type Line struct {
 
 	// Reference to function in ProfilesDictionary.function_table.
 	FunctionIndex int32 `protobuf:"varint,1,opt,name=function_index,json=functionIndex,proto3" json:"function_index,omitempty"`
-	// Line number in source code. 0 means unset.
+	// Line number in source code. 1-based, 0 means unset.
 	Line int64 `protobuf:"varint,2,opt,name=line,proto3" json:"line,omitempty"`
-	// Column number in source code. 0 means unset.
+	// Column number in source code. 1-based, 0 means unset.
 	Column int64 `protobuf:"varint,3,opt,name=column,proto3" json:"column,omitempty"`
 }
 
@@ -1144,7 +1175,10 @@ func (x *Line) GetColumn() int64 {
 }
 
 // Describes a function, including its human-readable name, system name,
-// source file, and starting line number in the source.
+// source file, and starting line number in the source.  At least one of
+// {name_strindex, system_name_strindex, filename_strindex} MUST be present.
+//
+// Status: [Alpha]
 type Function struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1157,7 +1191,7 @@ type Function struct {
 	SystemNameStrindex int32 `protobuf:"varint,2,opt,name=system_name_strindex,json=systemNameStrindex,proto3" json:"system_name_strindex,omitempty"`
 	// Source file containing the function. Empty string if not available.
 	FilenameStrindex int32 `protobuf:"varint,3,opt,name=filename_strindex,json=filenameStrindex,proto3" json:"filename_strindex,omitempty"`
-	// Line number in source file. 0 means unset.
+	// Line number in source file. 1-based, 0 means unset.
 	StartLine int64 `protobuf:"varint,4,opt,name=start_line,json=startLine,proto3" json:"start_line,omitempty"`
 }
 
@@ -1223,7 +1257,10 @@ func (x *Function) GetStartLine() int64 {
 
 // A custom 'dictionary native' style of encoding attributes which is more convenient
 // for profiles than opentelemetry.proto.common.v1.KeyValue
-// Specifically, uses the string table for keys and allows optional unit information.
+// Specifically, uses the ProfilesDictionary.string_table for keys
+// and allows optional unit information.
+//
+// Status: [Alpha]
 type KeyValueAndUnit struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1235,6 +1272,7 @@ type KeyValueAndUnit struct {
 	Value *v11.AnyValue `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 	// The index into the string table for the attribute's unit.
 	// zero indicates implicit (by semconv) or non-defined unit.
+	// If present, the unit string SHOULD be in UCUM format.
 	UnitStrindex int32 `protobuf:"varint,3,opt,name=unit_strindex,json=unitStrindex,proto3" json:"unit_strindex,omitempty"`
 }
 

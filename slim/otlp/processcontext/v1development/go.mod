@@ -1,0 +1,10 @@
+module go.opentelemetry.io/proto/slim/otlp/processcontext/v1development
+
+go 1.25.0
+
+require (
+	go.opentelemetry.io/proto/slim/otlp v1.10.0
+	google.golang.org/protobuf v1.36.11
+)
+
+replace go.opentelemetry.io/proto/slim/otlp => ../../
