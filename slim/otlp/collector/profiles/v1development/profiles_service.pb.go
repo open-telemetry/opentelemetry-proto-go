@@ -35,6 +35,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Status: [Alpha]
 type ExportProfilesServiceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -96,6 +97,7 @@ func (x *ExportProfilesServiceRequest) GetDictionary() *v1development.ProfilesDi
 	return nil
 }
 
+// Status: [Alpha]
 type ExportProfilesServiceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -158,6 +160,7 @@ func (x *ExportProfilesServiceResponse) GetPartialSuccess() *ExportProfilesParti
 	return nil
 }
 
+// Status: [Alpha]
 type ExportProfilesPartialSuccess struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

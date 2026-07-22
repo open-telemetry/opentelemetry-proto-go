@@ -1,4 +1,4 @@
-module go.opentelemetry.io/proto/otlp/profiles/v1development
+module go.opentelemetry.io/proto/otlp/processcontext/v1development
 
 go 1.25.0
 
