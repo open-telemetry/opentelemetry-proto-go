@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/collector/trace/v1/trace_service.proto
+// source: opentelemetry/proto/slim/collector/trace/v1/trace_service.proto
 
 package v1
 
@@ -50,7 +50,7 @@ type ExportTraceServiceRequest struct {
 
 func (x *ExportTraceServiceRequest) Reset() {
 	*x = ExportTraceServiceRequest{}
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -62,7 +62,7 @@ func (x *ExportTraceServiceRequest) String() string {
 func (*ExportTraceServiceRequest) ProtoMessage() {}
 
 func (x *ExportTraceServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -75,7 +75,7 @@ func (x *ExportTraceServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportTraceServiceRequest.ProtoReflect.Descriptor instead.
 func (*ExportTraceServiceRequest) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ExportTraceServiceRequest) GetResourceSpans() []*v1.ResourceSpans {
@@ -109,7 +109,7 @@ type ExportTraceServiceResponse struct {
 
 func (x *ExportTraceServiceResponse) Reset() {
 	*x = ExportTraceServiceResponse{}
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +121,7 @@ func (x *ExportTraceServiceResponse) String() string {
 func (*ExportTraceServiceResponse) ProtoMessage() {}
 
 func (x *ExportTraceServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,7 +134,7 @@ func (x *ExportTraceServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportTraceServiceResponse.ProtoReflect.Descriptor instead.
 func (*ExportTraceServiceResponse) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ExportTraceServiceResponse) GetPartialSuccess() *ExportTracePartialSuccess {
@@ -165,7 +165,7 @@ type ExportTracePartialSuccess struct {
 
 func (x *ExportTracePartialSuccess) Reset() {
 	*x = ExportTracePartialSuccess{}
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -177,7 +177,7 @@ func (x *ExportTracePartialSuccess) String() string {
 func (*ExportTracePartialSuccess) ProtoMessage() {}
 
 func (x *ExportTracePartialSuccess) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -190,7 +190,7 @@ func (x *ExportTracePartialSuccess) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportTracePartialSuccess.ProtoReflect.Descriptor instead.
 func (*ExportTracePartialSuccess) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{2}
+	return file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ExportTracePartialSuccess) GetRejectedSpans() int64 {
@@ -209,44 +209,44 @@ func (x *ExportTracePartialSuccess) GetErrorMessage() string {
 
 var File_opentelemetry_proto_collector_trace_v1_trace_service_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDesc = "" +
 	"\n" +
-	":opentelemetry/proto/collector/trace/v1/trace_service.proto\x12&opentelemetry.proto.collector.trace.v1\x1a(opentelemetry/proto/trace/v1/trace.proto\"o\n" +
-	"\x19ExportTraceServiceRequest\x12R\n" +
-	"\x0eresource_spans\x18\x01 \x03(\v2+.opentelemetry.proto.trace.v1.ResourceSpansR\rresourceSpans\"\x88\x01\n" +
-	"\x1aExportTraceServiceResponse\x12j\n" +
-	"\x0fpartial_success\x18\x01 \x01(\v2A.opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccessR\x0epartialSuccess\"g\n" +
+	"?opentelemetry/proto/slim/collector/trace/v1/trace_service.proto\x12+opentelemetry.proto.slim.collector.trace.v1\x1a-opentelemetry/proto/slim/trace/v1/trace.proto\"t\n" +
+	"\x19ExportTraceServiceRequest\x12W\n" +
+	"\x0eresource_spans\x18\x01 \x03(\v20.opentelemetry.proto.slim.trace.v1.ResourceSpansR\rresourceSpans\"\x8d\x01\n" +
+	"\x1aExportTraceServiceResponse\x12o\n" +
+	"\x0fpartial_success\x18\x01 \x01(\v2F.opentelemetry.proto.slim.collector.trace.v1.ExportTracePartialSuccessR\x0epartialSuccess\"g\n" +
 	"\x19ExportTracePartialSuccess\x12%\n" +
 	"\x0erejected_spans\x18\x01 \x01(\x03R\rrejectedSpans\x12#\n" +
-	"\rerror_message\x18\x02 \x01(\tR\ferrorMessage2\xa2\x01\n" +
-	"\fTraceService\x12\x91\x01\n" +
-	"\x06Export\x12A.opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest\x1aB.opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse\"\x00B\xa1\x01\n" +
+	"\rerror_message\x18\x02 \x01(\tR\ferrorMessage2\xac\x01\n" +
+	"\fTraceService\x12\x9b\x01\n" +
+	"\x06Export\x12F.opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceRequest\x1aG.opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceResponse\"\x00B\xa1\x01\n" +
 	")io.opentelemetry.proto.collector.trace.v1B\x11TraceServiceProtoP\x01Z6go.opentelemetry.io/proto/slim/otlp/collector/trace/v1\xaa\x02&OpenTelemetry.Proto.Collector.Trace.V1b\x06proto3"
 
 var (
-	file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDesc), len(file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDesc)))
+func file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDesc), len(file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDescData
+	return file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDescData
 }
 
-var file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_opentelemetry_proto_collector_trace_v1_trace_service_proto_goTypes = []any{
-	(*ExportTraceServiceRequest)(nil),  // 0: opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest
-	(*ExportTraceServiceResponse)(nil), // 1: opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse
-	(*ExportTracePartialSuccess)(nil),  // 2: opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess
-	(*v1.ResourceSpans)(nil),           // 3: opentelemetry.proto.trace.v1.ResourceSpans
+var file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_goTypes = []any{
+	(*ExportTraceServiceRequest)(nil),  // 0: opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceRequest
+	(*ExportTraceServiceResponse)(nil), // 1: opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceResponse
+	(*ExportTracePartialSuccess)(nil),  // 2: opentelemetry.proto.slim.collector.trace.v1.ExportTracePartialSuccess
+	(*v1.ResourceSpans)(nil),           // 3: opentelemetry.proto.slim.trace.v1.ResourceSpans
 }
-var file_opentelemetry_proto_collector_trace_v1_trace_service_proto_depIdxs = []int32{
-	3, // 0: opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest.resource_spans:type_name -> opentelemetry.proto.trace.v1.ResourceSpans
-	2, // 1: opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse.partial_success:type_name -> opentelemetry.proto.collector.trace.v1.ExportTracePartialSuccess
-	0, // 2: opentelemetry.proto.collector.trace.v1.TraceService.Export:input_type -> opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest
-	1, // 3: opentelemetry.proto.collector.trace.v1.TraceService.Export:output_type -> opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse
+var file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_depIdxs = []int32{
+	3, // 0: opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceRequest.resource_spans:type_name -> opentelemetry.proto.slim.trace.v1.ResourceSpans
+	2, // 1: opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceResponse.partial_success:type_name -> opentelemetry.proto.slim.collector.trace.v1.ExportTracePartialSuccess
+	0, // 2: opentelemetry.proto.slim.collector.trace.v1.TraceService.Export:input_type -> opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceRequest
+	1, // 3: opentelemetry.proto.slim.collector.trace.v1.TraceService.Export:output_type -> opentelemetry.proto.slim.collector.trace.v1.ExportTraceServiceResponse
 	3, // [3:4] is the sub-list for method output_type
 	2, // [2:3] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -254,8 +254,8 @@ var file_opentelemetry_proto_collector_trace_v1_trace_service_proto_depIdxs = []
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_collector_trace_v1_trace_service_proto_init() }
-func file_opentelemetry_proto_collector_trace_v1_trace_service_proto_init() {
+func init() { file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_init() }
+func file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_init() {
 	if File_opentelemetry_proto_collector_trace_v1_trace_service_proto != nil {
 		return
 	}
@@ -263,17 +263,17 @@ func file_opentelemetry_proto_collector_trace_v1_trace_service_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDesc), len(file_opentelemetry_proto_collector_trace_v1_trace_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDesc), len(file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_opentelemetry_proto_collector_trace_v1_trace_service_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_collector_trace_v1_trace_service_proto_depIdxs,
-		MessageInfos:      file_opentelemetry_proto_collector_trace_v1_trace_service_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_depIdxs,
+		MessageInfos:      file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_collector_trace_v1_trace_service_proto = out.File
-	file_opentelemetry_proto_collector_trace_v1_trace_service_proto_goTypes = nil
-	file_opentelemetry_proto_collector_trace_v1_trace_service_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_goTypes = nil
+	file_opentelemetry_proto_slim_collector_trace_v1_trace_service_proto_depIdxs = nil
 }
