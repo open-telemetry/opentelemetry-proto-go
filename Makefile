@@ -139,8 +139,7 @@ gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 copy-otlp-protobuf:
 	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
-	@deleted_otlp_mod_files="$$(git ls-files --deleted '$(OTLP_OUTPUT_DIR)/**/go.mod' '$(OTLP_OUTPUT_DIR)/**/go.sum')"; \
-	if [ -n "$${deleted_otlp_mod_files}" ]; then git restore $${deleted_otlp_mod_files}; fi
+	@git restore -- ':(glob)$(OTLP_OUTPUT_DIR)/**/go.mod' ':(glob)$(OTLP_OUTPUT_DIR)/**/go.sum'
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
 
 # Preserve the existing exported File_* Go identifiers. protoc derives these
