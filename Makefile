@@ -159,8 +159,7 @@ gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
 copy-otlp-protobuf-slim:
 	rm -rf $(OTLPSLIM_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/slim/otlp/ ./$(OTLPSLIM_OUTPUT_DIR)
-	@deleted_otlpslim_mod_files="$$(git ls-files --deleted '$(OTLPSLIM_OUTPUT_DIR)/**/go.mod' '$(OTLPSLIM_OUTPUT_DIR)/**/go.sum')"; \
-	if [ -n "$${deleted_otlpslim_mod_files}" ]; then git restore $${deleted_otlpslim_mod_files}; fi
+	@git restore -- ':(glob)$(OTLPSLIM_OUTPUT_DIR)/**/go.mod' ':(glob)$(OTLPSLIM_OUTPUT_DIR)/**/go.sum'
 	cd ./$(OTLPSLIM_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: toolchain-check
