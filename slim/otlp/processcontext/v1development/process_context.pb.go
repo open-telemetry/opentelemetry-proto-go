@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/processcontext/v1development/process_context.proto
+// source: opentelemetry/proto/slim/processcontext/v1development/process_context.proto
 
 package v1development
 
@@ -70,7 +70,7 @@ type ProcessContext struct {
 
 func (x *ProcessContext) Reset() {
 	*x = ProcessContext{}
-	mi := &file_opentelemetry_proto_processcontext_v1development_process_context_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -82,7 +82,7 @@ func (x *ProcessContext) String() string {
 func (*ProcessContext) ProtoMessage() {}
 
 func (x *ProcessContext) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_processcontext_v1development_process_context_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -95,7 +95,7 @@ func (x *ProcessContext) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProcessContext.ProtoReflect.Descriptor instead.
 func (*ProcessContext) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ProcessContext) GetResource() *v1.Resource {
@@ -114,37 +114,37 @@ func (x *ProcessContext) GetAttributes() []*v11.KeyValue {
 
 var File_opentelemetry_proto_processcontext_v1development_process_context_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDesc = "" +
 	"\n" +
-	"Fopentelemetry/proto/processcontext/v1development/process_context.proto\x120opentelemetry.proto.processcontext.v1development\x1a*opentelemetry/proto/common/v1/common.proto\x1a.opentelemetry/proto/resource/v1/resource.proto\"\xa0\x01\n" +
-	"\x0eProcessContext\x12E\n" +
-	"\bresource\x18\x01 \x01(\v2).opentelemetry.proto.resource.v1.ResourceR\bresource\x12G\n" +
+	"Kopentelemetry/proto/slim/processcontext/v1development/process_context.proto\x125opentelemetry.proto.slim.processcontext.v1development\x1a/opentelemetry/proto/slim/common/v1/common.proto\x1a3opentelemetry/proto/slim/resource/v1/resource.proto\"\xaa\x01\n" +
+	"\x0eProcessContext\x12J\n" +
+	"\bresource\x18\x01 \x01(\v2..opentelemetry.proto.slim.resource.v1.ResourceR\bresource\x12L\n" +
 	"\n" +
-	"attributes\x18\x02 \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\x02 \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributesB\xc1\x01\n" +
 	"3io.opentelemetry.proto.processcontext.v1developmentB\x13ProcessContextProtoP\x01Z@go.opentelemetry.io/proto/slim/otlp/processcontext/v1development\xaa\x020OpenTelemetry.Proto.ProcessContext.V1Developmentb\x06proto3"
 
 var (
-	file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDesc), len(file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDesc)))
+func file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDesc), len(file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDescData
+	return file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDescData
 }
 
-var file_opentelemetry_proto_processcontext_v1development_process_context_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_opentelemetry_proto_processcontext_v1development_process_context_proto_goTypes = []any{
-	(*ProcessContext)(nil), // 0: opentelemetry.proto.processcontext.v1development.ProcessContext
-	(*v1.Resource)(nil),    // 1: opentelemetry.proto.resource.v1.Resource
-	(*v11.KeyValue)(nil),   // 2: opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_goTypes = []any{
+	(*ProcessContext)(nil), // 0: opentelemetry.proto.slim.processcontext.v1development.ProcessContext
+	(*v1.Resource)(nil),    // 1: opentelemetry.proto.slim.resource.v1.Resource
+	(*v11.KeyValue)(nil),   // 2: opentelemetry.proto.slim.common.v1.KeyValue
 }
-var file_opentelemetry_proto_processcontext_v1development_process_context_proto_depIdxs = []int32{
-	1, // 0: opentelemetry.proto.processcontext.v1development.ProcessContext.resource:type_name -> opentelemetry.proto.resource.v1.Resource
-	2, // 1: opentelemetry.proto.processcontext.v1development.ProcessContext.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_depIdxs = []int32{
+	1, // 0: opentelemetry.proto.slim.processcontext.v1development.ProcessContext.resource:type_name -> opentelemetry.proto.slim.resource.v1.Resource
+	2, // 1: opentelemetry.proto.slim.processcontext.v1development.ProcessContext.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -152,8 +152,8 @@ var file_opentelemetry_proto_processcontext_v1development_process_context_proto_
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_processcontext_v1development_process_context_proto_init() }
-func file_opentelemetry_proto_processcontext_v1development_process_context_proto_init() {
+func init() { file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_init() }
+func file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_init() {
 	if File_opentelemetry_proto_processcontext_v1development_process_context_proto != nil {
 		return
 	}
@@ -161,17 +161,17 @@ func file_opentelemetry_proto_processcontext_v1development_process_context_proto
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDesc), len(file_opentelemetry_proto_processcontext_v1development_process_context_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDesc), len(file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_opentelemetry_proto_processcontext_v1development_process_context_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_processcontext_v1development_process_context_proto_depIdxs,
-		MessageInfos:      file_opentelemetry_proto_processcontext_v1development_process_context_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_depIdxs,
+		MessageInfos:      file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_processcontext_v1development_process_context_proto = out.File
-	file_opentelemetry_proto_processcontext_v1development_process_context_proto_goTypes = nil
-	file_opentelemetry_proto_processcontext_v1development_process_context_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_goTypes = nil
+	file_opentelemetry_proto_slim_processcontext_v1development_process_context_proto_depIdxs = nil
 }

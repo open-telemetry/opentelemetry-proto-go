@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/logs/v1/logs.proto
+// source: opentelemetry/proto/slim/logs/v1/logs.proto
 
 package v1
 
@@ -137,11 +137,11 @@ func (x SeverityNumber) String() string {
 }
 
 func (SeverityNumber) Descriptor() protoreflect.EnumDescriptor {
-	return file_opentelemetry_proto_logs_v1_logs_proto_enumTypes[0].Descriptor()
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes[0].Descriptor()
 }
 
 func (SeverityNumber) Type() protoreflect.EnumType {
-	return &file_opentelemetry_proto_logs_v1_logs_proto_enumTypes[0]
+	return &file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes[0]
 }
 
 func (x SeverityNumber) Number() protoreflect.EnumNumber {
@@ -150,7 +150,7 @@ func (x SeverityNumber) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SeverityNumber.Descriptor instead.
 func (SeverityNumber) EnumDescriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{0}
 }
 
 // LogRecordFlags represents constants used to interpret the
@@ -193,11 +193,11 @@ func (x LogRecordFlags) String() string {
 }
 
 func (LogRecordFlags) Descriptor() protoreflect.EnumDescriptor {
-	return file_opentelemetry_proto_logs_v1_logs_proto_enumTypes[1].Descriptor()
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes[1].Descriptor()
 }
 
 func (LogRecordFlags) Type() protoreflect.EnumType {
-	return &file_opentelemetry_proto_logs_v1_logs_proto_enumTypes[1]
+	return &file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes[1]
 }
 
 func (x LogRecordFlags) Number() protoreflect.EnumNumber {
@@ -206,7 +206,7 @@ func (x LogRecordFlags) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LogRecordFlags.Descriptor instead.
 func (LogRecordFlags) EnumDescriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{1}
 }
 
 // LogsData represents the logs data that can be stored in a persistent storage,
@@ -233,7 +233,7 @@ type LogsData struct {
 
 func (x *LogsData) Reset() {
 	*x = LogsData{}
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -245,7 +245,7 @@ func (x *LogsData) String() string {
 func (*LogsData) ProtoMessage() {}
 
 func (x *LogsData) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +258,7 @@ func (x *LogsData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogsData.ProtoReflect.Descriptor instead.
 func (*LogsData) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *LogsData) GetResourceLogs() []*ResourceLogs {
@@ -289,7 +289,7 @@ type ResourceLogs struct {
 
 func (x *ResourceLogs) Reset() {
 	*x = ResourceLogs{}
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -301,7 +301,7 @@ func (x *ResourceLogs) String() string {
 func (*ResourceLogs) ProtoMessage() {}
 
 func (x *ResourceLogs) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -314,7 +314,7 @@ func (x *ResourceLogs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceLogs.ProtoReflect.Descriptor instead.
 func (*ResourceLogs) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ResourceLogs) GetResource() *v1.Resource {
@@ -360,7 +360,7 @@ type ScopeLogs struct {
 
 func (x *ScopeLogs) Reset() {
 	*x = ScopeLogs{}
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -372,7 +372,7 @@ func (x *ScopeLogs) String() string {
 func (*ScopeLogs) ProtoMessage() {}
 
 func (x *ScopeLogs) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -385,7 +385,7 @@ func (x *ScopeLogs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScopeLogs.ProtoReflect.Descriptor instead.
 func (*ScopeLogs) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{2}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ScopeLogs) GetScope() *v11.InstrumentationScope {
@@ -435,7 +435,7 @@ type LogRecord struct {
 	ObservedTimeUnixNano uint64 `protobuf:"fixed64,11,opt,name=observed_time_unix_nano,json=observedTimeUnixNano,proto3" json:"observed_time_unix_nano,omitempty"`
 	// Numerical value of the severity, normalized to values described in Log Data Model.
 	// [Optional].
-	SeverityNumber SeverityNumber `protobuf:"varint,2,opt,name=severity_number,json=severityNumber,proto3,enum=opentelemetry.proto.logs.v1.SeverityNumber" json:"severity_number,omitempty"`
+	SeverityNumber SeverityNumber `protobuf:"varint,2,opt,name=severity_number,json=severityNumber,proto3,enum=opentelemetry.proto.slim.logs.v1.SeverityNumber" json:"severity_number,omitempty"`
 	// The severity text (also known as log level). The original string representation as
 	// it is known at the source. [Optional].
 	SeverityText string `protobuf:"bytes,3,opt,name=severity_text,json=severityText,proto3" json:"severity_text,omitempty"`
@@ -497,7 +497,7 @@ type LogRecord struct {
 
 func (x *LogRecord) Reset() {
 	*x = LogRecord{}
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -509,7 +509,7 @@ func (x *LogRecord) String() string {
 func (*LogRecord) ProtoMessage() {}
 
 func (x *LogRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_logs_v1_logs_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -522,7 +522,7 @@ func (x *LogRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogRecord.ProtoReflect.Descriptor instead.
 func (*LogRecord) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP(), []int{3}
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LogRecord) GetTimeUnixNano() uint64 {
@@ -604,31 +604,31 @@ func (x *LogRecord) GetEventName() string {
 
 var File_opentelemetry_proto_logs_v1_logs_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_logs_v1_logs_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDesc = "" +
 	"\n" +
-	"&opentelemetry/proto/logs/v1/logs.proto\x12\x1bopentelemetry.proto.logs.v1\x1a*opentelemetry/proto/common/v1/common.proto\x1a.opentelemetry/proto/resource/v1/resource.proto\"Z\n" +
-	"\bLogsData\x12N\n" +
-	"\rresource_logs\x18\x01 \x03(\v2).opentelemetry.proto.logs.v1.ResourceLogsR\fresourceLogs\"\xc3\x01\n" +
-	"\fResourceLogs\x12E\n" +
-	"\bresource\x18\x01 \x01(\v2).opentelemetry.proto.resource.v1.ResourceR\bresource\x12E\n" +
+	"+opentelemetry/proto/slim/logs/v1/logs.proto\x12 opentelemetry.proto.slim.logs.v1\x1a/opentelemetry/proto/slim/common/v1/common.proto\x1a3opentelemetry/proto/slim/resource/v1/resource.proto\"_\n" +
+	"\bLogsData\x12S\n" +
+	"\rresource_logs\x18\x01 \x03(\v2..opentelemetry.proto.slim.logs.v1.ResourceLogsR\fresourceLogs\"\xcd\x01\n" +
+	"\fResourceLogs\x12J\n" +
+	"\bresource\x18\x01 \x01(\v2..opentelemetry.proto.slim.resource.v1.ResourceR\bresource\x12J\n" +
 	"\n" +
-	"scope_logs\x18\x02 \x03(\v2&.opentelemetry.proto.logs.v1.ScopeLogsR\tscopeLogs\x12\x1d\n" +
+	"scope_logs\x18\x02 \x03(\v2+.opentelemetry.proto.slim.logs.v1.ScopeLogsR\tscopeLogs\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xbe\x01\n" +
-	"\tScopeLogs\x12I\n" +
-	"\x05scope\x18\x01 \x01(\v23.opentelemetry.proto.common.v1.InstrumentationScopeR\x05scope\x12G\n" +
-	"\vlog_records\x18\x02 \x03(\v2&.opentelemetry.proto.logs.v1.LogRecordR\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xc8\x01\n" +
+	"\tScopeLogs\x12N\n" +
+	"\x05scope\x18\x01 \x01(\v28.opentelemetry.proto.slim.common.v1.InstrumentationScopeR\x05scope\x12L\n" +
+	"\vlog_records\x18\x02 \x03(\v2+.opentelemetry.proto.slim.logs.v1.LogRecordR\n" +
 	"logRecords\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\x92\x04\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\xa1\x04\n" +
 	"\tLogRecord\x12$\n" +
 	"\x0etime_unix_nano\x18\x01 \x01(\x06R\ftimeUnixNano\x125\n" +
-	"\x17observed_time_unix_nano\x18\v \x01(\x06R\x14observedTimeUnixNano\x12T\n" +
-	"\x0fseverity_number\x18\x02 \x01(\x0e2+.opentelemetry.proto.logs.v1.SeverityNumberR\x0eseverityNumber\x12#\n" +
-	"\rseverity_text\x18\x03 \x01(\tR\fseverityText\x12;\n" +
-	"\x04body\x18\x05 \x01(\v2'.opentelemetry.proto.common.v1.AnyValueR\x04body\x12G\n" +
+	"\x17observed_time_unix_nano\x18\v \x01(\x06R\x14observedTimeUnixNano\x12Y\n" +
+	"\x0fseverity_number\x18\x02 \x01(\x0e20.opentelemetry.proto.slim.logs.v1.SeverityNumberR\x0eseverityNumber\x12#\n" +
+	"\rseverity_text\x18\x03 \x01(\tR\fseverityText\x12@\n" +
+	"\x04body\x18\x05 \x01(\v2,.opentelemetry.proto.slim.common.v1.AnyValueR\x04body\x12L\n" +
 	"\n" +
-	"attributes\x18\x06 \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\x06 \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x128\n" +
 	"\x18dropped_attributes_count\x18\a \x01(\rR\x16droppedAttributesCount\x12\x14\n" +
 	"\x05flags\x18\b \x01(\aR\x05flags\x12\x19\n" +
@@ -670,40 +670,40 @@ const file_opentelemetry_proto_logs_v1_logs_proto_rawDesc = "" +
 	"\x1eio.opentelemetry.proto.logs.v1B\tLogsProtoP\x01Z+go.opentelemetry.io/proto/slim/otlp/logs/v1\xaa\x02\x1bOpenTelemetry.Proto.Logs.V1b\x06proto3"
 
 var (
-	file_opentelemetry_proto_logs_v1_logs_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_logs_v1_logs_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_logs_v1_logs_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_logs_v1_logs_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_logs_v1_logs_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_logs_v1_logs_proto_rawDesc), len(file_opentelemetry_proto_logs_v1_logs_proto_rawDesc)))
+func file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDesc), len(file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_logs_v1_logs_proto_rawDescData
+	return file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDescData
 }
 
-var file_opentelemetry_proto_logs_v1_logs_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_opentelemetry_proto_logs_v1_logs_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_opentelemetry_proto_logs_v1_logs_proto_goTypes = []any{
-	(SeverityNumber)(0),              // 0: opentelemetry.proto.logs.v1.SeverityNumber
-	(LogRecordFlags)(0),              // 1: opentelemetry.proto.logs.v1.LogRecordFlags
-	(*LogsData)(nil),                 // 2: opentelemetry.proto.logs.v1.LogsData
-	(*ResourceLogs)(nil),             // 3: opentelemetry.proto.logs.v1.ResourceLogs
-	(*ScopeLogs)(nil),                // 4: opentelemetry.proto.logs.v1.ScopeLogs
-	(*LogRecord)(nil),                // 5: opentelemetry.proto.logs.v1.LogRecord
-	(*v1.Resource)(nil),              // 6: opentelemetry.proto.resource.v1.Resource
-	(*v11.InstrumentationScope)(nil), // 7: opentelemetry.proto.common.v1.InstrumentationScope
-	(*v11.AnyValue)(nil),             // 8: opentelemetry.proto.common.v1.AnyValue
-	(*v11.KeyValue)(nil),             // 9: opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_opentelemetry_proto_slim_logs_v1_logs_proto_goTypes = []any{
+	(SeverityNumber)(0),              // 0: opentelemetry.proto.slim.logs.v1.SeverityNumber
+	(LogRecordFlags)(0),              // 1: opentelemetry.proto.slim.logs.v1.LogRecordFlags
+	(*LogsData)(nil),                 // 2: opentelemetry.proto.slim.logs.v1.LogsData
+	(*ResourceLogs)(nil),             // 3: opentelemetry.proto.slim.logs.v1.ResourceLogs
+	(*ScopeLogs)(nil),                // 4: opentelemetry.proto.slim.logs.v1.ScopeLogs
+	(*LogRecord)(nil),                // 5: opentelemetry.proto.slim.logs.v1.LogRecord
+	(*v1.Resource)(nil),              // 6: opentelemetry.proto.slim.resource.v1.Resource
+	(*v11.InstrumentationScope)(nil), // 7: opentelemetry.proto.slim.common.v1.InstrumentationScope
+	(*v11.AnyValue)(nil),             // 8: opentelemetry.proto.slim.common.v1.AnyValue
+	(*v11.KeyValue)(nil),             // 9: opentelemetry.proto.slim.common.v1.KeyValue
 }
-var file_opentelemetry_proto_logs_v1_logs_proto_depIdxs = []int32{
-	3, // 0: opentelemetry.proto.logs.v1.LogsData.resource_logs:type_name -> opentelemetry.proto.logs.v1.ResourceLogs
-	6, // 1: opentelemetry.proto.logs.v1.ResourceLogs.resource:type_name -> opentelemetry.proto.resource.v1.Resource
-	4, // 2: opentelemetry.proto.logs.v1.ResourceLogs.scope_logs:type_name -> opentelemetry.proto.logs.v1.ScopeLogs
-	7, // 3: opentelemetry.proto.logs.v1.ScopeLogs.scope:type_name -> opentelemetry.proto.common.v1.InstrumentationScope
-	5, // 4: opentelemetry.proto.logs.v1.ScopeLogs.log_records:type_name -> opentelemetry.proto.logs.v1.LogRecord
-	0, // 5: opentelemetry.proto.logs.v1.LogRecord.severity_number:type_name -> opentelemetry.proto.logs.v1.SeverityNumber
-	8, // 6: opentelemetry.proto.logs.v1.LogRecord.body:type_name -> opentelemetry.proto.common.v1.AnyValue
-	9, // 7: opentelemetry.proto.logs.v1.LogRecord.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_logs_v1_logs_proto_depIdxs = []int32{
+	3, // 0: opentelemetry.proto.slim.logs.v1.LogsData.resource_logs:type_name -> opentelemetry.proto.slim.logs.v1.ResourceLogs
+	6, // 1: opentelemetry.proto.slim.logs.v1.ResourceLogs.resource:type_name -> opentelemetry.proto.slim.resource.v1.Resource
+	4, // 2: opentelemetry.proto.slim.logs.v1.ResourceLogs.scope_logs:type_name -> opentelemetry.proto.slim.logs.v1.ScopeLogs
+	7, // 3: opentelemetry.proto.slim.logs.v1.ScopeLogs.scope:type_name -> opentelemetry.proto.slim.common.v1.InstrumentationScope
+	5, // 4: opentelemetry.proto.slim.logs.v1.ScopeLogs.log_records:type_name -> opentelemetry.proto.slim.logs.v1.LogRecord
+	0, // 5: opentelemetry.proto.slim.logs.v1.LogRecord.severity_number:type_name -> opentelemetry.proto.slim.logs.v1.SeverityNumber
+	8, // 6: opentelemetry.proto.slim.logs.v1.LogRecord.body:type_name -> opentelemetry.proto.slim.common.v1.AnyValue
+	9, // 7: opentelemetry.proto.slim.logs.v1.LogRecord.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name
@@ -711,8 +711,8 @@ var file_opentelemetry_proto_logs_v1_logs_proto_depIdxs = []int32{
 	0, // [0:8] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_logs_v1_logs_proto_init() }
-func file_opentelemetry_proto_logs_v1_logs_proto_init() {
+func init() { file_opentelemetry_proto_slim_logs_v1_logs_proto_init() }
+func file_opentelemetry_proto_slim_logs_v1_logs_proto_init() {
 	if File_opentelemetry_proto_logs_v1_logs_proto != nil {
 		return
 	}
@@ -720,18 +720,18 @@ func file_opentelemetry_proto_logs_v1_logs_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_logs_v1_logs_proto_rawDesc), len(file_opentelemetry_proto_logs_v1_logs_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDesc), len(file_opentelemetry_proto_slim_logs_v1_logs_proto_rawDesc)),
 			NumEnums:      2,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_opentelemetry_proto_logs_v1_logs_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_logs_v1_logs_proto_depIdxs,
-		EnumInfos:         file_opentelemetry_proto_logs_v1_logs_proto_enumTypes,
-		MessageInfos:      file_opentelemetry_proto_logs_v1_logs_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_logs_v1_logs_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_logs_v1_logs_proto_depIdxs,
+		EnumInfos:         file_opentelemetry_proto_slim_logs_v1_logs_proto_enumTypes,
+		MessageInfos:      file_opentelemetry_proto_slim_logs_v1_logs_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_logs_v1_logs_proto = out.File
-	file_opentelemetry_proto_logs_v1_logs_proto_goTypes = nil
-	file_opentelemetry_proto_logs_v1_logs_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_logs_v1_logs_proto_goTypes = nil
+	file_opentelemetry_proto_slim_logs_v1_logs_proto_depIdxs = nil
 }
