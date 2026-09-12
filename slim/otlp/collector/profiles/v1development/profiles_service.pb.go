@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/collector/profiles/v1development/profiles_service.proto
+// source: opentelemetry/proto/slim/collector/profiles/v1development/profiles_service.proto
 
 package v1development
 
@@ -53,7 +53,7 @@ type ExportProfilesServiceRequest struct {
 
 func (x *ExportProfilesServiceRequest) Reset() {
 	*x = ExportProfilesServiceRequest{}
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -65,7 +65,7 @@ func (x *ExportProfilesServiceRequest) String() string {
 func (*ExportProfilesServiceRequest) ProtoMessage() {}
 
 func (x *ExportProfilesServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -78,7 +78,7 @@ func (x *ExportProfilesServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportProfilesServiceRequest.ProtoReflect.Descriptor instead.
 func (*ExportProfilesServiceRequest) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ExportProfilesServiceRequest) GetResourceProfiles() []*v1development.ResourceProfiles {
@@ -120,7 +120,7 @@ type ExportProfilesServiceResponse struct {
 
 func (x *ExportProfilesServiceResponse) Reset() {
 	*x = ExportProfilesServiceResponse{}
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -132,7 +132,7 @@ func (x *ExportProfilesServiceResponse) String() string {
 func (*ExportProfilesServiceResponse) ProtoMessage() {}
 
 func (x *ExportProfilesServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -145,7 +145,7 @@ func (x *ExportProfilesServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportProfilesServiceResponse.ProtoReflect.Descriptor instead.
 func (*ExportProfilesServiceResponse) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ExportProfilesServiceResponse) GetPartialSuccess() *ExportProfilesPartialSuccess {
@@ -177,7 +177,7 @@ type ExportProfilesPartialSuccess struct {
 
 func (x *ExportProfilesPartialSuccess) Reset() {
 	*x = ExportProfilesPartialSuccess{}
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -189,7 +189,7 @@ func (x *ExportProfilesPartialSuccess) String() string {
 func (*ExportProfilesPartialSuccess) ProtoMessage() {}
 
 func (x *ExportProfilesPartialSuccess) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,7 +202,7 @@ func (x *ExportProfilesPartialSuccess) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportProfilesPartialSuccess.ProtoReflect.Descriptor instead.
 func (*ExportProfilesPartialSuccess) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{2}
+	return file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ExportProfilesPartialSuccess) GetRejectedProfiles() int64 {
@@ -221,49 +221,49 @@ func (x *ExportProfilesPartialSuccess) GetErrorMessage() string {
 
 var File_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDesc = "" +
 	"\n" +
-	"Kopentelemetry/proto/collector/profiles/v1development/profiles_service.proto\x124opentelemetry.proto.collector.profiles.v1development\x1a9opentelemetry/proto/profiles/v1development/profiles.proto\"\xe9\x01\n" +
-	"\x1cExportProfilesServiceRequest\x12i\n" +
-	"\x11resource_profiles\x18\x01 \x03(\v2<.opentelemetry.proto.profiles.v1development.ResourceProfilesR\x10resourceProfiles\x12^\n" +
+	"Popentelemetry/proto/slim/collector/profiles/v1development/profiles_service.proto\x129opentelemetry.proto.slim.collector.profiles.v1development\x1a>opentelemetry/proto/slim/profiles/v1development/profiles.proto\"\xf3\x01\n" +
+	"\x1cExportProfilesServiceRequest\x12n\n" +
+	"\x11resource_profiles\x18\x01 \x03(\v2A.opentelemetry.proto.slim.profiles.v1development.ResourceProfilesR\x10resourceProfiles\x12c\n" +
 	"\n" +
-	"dictionary\x18\x02 \x01(\v2>.opentelemetry.proto.profiles.v1development.ProfilesDictionaryR\n" +
-	"dictionary\"\x9c\x01\n" +
-	"\x1dExportProfilesServiceResponse\x12{\n" +
-	"\x0fpartial_success\x18\x01 \x01(\v2R.opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccessR\x0epartialSuccess\"p\n" +
+	"dictionary\x18\x02 \x01(\v2C.opentelemetry.proto.slim.profiles.v1development.ProfilesDictionaryR\n" +
+	"dictionary\"\xa2\x01\n" +
+	"\x1dExportProfilesServiceResponse\x12\x80\x01\n" +
+	"\x0fpartial_success\x18\x01 \x01(\v2W.opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesPartialSuccessR\x0epartialSuccess\"p\n" +
 	"\x1cExportProfilesPartialSuccess\x12+\n" +
 	"\x11rejected_profiles\x18\x01 \x01(\x03R\x10rejectedProfiles\x12#\n" +
-	"\rerror_message\x18\x02 \x01(\tR\ferrorMessage2\xc7\x01\n" +
-	"\x0fProfilesService\x12\xb3\x01\n" +
-	"\x06Export\x12R.opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest\x1aS.opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse\"\x00B\xce\x01\n" +
+	"\rerror_message\x18\x02 \x01(\tR\ferrorMessage2\xd1\x01\n" +
+	"\x0fProfilesService\x12\xbd\x01\n" +
+	"\x06Export\x12W.opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceRequest\x1aX.opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceResponse\"\x00B\xce\x01\n" +
 	"7io.opentelemetry.proto.collector.profiles.v1developmentB\x14ProfilesServiceProtoP\x01ZDgo.opentelemetry.io/proto/slim/otlp/collector/profiles/v1development\xaa\x024OpenTelemetry.Proto.Collector.Profiles.V1Developmentb\x06proto3"
 
 var (
-	file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDesc), len(file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDesc)))
+func file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDesc), len(file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDescData
+	return file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDescData
 }
 
-var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_goTypes = []any{
-	(*ExportProfilesServiceRequest)(nil),     // 0: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
-	(*ExportProfilesServiceResponse)(nil),    // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
-	(*ExportProfilesPartialSuccess)(nil),     // 2: opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
-	(*v1development.ResourceProfiles)(nil),   // 3: opentelemetry.proto.profiles.v1development.ResourceProfiles
-	(*v1development.ProfilesDictionary)(nil), // 4: opentelemetry.proto.profiles.v1development.ProfilesDictionary
+var file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_goTypes = []any{
+	(*ExportProfilesServiceRequest)(nil),     // 0: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceRequest
+	(*ExportProfilesServiceResponse)(nil),    // 1: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceResponse
+	(*ExportProfilesPartialSuccess)(nil),     // 2: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesPartialSuccess
+	(*v1development.ResourceProfiles)(nil),   // 3: opentelemetry.proto.slim.profiles.v1development.ResourceProfiles
+	(*v1development.ProfilesDictionary)(nil), // 4: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary
 }
-var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_depIdxs = []int32{
-	3, // 0: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest.resource_profiles:type_name -> opentelemetry.proto.profiles.v1development.ResourceProfiles
-	4, // 1: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest.dictionary:type_name -> opentelemetry.proto.profiles.v1development.ProfilesDictionary
-	2, // 2: opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse.partial_success:type_name -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesPartialSuccess
-	0, // 3: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:input_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceRequest
-	1, // 4: opentelemetry.proto.collector.profiles.v1development.ProfilesService.Export:output_type -> opentelemetry.proto.collector.profiles.v1development.ExportProfilesServiceResponse
+var file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_depIdxs = []int32{
+	3, // 0: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceRequest.resource_profiles:type_name -> opentelemetry.proto.slim.profiles.v1development.ResourceProfiles
+	4, // 1: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceRequest.dictionary:type_name -> opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary
+	2, // 2: opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceResponse.partial_success:type_name -> opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesPartialSuccess
+	0, // 3: opentelemetry.proto.slim.collector.profiles.v1development.ProfilesService.Export:input_type -> opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceRequest
+	1, // 4: opentelemetry.proto.slim.collector.profiles.v1development.ProfilesService.Export:output_type -> opentelemetry.proto.slim.collector.profiles.v1development.ExportProfilesServiceResponse
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -271,8 +271,10 @@ var file_opentelemetry_proto_collector_profiles_v1development_profiles_service_p
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_init() }
-func file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_init() {
+func init() {
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_init()
+}
+func file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_init() {
 	if File_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto != nil {
 		return
 	}
@@ -280,17 +282,17 @@ func file_opentelemetry_proto_collector_profiles_v1development_profiles_service_
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDesc), len(file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDesc), len(file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_depIdxs,
-		MessageInfos:      file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_depIdxs,
+		MessageInfos:      file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto = out.File
-	file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_goTypes = nil
-	file_opentelemetry_proto_collector_profiles_v1development_profiles_service_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_goTypes = nil
+	file_opentelemetry_proto_slim_collector_profiles_v1development_profiles_service_proto_depIdxs = nil
 }

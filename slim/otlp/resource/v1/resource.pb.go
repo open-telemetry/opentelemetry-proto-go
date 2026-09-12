@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/resource/v1/resource.proto
+// source: opentelemetry/proto/slim/resource/v1/resource.proto
 
 package v1
 
@@ -59,7 +59,7 @@ type Resource struct {
 
 func (x *Resource) Reset() {
 	*x = Resource{}
-	mi := &file_opentelemetry_proto_resource_v1_resource_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_resource_v1_resource_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -71,7 +71,7 @@ func (x *Resource) String() string {
 func (*Resource) ProtoMessage() {}
 
 func (x *Resource) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_resource_v1_resource_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_resource_v1_resource_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -84,7 +84,7 @@ func (x *Resource) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Resource.ProtoReflect.Descriptor instead.
 func (*Resource) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_resource_v1_resource_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Resource) GetAttributes() []*v1.KeyValue {
@@ -110,39 +110,39 @@ func (x *Resource) GetEntityRefs() []*v1.EntityRef {
 
 var File_opentelemetry_proto_resource_v1_resource_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_resource_v1_resource_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDesc = "" +
 	"\n" +
-	".opentelemetry/proto/resource/v1/resource.proto\x12\x1fopentelemetry.proto.resource.v1\x1a*opentelemetry/proto/common/v1/common.proto\"\xd8\x01\n" +
-	"\bResource\x12G\n" +
+	"3opentelemetry/proto/slim/resource/v1/resource.proto\x12$opentelemetry.proto.slim.resource.v1\x1a/opentelemetry/proto/slim/common/v1/common.proto\"\xe2\x01\n" +
+	"\bResource\x12L\n" +
 	"\n" +
-	"attributes\x18\x01 \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\x01 \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x128\n" +
-	"\x18dropped_attributes_count\x18\x02 \x01(\rR\x16droppedAttributesCount\x12I\n" +
-	"\ventity_refs\x18\x03 \x03(\v2(.opentelemetry.proto.common.v1.EntityRefR\n" +
+	"\x18dropped_attributes_count\x18\x02 \x01(\rR\x16droppedAttributesCount\x12N\n" +
+	"\ventity_refs\x18\x03 \x03(\v2-.opentelemetry.proto.slim.common.v1.EntityRefR\n" +
 	"entityRefsB\x88\x01\n" +
 	"\"io.opentelemetry.proto.resource.v1B\rResourceProtoP\x01Z/go.opentelemetry.io/proto/slim/otlp/resource/v1\xaa\x02\x1fOpenTelemetry.Proto.Resource.V1b\x06proto3"
 
 var (
-	file_opentelemetry_proto_resource_v1_resource_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_resource_v1_resource_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_resource_v1_resource_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_resource_v1_resource_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_resource_v1_resource_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_resource_v1_resource_proto_rawDesc), len(file_opentelemetry_proto_resource_v1_resource_proto_rawDesc)))
+func file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDesc), len(file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_resource_v1_resource_proto_rawDescData
+	return file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDescData
 }
 
-var file_opentelemetry_proto_resource_v1_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_opentelemetry_proto_resource_v1_resource_proto_goTypes = []any{
-	(*Resource)(nil),     // 0: opentelemetry.proto.resource.v1.Resource
-	(*v1.KeyValue)(nil),  // 1: opentelemetry.proto.common.v1.KeyValue
-	(*v1.EntityRef)(nil), // 2: opentelemetry.proto.common.v1.EntityRef
+var file_opentelemetry_proto_slim_resource_v1_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_opentelemetry_proto_slim_resource_v1_resource_proto_goTypes = []any{
+	(*Resource)(nil),     // 0: opentelemetry.proto.slim.resource.v1.Resource
+	(*v1.KeyValue)(nil),  // 1: opentelemetry.proto.slim.common.v1.KeyValue
+	(*v1.EntityRef)(nil), // 2: opentelemetry.proto.slim.common.v1.EntityRef
 }
-var file_opentelemetry_proto_resource_v1_resource_proto_depIdxs = []int32{
-	1, // 0: opentelemetry.proto.resource.v1.Resource.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
-	2, // 1: opentelemetry.proto.resource.v1.Resource.entity_refs:type_name -> opentelemetry.proto.common.v1.EntityRef
+var file_opentelemetry_proto_slim_resource_v1_resource_proto_depIdxs = []int32{
+	1, // 0: opentelemetry.proto.slim.resource.v1.Resource.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	2, // 1: opentelemetry.proto.slim.resource.v1.Resource.entity_refs:type_name -> opentelemetry.proto.slim.common.v1.EntityRef
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -150,8 +150,8 @@ var file_opentelemetry_proto_resource_v1_resource_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_resource_v1_resource_proto_init() }
-func file_opentelemetry_proto_resource_v1_resource_proto_init() {
+func init() { file_opentelemetry_proto_slim_resource_v1_resource_proto_init() }
+func file_opentelemetry_proto_slim_resource_v1_resource_proto_init() {
 	if File_opentelemetry_proto_resource_v1_resource_proto != nil {
 		return
 	}
@@ -159,17 +159,17 @@ func file_opentelemetry_proto_resource_v1_resource_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_resource_v1_resource_proto_rawDesc), len(file_opentelemetry_proto_resource_v1_resource_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDesc), len(file_opentelemetry_proto_slim_resource_v1_resource_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_opentelemetry_proto_resource_v1_resource_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_resource_v1_resource_proto_depIdxs,
-		MessageInfos:      file_opentelemetry_proto_resource_v1_resource_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_resource_v1_resource_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_resource_v1_resource_proto_depIdxs,
+		MessageInfos:      file_opentelemetry_proto_slim_resource_v1_resource_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_resource_v1_resource_proto = out.File
-	file_opentelemetry_proto_resource_v1_resource_proto_goTypes = nil
-	file_opentelemetry_proto_resource_v1_resource_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_resource_v1_resource_proto_goTypes = nil
+	file_opentelemetry_proto_slim_resource_v1_resource_proto_depIdxs = nil
 }

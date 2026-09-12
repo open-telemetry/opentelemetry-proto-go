@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/metrics/v1/metrics.proto
+// source: opentelemetry/proto/slim/metrics/v1/metrics.proto
 
 package v1
 
@@ -133,11 +133,11 @@ func (x AggregationTemporality) String() string {
 }
 
 func (AggregationTemporality) Descriptor() protoreflect.EnumDescriptor {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes[0].Descriptor()
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes[0].Descriptor()
 }
 
 func (AggregationTemporality) Type() protoreflect.EnumType {
-	return &file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes[0]
+	return &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes[0]
 }
 
 func (x AggregationTemporality) Number() protoreflect.EnumNumber {
@@ -146,7 +146,7 @@ func (x AggregationTemporality) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AggregationTemporality.Descriptor instead.
 func (AggregationTemporality) EnumDescriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{0}
 }
 
 // DataPointFlags is defined as a protobuf 'uint32' type and is to be used as a
@@ -190,11 +190,11 @@ func (x DataPointFlags) String() string {
 }
 
 func (DataPointFlags) Descriptor() protoreflect.EnumDescriptor {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes[1].Descriptor()
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes[1].Descriptor()
 }
 
 func (DataPointFlags) Type() protoreflect.EnumType {
-	return &file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes[1]
+	return &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes[1]
 }
 
 func (x DataPointFlags) Number() protoreflect.EnumNumber {
@@ -203,7 +203,7 @@ func (x DataPointFlags) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DataPointFlags.Descriptor instead.
 func (DataPointFlags) EnumDescriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{1}
 }
 
 // MetricsData represents the metrics data that can be stored in a persistent
@@ -249,7 +249,7 @@ type MetricsData struct {
 
 func (x *MetricsData) Reset() {
 	*x = MetricsData{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -261,7 +261,7 @@ func (x *MetricsData) String() string {
 func (*MetricsData) ProtoMessage() {}
 
 func (x *MetricsData) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -274,7 +274,7 @@ func (x *MetricsData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetricsData.ProtoReflect.Descriptor instead.
 func (*MetricsData) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *MetricsData) GetResourceMetrics() []*ResourceMetrics {
@@ -305,7 +305,7 @@ type ResourceMetrics struct {
 
 func (x *ResourceMetrics) Reset() {
 	*x = ResourceMetrics{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -317,7 +317,7 @@ func (x *ResourceMetrics) String() string {
 func (*ResourceMetrics) ProtoMessage() {}
 
 func (x *ResourceMetrics) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +330,7 @@ func (x *ResourceMetrics) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceMetrics.ProtoReflect.Descriptor instead.
 func (*ResourceMetrics) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ResourceMetrics) GetResource() *v1.Resource {
@@ -376,7 +376,7 @@ type ScopeMetrics struct {
 
 func (x *ScopeMetrics) Reset() {
 	*x = ScopeMetrics{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -388,7 +388,7 @@ func (x *ScopeMetrics) String() string {
 func (*ScopeMetrics) ProtoMessage() {}
 
 func (x *ScopeMetrics) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -401,7 +401,7 @@ func (x *ScopeMetrics) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScopeMetrics.ProtoReflect.Descriptor instead.
 func (*ScopeMetrics) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{2}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ScopeMetrics) GetScope() *v11.InstrumentationScope {
@@ -548,7 +548,7 @@ type Metric struct {
 
 func (x *Metric) Reset() {
 	*x = Metric{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -560,7 +560,7 @@ func (x *Metric) String() string {
 func (*Metric) ProtoMessage() {}
 
 func (x *Metric) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -573,7 +573,7 @@ func (x *Metric) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Metric.ProtoReflect.Descriptor instead.
 func (*Metric) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{3}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Metric) GetName() string {
@@ -710,7 +710,7 @@ type Gauge struct {
 
 func (x *Gauge) Reset() {
 	*x = Gauge{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[4]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -722,7 +722,7 @@ func (x *Gauge) String() string {
 func (*Gauge) ProtoMessage() {}
 
 func (x *Gauge) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[4]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -735,7 +735,7 @@ func (x *Gauge) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Gauge.ProtoReflect.Descriptor instead.
 func (*Gauge) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{4}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Gauge) GetDataPoints() []*NumberDataPoint {
@@ -754,7 +754,7 @@ type Sum struct {
 	DataPoints []*NumberDataPoint `protobuf:"bytes,1,rep,name=data_points,json=dataPoints,proto3" json:"data_points,omitempty"`
 	// aggregation_temporality describes if the aggregator reports delta changes
 	// since last report time, or cumulative changes since a fixed start time.
-	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
+	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.slim.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
 	// Represents whether the sum is monotonic.
 	IsMonotonic   bool `protobuf:"varint,3,opt,name=is_monotonic,json=isMonotonic,proto3" json:"is_monotonic,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -763,7 +763,7 @@ type Sum struct {
 
 func (x *Sum) Reset() {
 	*x = Sum{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[5]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -775,7 +775,7 @@ func (x *Sum) String() string {
 func (*Sum) ProtoMessage() {}
 
 func (x *Sum) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[5]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -788,7 +788,7 @@ func (x *Sum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sum.ProtoReflect.Descriptor instead.
 func (*Sum) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{5}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Sum) GetDataPoints() []*NumberDataPoint {
@@ -821,14 +821,14 @@ type Histogram struct {
 	DataPoints []*HistogramDataPoint `protobuf:"bytes,1,rep,name=data_points,json=dataPoints,proto3" json:"data_points,omitempty"`
 	// aggregation_temporality describes if the aggregator reports delta changes
 	// since last report time, or cumulative changes since a fixed start time.
-	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
+	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.slim.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
 func (x *Histogram) Reset() {
 	*x = Histogram{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[6]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -840,7 +840,7 @@ func (x *Histogram) String() string {
 func (*Histogram) ProtoMessage() {}
 
 func (x *Histogram) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[6]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -853,7 +853,7 @@ func (x *Histogram) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Histogram.ProtoReflect.Descriptor instead.
 func (*Histogram) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{6}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Histogram) GetDataPoints() []*HistogramDataPoint {
@@ -879,14 +879,14 @@ type ExponentialHistogram struct {
 	DataPoints []*ExponentialHistogramDataPoint `protobuf:"bytes,1,rep,name=data_points,json=dataPoints,proto3" json:"data_points,omitempty"`
 	// aggregation_temporality describes if the aggregator reports delta changes
 	// since last report time, or cumulative changes since a fixed start time.
-	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
+	AggregationTemporality AggregationTemporality `protobuf:"varint,2,opt,name=aggregation_temporality,json=aggregationTemporality,proto3,enum=opentelemetry.proto.slim.metrics.v1.AggregationTemporality" json:"aggregation_temporality,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
 func (x *ExponentialHistogram) Reset() {
 	*x = ExponentialHistogram{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[7]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -898,7 +898,7 @@ func (x *ExponentialHistogram) String() string {
 func (*ExponentialHistogram) ProtoMessage() {}
 
 func (x *ExponentialHistogram) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[7]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -911,7 +911,7 @@ func (x *ExponentialHistogram) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExponentialHistogram.ProtoReflect.Descriptor instead.
 func (*ExponentialHistogram) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{7}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ExponentialHistogram) GetDataPoints() []*ExponentialHistogramDataPoint {
@@ -948,7 +948,7 @@ type Summary struct {
 
 func (x *Summary) Reset() {
 	*x = Summary{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[8]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -960,7 +960,7 @@ func (x *Summary) String() string {
 func (*Summary) ProtoMessage() {}
 
 func (x *Summary) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[8]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,7 +973,7 @@ func (x *Summary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Summary.ProtoReflect.Descriptor instead.
 func (*Summary) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{8}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Summary) GetDataPoints() []*SummaryDataPoint {
@@ -1024,7 +1024,7 @@ type NumberDataPoint struct {
 
 func (x *NumberDataPoint) Reset() {
 	*x = NumberDataPoint{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[9]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1036,7 +1036,7 @@ func (x *NumberDataPoint) String() string {
 func (*NumberDataPoint) ProtoMessage() {}
 
 func (x *NumberDataPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[9]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1049,7 +1049,7 @@ func (x *NumberDataPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberDataPoint.ProtoReflect.Descriptor instead.
 func (*NumberDataPoint) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{9}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *NumberDataPoint) GetAttributes() []*v11.KeyValue {
@@ -1213,7 +1213,7 @@ type HistogramDataPoint struct {
 
 func (x *HistogramDataPoint) Reset() {
 	*x = HistogramDataPoint{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[10]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1225,7 +1225,7 @@ func (x *HistogramDataPoint) String() string {
 func (*HistogramDataPoint) ProtoMessage() {}
 
 func (x *HistogramDataPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[10]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1238,7 +1238,7 @@ func (x *HistogramDataPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HistogramDataPoint.ProtoReflect.Descriptor instead.
 func (*HistogramDataPoint) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{10}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *HistogramDataPoint) GetAttributes() []*v11.KeyValue {
@@ -1406,7 +1406,7 @@ type ExponentialHistogramDataPoint struct {
 
 func (x *ExponentialHistogramDataPoint) Reset() {
 	*x = ExponentialHistogramDataPoint{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[11]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1418,7 +1418,7 @@ func (x *ExponentialHistogramDataPoint) String() string {
 func (*ExponentialHistogramDataPoint) ProtoMessage() {}
 
 func (x *ExponentialHistogramDataPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[11]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1431,7 +1431,7 @@ func (x *ExponentialHistogramDataPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExponentialHistogramDataPoint.ProtoReflect.Descriptor instead.
 func (*ExponentialHistogramDataPoint) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{11}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ExponentialHistogramDataPoint) GetAttributes() []*v11.KeyValue {
@@ -1577,7 +1577,7 @@ type SummaryDataPoint struct {
 
 func (x *SummaryDataPoint) Reset() {
 	*x = SummaryDataPoint{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[12]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1589,7 +1589,7 @@ func (x *SummaryDataPoint) String() string {
 func (*SummaryDataPoint) ProtoMessage() {}
 
 func (x *SummaryDataPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[12]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1602,7 +1602,7 @@ func (x *SummaryDataPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SummaryDataPoint.ProtoReflect.Descriptor instead.
 func (*SummaryDataPoint) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{12}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SummaryDataPoint) GetAttributes() []*v11.KeyValue {
@@ -1692,7 +1692,7 @@ type Exemplar struct {
 
 func (x *Exemplar) Reset() {
 	*x = Exemplar{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[13]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1704,7 +1704,7 @@ func (x *Exemplar) String() string {
 func (*Exemplar) ProtoMessage() {}
 
 func (x *Exemplar) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[13]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1717,7 +1717,7 @@ func (x *Exemplar) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Exemplar.ProtoReflect.Descriptor instead.
 func (*Exemplar) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{13}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Exemplar) GetFilteredAttributes() []*v11.KeyValue {
@@ -1813,7 +1813,7 @@ type ExponentialHistogramDataPoint_Buckets struct {
 
 func (x *ExponentialHistogramDataPoint_Buckets) Reset() {
 	*x = ExponentialHistogramDataPoint_Buckets{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[14]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1825,7 +1825,7 @@ func (x *ExponentialHistogramDataPoint_Buckets) String() string {
 func (*ExponentialHistogramDataPoint_Buckets) ProtoMessage() {}
 
 func (x *ExponentialHistogramDataPoint_Buckets) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[14]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1838,7 +1838,7 @@ func (x *ExponentialHistogramDataPoint_Buckets) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ExponentialHistogramDataPoint_Buckets.ProtoReflect.Descriptor instead.
 func (*ExponentialHistogramDataPoint_Buckets) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{11, 0}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *ExponentialHistogramDataPoint_Buckets) GetOffset() int32 {
@@ -1878,7 +1878,7 @@ type SummaryDataPoint_ValueAtQuantile struct {
 
 func (x *SummaryDataPoint_ValueAtQuantile) Reset() {
 	*x = SummaryDataPoint_ValueAtQuantile{}
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[15]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1890,7 +1890,7 @@ func (x *SummaryDataPoint_ValueAtQuantile) String() string {
 func (*SummaryDataPoint_ValueAtQuantile) ProtoMessage() {}
 
 func (x *SummaryDataPoint_ValueAtQuantile) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[15]
+	mi := &file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1903,7 +1903,7 @@ func (x *SummaryDataPoint_ValueAtQuantile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SummaryDataPoint_ValueAtQuantile.ProtoReflect.Descriptor instead.
 func (*SummaryDataPoint_ValueAtQuantile) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP(), []int{12, 0}
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP(), []int{12, 0}
 }
 
 func (x *SummaryDataPoint_ValueAtQuantile) GetQuantile() float64 {
@@ -1922,84 +1922,84 @@ func (x *SummaryDataPoint_ValueAtQuantile) GetValue() float64 {
 
 var File_opentelemetry_proto_metrics_v1_metrics_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDesc = "" +
 	"\n" +
-	",opentelemetry/proto/metrics/v1/metrics.proto\x12\x1eopentelemetry.proto.metrics.v1\x1a*opentelemetry/proto/common/v1/common.proto\x1a.opentelemetry/proto/resource/v1/resource.proto\"i\n" +
-	"\vMetricsData\x12Z\n" +
-	"\x10resource_metrics\x18\x01 \x03(\v2/.opentelemetry.proto.metrics.v1.ResourceMetricsR\x0fresourceMetrics\"\xd2\x01\n" +
-	"\x0fResourceMetrics\x12E\n" +
-	"\bresource\x18\x01 \x01(\v2).opentelemetry.proto.resource.v1.ResourceR\bresource\x12Q\n" +
-	"\rscope_metrics\x18\x02 \x03(\v2,.opentelemetry.proto.metrics.v1.ScopeMetricsR\fscopeMetrics\x12\x1d\n" +
+	"1opentelemetry/proto/slim/metrics/v1/metrics.proto\x12#opentelemetry.proto.slim.metrics.v1\x1a/opentelemetry/proto/slim/common/v1/common.proto\x1a3opentelemetry/proto/slim/resource/v1/resource.proto\"n\n" +
+	"\vMetricsData\x12_\n" +
+	"\x10resource_metrics\x18\x01 \x03(\v24.opentelemetry.proto.slim.metrics.v1.ResourceMetricsR\x0fresourceMetrics\"\xdc\x01\n" +
+	"\x0fResourceMetrics\x12J\n" +
+	"\bresource\x18\x01 \x01(\v2..opentelemetry.proto.slim.resource.v1.ResourceR\bresource\x12V\n" +
+	"\rscope_metrics\x18\x02 \x03(\v21.opentelemetry.proto.slim.metrics.v1.ScopeMetricsR\fscopeMetrics\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xba\x01\n" +
-	"\fScopeMetrics\x12I\n" +
-	"\x05scope\x18\x01 \x01(\v23.opentelemetry.proto.common.v1.InstrumentationScopeR\x05scope\x12@\n" +
-	"\ametrics\x18\x02 \x03(\v2&.opentelemetry.proto.metrics.v1.MetricR\ametrics\x12\x1d\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xc4\x01\n" +
+	"\fScopeMetrics\x12N\n" +
+	"\x05scope\x18\x01 \x01(\v28.opentelemetry.proto.slim.common.v1.InstrumentationScopeR\x05scope\x12E\n" +
+	"\ametrics\x18\x02 \x03(\v2+.opentelemetry.proto.slim.metrics.v1.MetricR\ametrics\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\xa6\x04\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\xc4\x04\n" +
 	"\x06Metric\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
-	"\x04unit\x18\x03 \x01(\tR\x04unit\x12=\n" +
-	"\x05gauge\x18\x05 \x01(\v2%.opentelemetry.proto.metrics.v1.GaugeH\x00R\x05gauge\x127\n" +
-	"\x03sum\x18\a \x01(\v2#.opentelemetry.proto.metrics.v1.SumH\x00R\x03sum\x12I\n" +
-	"\thistogram\x18\t \x01(\v2).opentelemetry.proto.metrics.v1.HistogramH\x00R\thistogram\x12k\n" +
+	"\x04unit\x18\x03 \x01(\tR\x04unit\x12B\n" +
+	"\x05gauge\x18\x05 \x01(\v2*.opentelemetry.proto.slim.metrics.v1.GaugeH\x00R\x05gauge\x12<\n" +
+	"\x03sum\x18\a \x01(\v2(.opentelemetry.proto.slim.metrics.v1.SumH\x00R\x03sum\x12N\n" +
+	"\thistogram\x18\t \x01(\v2..opentelemetry.proto.slim.metrics.v1.HistogramH\x00R\thistogram\x12p\n" +
 	"\x15exponential_histogram\x18\n" +
-	" \x01(\v24.opentelemetry.proto.metrics.v1.ExponentialHistogramH\x00R\x14exponentialHistogram\x12C\n" +
-	"\asummary\x18\v \x01(\v2'.opentelemetry.proto.metrics.v1.SummaryH\x00R\asummary\x12C\n" +
-	"\bmetadata\x18\f \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\bmetadataB\x06\n" +
-	"\x04dataJ\x04\b\x04\x10\x05J\x04\b\x06\x10\aJ\x04\b\b\x10\t\"Y\n" +
-	"\x05Gauge\x12P\n" +
-	"\vdata_points\x18\x01 \x03(\v2/.opentelemetry.proto.metrics.v1.NumberDataPointR\n" +
-	"dataPoints\"\xeb\x01\n" +
-	"\x03Sum\x12P\n" +
-	"\vdata_points\x18\x01 \x03(\v2/.opentelemetry.proto.metrics.v1.NumberDataPointR\n" +
-	"dataPoints\x12o\n" +
-	"\x17aggregation_temporality\x18\x02 \x01(\x0e26.opentelemetry.proto.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\x12!\n" +
-	"\fis_monotonic\x18\x03 \x01(\bR\visMonotonic\"\xd1\x01\n" +
-	"\tHistogram\x12S\n" +
-	"\vdata_points\x18\x01 \x03(\v22.opentelemetry.proto.metrics.v1.HistogramDataPointR\n" +
-	"dataPoints\x12o\n" +
-	"\x17aggregation_temporality\x18\x02 \x01(\x0e26.opentelemetry.proto.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\"\xe7\x01\n" +
-	"\x14ExponentialHistogram\x12^\n" +
-	"\vdata_points\x18\x01 \x03(\v2=.opentelemetry.proto.metrics.v1.ExponentialHistogramDataPointR\n" +
-	"dataPoints\x12o\n" +
-	"\x17aggregation_temporality\x18\x02 \x01(\x0e26.opentelemetry.proto.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\"\\\n" +
-	"\aSummary\x12Q\n" +
-	"\vdata_points\x18\x01 \x03(\v20.opentelemetry.proto.metrics.v1.SummaryDataPointR\n" +
-	"dataPoints\"\xd6\x02\n" +
-	"\x0fNumberDataPoint\x12G\n" +
+	" \x01(\v29.opentelemetry.proto.slim.metrics.v1.ExponentialHistogramH\x00R\x14exponentialHistogram\x12H\n" +
+	"\asummary\x18\v \x01(\v2,.opentelemetry.proto.slim.metrics.v1.SummaryH\x00R\asummary\x12H\n" +
+	"\bmetadata\x18\f \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\bmetadataB\x06\n" +
+	"\x04dataJ\x04\b\x04\x10\x05J\x04\b\x06\x10\aJ\x04\b\b\x10\t\"^\n" +
+	"\x05Gauge\x12U\n" +
+	"\vdata_points\x18\x01 \x03(\v24.opentelemetry.proto.slim.metrics.v1.NumberDataPointR\n" +
+	"dataPoints\"\xf5\x01\n" +
+	"\x03Sum\x12U\n" +
+	"\vdata_points\x18\x01 \x03(\v24.opentelemetry.proto.slim.metrics.v1.NumberDataPointR\n" +
+	"dataPoints\x12t\n" +
+	"\x17aggregation_temporality\x18\x02 \x01(\x0e2;.opentelemetry.proto.slim.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\x12!\n" +
+	"\fis_monotonic\x18\x03 \x01(\bR\visMonotonic\"\xdb\x01\n" +
+	"\tHistogram\x12X\n" +
+	"\vdata_points\x18\x01 \x03(\v27.opentelemetry.proto.slim.metrics.v1.HistogramDataPointR\n" +
+	"dataPoints\x12t\n" +
+	"\x17aggregation_temporality\x18\x02 \x01(\x0e2;.opentelemetry.proto.slim.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\"\xf1\x01\n" +
+	"\x14ExponentialHistogram\x12c\n" +
+	"\vdata_points\x18\x01 \x03(\v2B.opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPointR\n" +
+	"dataPoints\x12t\n" +
+	"\x17aggregation_temporality\x18\x02 \x01(\x0e2;.opentelemetry.proto.slim.metrics.v1.AggregationTemporalityR\x16aggregationTemporality\"a\n" +
+	"\aSummary\x12V\n" +
+	"\vdata_points\x18\x01 \x03(\v25.opentelemetry.proto.slim.metrics.v1.SummaryDataPointR\n" +
+	"dataPoints\"\xe0\x02\n" +
+	"\x0fNumberDataPoint\x12L\n" +
 	"\n" +
-	"attributes\x18\a \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\a \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x12/\n" +
 	"\x14start_time_unix_nano\x18\x02 \x01(\x06R\x11startTimeUnixNano\x12$\n" +
 	"\x0etime_unix_nano\x18\x03 \x01(\x06R\ftimeUnixNano\x12\x1d\n" +
 	"\tas_double\x18\x04 \x01(\x01H\x00R\basDouble\x12\x17\n" +
-	"\x06as_int\x18\x06 \x01(\x10H\x00R\x05asInt\x12F\n" +
-	"\texemplars\x18\x05 \x03(\v2(.opentelemetry.proto.metrics.v1.ExemplarR\texemplars\x12\x14\n" +
+	"\x06as_int\x18\x06 \x01(\x10H\x00R\x05asInt\x12K\n" +
+	"\texemplars\x18\x05 \x03(\v2-.opentelemetry.proto.slim.metrics.v1.ExemplarR\texemplars\x12\x14\n" +
 	"\x05flags\x18\b \x01(\rR\x05flagsB\a\n" +
-	"\x05valueJ\x04\b\x01\x10\x02\"\xd9\x03\n" +
-	"\x12HistogramDataPoint\x12G\n" +
+	"\x05valueJ\x04\b\x01\x10\x02\"\xe3\x03\n" +
+	"\x12HistogramDataPoint\x12L\n" +
 	"\n" +
-	"attributes\x18\t \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\t \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x12/\n" +
 	"\x14start_time_unix_nano\x18\x02 \x01(\x06R\x11startTimeUnixNano\x12$\n" +
 	"\x0etime_unix_nano\x18\x03 \x01(\x06R\ftimeUnixNano\x12\x14\n" +
 	"\x05count\x18\x04 \x01(\x06R\x05count\x12\x15\n" +
 	"\x03sum\x18\x05 \x01(\x01H\x00R\x03sum\x88\x01\x01\x12#\n" +
 	"\rbucket_counts\x18\x06 \x03(\x06R\fbucketCounts\x12'\n" +
-	"\x0fexplicit_bounds\x18\a \x03(\x01R\x0eexplicitBounds\x12F\n" +
-	"\texemplars\x18\b \x03(\v2(.opentelemetry.proto.metrics.v1.ExemplarR\texemplars\x12\x14\n" +
+	"\x0fexplicit_bounds\x18\a \x03(\x01R\x0eexplicitBounds\x12K\n" +
+	"\texemplars\x18\b \x03(\v2-.opentelemetry.proto.slim.metrics.v1.ExemplarR\texemplars\x12\x14\n" +
 	"\x05flags\x18\n" +
 	" \x01(\rR\x05flags\x12\x15\n" +
 	"\x03min\x18\v \x01(\x01H\x01R\x03min\x88\x01\x01\x12\x15\n" +
 	"\x03max\x18\f \x01(\x01H\x02R\x03max\x88\x01\x01B\x06\n" +
 	"\x04_sumB\x06\n" +
 	"\x04_minB\x06\n" +
-	"\x04_maxJ\x04\b\x01\x10\x02\"\xfa\x05\n" +
-	"\x1dExponentialHistogramDataPoint\x12G\n" +
+	"\x04_maxJ\x04\b\x01\x10\x02\"\x8e\x06\n" +
+	"\x1dExponentialHistogramDataPoint\x12L\n" +
 	"\n" +
-	"attributes\x18\x01 \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\x01 \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x12/\n" +
 	"\x14start_time_unix_nano\x18\x02 \x01(\x06R\x11startTimeUnixNano\x12$\n" +
 	"\x0etime_unix_nano\x18\x03 \x01(\x06R\ftimeUnixNano\x12\x14\n" +
@@ -2007,12 +2007,12 @@ const file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc = "" +
 	"\x03sum\x18\x05 \x01(\x01H\x00R\x03sum\x88\x01\x01\x12\x14\n" +
 	"\x05scale\x18\x06 \x01(\x11R\x05scale\x12\x1d\n" +
 	"\n" +
-	"zero_count\x18\a \x01(\x06R\tzeroCount\x12a\n" +
-	"\bpositive\x18\b \x01(\v2E.opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.BucketsR\bpositive\x12a\n" +
-	"\bnegative\x18\t \x01(\v2E.opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.BucketsR\bnegative\x12\x14\n" +
+	"zero_count\x18\a \x01(\x06R\tzeroCount\x12f\n" +
+	"\bpositive\x18\b \x01(\v2J.opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.BucketsR\bpositive\x12f\n" +
+	"\bnegative\x18\t \x01(\v2J.opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.BucketsR\bnegative\x12\x14\n" +
 	"\x05flags\x18\n" +
-	" \x01(\rR\x05flags\x12F\n" +
-	"\texemplars\x18\v \x03(\v2(.opentelemetry.proto.metrics.v1.ExemplarR\texemplars\x12\x15\n" +
+	" \x01(\rR\x05flags\x12K\n" +
+	"\texemplars\x18\v \x03(\v2-.opentelemetry.proto.slim.metrics.v1.ExemplarR\texemplars\x12\x15\n" +
 	"\x03min\x18\f \x01(\x01H\x01R\x03min\x88\x01\x01\x12\x15\n" +
 	"\x03max\x18\r \x01(\x01H\x02R\x03max\x88\x01\x01\x12%\n" +
 	"\x0ezero_threshold\x18\x0e \x01(\x01R\rzeroThreshold\x1aF\n" +
@@ -2021,22 +2021,22 @@ const file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc = "" +
 	"\rbucket_counts\x18\x02 \x03(\x04R\fbucketCountsB\x06\n" +
 	"\x04_sumB\x06\n" +
 	"\x04_minB\x06\n" +
-	"\x04_max\"\xa6\x03\n" +
-	"\x10SummaryDataPoint\x12G\n" +
+	"\x04_max\"\xb0\x03\n" +
+	"\x10SummaryDataPoint\x12L\n" +
 	"\n" +
-	"attributes\x18\a \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\n" +
+	"attributes\x18\a \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\n" +
 	"attributes\x12/\n" +
 	"\x14start_time_unix_nano\x18\x02 \x01(\x06R\x11startTimeUnixNano\x12$\n" +
 	"\x0etime_unix_nano\x18\x03 \x01(\x06R\ftimeUnixNano\x12\x14\n" +
 	"\x05count\x18\x04 \x01(\x06R\x05count\x12\x10\n" +
-	"\x03sum\x18\x05 \x01(\x01R\x03sum\x12i\n" +
-	"\x0fquantile_values\x18\x06 \x03(\v2@.opentelemetry.proto.metrics.v1.SummaryDataPoint.ValueAtQuantileR\x0equantileValues\x12\x14\n" +
+	"\x03sum\x18\x05 \x01(\x01R\x03sum\x12n\n" +
+	"\x0fquantile_values\x18\x06 \x03(\v2E.opentelemetry.proto.slim.metrics.v1.SummaryDataPoint.ValueAtQuantileR\x0equantileValues\x12\x14\n" +
 	"\x05flags\x18\b \x01(\rR\x05flags\x1aC\n" +
 	"\x0fValueAtQuantile\x12\x1a\n" +
 	"\bquantile\x18\x01 \x01(\x01R\bquantile\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x01R\x05valueJ\x04\b\x01\x10\x02\"\x85\x02\n" +
-	"\bExemplar\x12X\n" +
-	"\x13filtered_attributes\x18\a \x03(\v2'.opentelemetry.proto.common.v1.KeyValueR\x12filteredAttributes\x12$\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05valueJ\x04\b\x01\x10\x02\"\x8a\x02\n" +
+	"\bExemplar\x12]\n" +
+	"\x13filtered_attributes\x18\a \x03(\v2,.opentelemetry.proto.slim.common.v1.KeyValueR\x12filteredAttributes\x12$\n" +
 	"\x0etime_unix_nano\x18\x02 \x01(\x06R\ftimeUnixNano\x12\x1d\n" +
 	"\tas_double\x18\x03 \x01(\x01H\x00R\basDouble\x12\x17\n" +
 	"\x06as_int\x18\x06 \x01(\x10H\x00R\x05asInt\x12\x17\n" +
@@ -2053,73 +2053,73 @@ const file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc = "" +
 	"!io.opentelemetry.proto.metrics.v1B\fMetricsProtoP\x01Z.go.opentelemetry.io/proto/slim/otlp/metrics/v1\xaa\x02\x1eOpenTelemetry.Proto.Metrics.V1b\x06proto3"
 
 var (
-	file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc), len(file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc)))
+func file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDesc), len(file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_metrics_v1_metrics_proto_rawDescData
+	return file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDescData
 }
 
-var file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
-var file_opentelemetry_proto_metrics_v1_metrics_proto_goTypes = []any{
-	(AggregationTemporality)(0),                   // 0: opentelemetry.proto.metrics.v1.AggregationTemporality
-	(DataPointFlags)(0),                           // 1: opentelemetry.proto.metrics.v1.DataPointFlags
-	(*MetricsData)(nil),                           // 2: opentelemetry.proto.metrics.v1.MetricsData
-	(*ResourceMetrics)(nil),                       // 3: opentelemetry.proto.metrics.v1.ResourceMetrics
-	(*ScopeMetrics)(nil),                          // 4: opentelemetry.proto.metrics.v1.ScopeMetrics
-	(*Metric)(nil),                                // 5: opentelemetry.proto.metrics.v1.Metric
-	(*Gauge)(nil),                                 // 6: opentelemetry.proto.metrics.v1.Gauge
-	(*Sum)(nil),                                   // 7: opentelemetry.proto.metrics.v1.Sum
-	(*Histogram)(nil),                             // 8: opentelemetry.proto.metrics.v1.Histogram
-	(*ExponentialHistogram)(nil),                  // 9: opentelemetry.proto.metrics.v1.ExponentialHistogram
-	(*Summary)(nil),                               // 10: opentelemetry.proto.metrics.v1.Summary
-	(*NumberDataPoint)(nil),                       // 11: opentelemetry.proto.metrics.v1.NumberDataPoint
-	(*HistogramDataPoint)(nil),                    // 12: opentelemetry.proto.metrics.v1.HistogramDataPoint
-	(*ExponentialHistogramDataPoint)(nil),         // 13: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint
-	(*SummaryDataPoint)(nil),                      // 14: opentelemetry.proto.metrics.v1.SummaryDataPoint
-	(*Exemplar)(nil),                              // 15: opentelemetry.proto.metrics.v1.Exemplar
-	(*ExponentialHistogramDataPoint_Buckets)(nil), // 16: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.Buckets
-	(*SummaryDataPoint_ValueAtQuantile)(nil),      // 17: opentelemetry.proto.metrics.v1.SummaryDataPoint.ValueAtQuantile
-	(*v1.Resource)(nil),                           // 18: opentelemetry.proto.resource.v1.Resource
-	(*v11.InstrumentationScope)(nil),              // 19: opentelemetry.proto.common.v1.InstrumentationScope
-	(*v11.KeyValue)(nil),                          // 20: opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_opentelemetry_proto_slim_metrics_v1_metrics_proto_goTypes = []any{
+	(AggregationTemporality)(0),                   // 0: opentelemetry.proto.slim.metrics.v1.AggregationTemporality
+	(DataPointFlags)(0),                           // 1: opentelemetry.proto.slim.metrics.v1.DataPointFlags
+	(*MetricsData)(nil),                           // 2: opentelemetry.proto.slim.metrics.v1.MetricsData
+	(*ResourceMetrics)(nil),                       // 3: opentelemetry.proto.slim.metrics.v1.ResourceMetrics
+	(*ScopeMetrics)(nil),                          // 4: opentelemetry.proto.slim.metrics.v1.ScopeMetrics
+	(*Metric)(nil),                                // 5: opentelemetry.proto.slim.metrics.v1.Metric
+	(*Gauge)(nil),                                 // 6: opentelemetry.proto.slim.metrics.v1.Gauge
+	(*Sum)(nil),                                   // 7: opentelemetry.proto.slim.metrics.v1.Sum
+	(*Histogram)(nil),                             // 8: opentelemetry.proto.slim.metrics.v1.Histogram
+	(*ExponentialHistogram)(nil),                  // 9: opentelemetry.proto.slim.metrics.v1.ExponentialHistogram
+	(*Summary)(nil),                               // 10: opentelemetry.proto.slim.metrics.v1.Summary
+	(*NumberDataPoint)(nil),                       // 11: opentelemetry.proto.slim.metrics.v1.NumberDataPoint
+	(*HistogramDataPoint)(nil),                    // 12: opentelemetry.proto.slim.metrics.v1.HistogramDataPoint
+	(*ExponentialHistogramDataPoint)(nil),         // 13: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint
+	(*SummaryDataPoint)(nil),                      // 14: opentelemetry.proto.slim.metrics.v1.SummaryDataPoint
+	(*Exemplar)(nil),                              // 15: opentelemetry.proto.slim.metrics.v1.Exemplar
+	(*ExponentialHistogramDataPoint_Buckets)(nil), // 16: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.Buckets
+	(*SummaryDataPoint_ValueAtQuantile)(nil),      // 17: opentelemetry.proto.slim.metrics.v1.SummaryDataPoint.ValueAtQuantile
+	(*v1.Resource)(nil),                           // 18: opentelemetry.proto.slim.resource.v1.Resource
+	(*v11.InstrumentationScope)(nil),              // 19: opentelemetry.proto.slim.common.v1.InstrumentationScope
+	(*v11.KeyValue)(nil),                          // 20: opentelemetry.proto.slim.common.v1.KeyValue
 }
-var file_opentelemetry_proto_metrics_v1_metrics_proto_depIdxs = []int32{
-	3,  // 0: opentelemetry.proto.metrics.v1.MetricsData.resource_metrics:type_name -> opentelemetry.proto.metrics.v1.ResourceMetrics
-	18, // 1: opentelemetry.proto.metrics.v1.ResourceMetrics.resource:type_name -> opentelemetry.proto.resource.v1.Resource
-	4,  // 2: opentelemetry.proto.metrics.v1.ResourceMetrics.scope_metrics:type_name -> opentelemetry.proto.metrics.v1.ScopeMetrics
-	19, // 3: opentelemetry.proto.metrics.v1.ScopeMetrics.scope:type_name -> opentelemetry.proto.common.v1.InstrumentationScope
-	5,  // 4: opentelemetry.proto.metrics.v1.ScopeMetrics.metrics:type_name -> opentelemetry.proto.metrics.v1.Metric
-	6,  // 5: opentelemetry.proto.metrics.v1.Metric.gauge:type_name -> opentelemetry.proto.metrics.v1.Gauge
-	7,  // 6: opentelemetry.proto.metrics.v1.Metric.sum:type_name -> opentelemetry.proto.metrics.v1.Sum
-	8,  // 7: opentelemetry.proto.metrics.v1.Metric.histogram:type_name -> opentelemetry.proto.metrics.v1.Histogram
-	9,  // 8: opentelemetry.proto.metrics.v1.Metric.exponential_histogram:type_name -> opentelemetry.proto.metrics.v1.ExponentialHistogram
-	10, // 9: opentelemetry.proto.metrics.v1.Metric.summary:type_name -> opentelemetry.proto.metrics.v1.Summary
-	20, // 10: opentelemetry.proto.metrics.v1.Metric.metadata:type_name -> opentelemetry.proto.common.v1.KeyValue
-	11, // 11: opentelemetry.proto.metrics.v1.Gauge.data_points:type_name -> opentelemetry.proto.metrics.v1.NumberDataPoint
-	11, // 12: opentelemetry.proto.metrics.v1.Sum.data_points:type_name -> opentelemetry.proto.metrics.v1.NumberDataPoint
-	0,  // 13: opentelemetry.proto.metrics.v1.Sum.aggregation_temporality:type_name -> opentelemetry.proto.metrics.v1.AggregationTemporality
-	12, // 14: opentelemetry.proto.metrics.v1.Histogram.data_points:type_name -> opentelemetry.proto.metrics.v1.HistogramDataPoint
-	0,  // 15: opentelemetry.proto.metrics.v1.Histogram.aggregation_temporality:type_name -> opentelemetry.proto.metrics.v1.AggregationTemporality
-	13, // 16: opentelemetry.proto.metrics.v1.ExponentialHistogram.data_points:type_name -> opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint
-	0,  // 17: opentelemetry.proto.metrics.v1.ExponentialHistogram.aggregation_temporality:type_name -> opentelemetry.proto.metrics.v1.AggregationTemporality
-	14, // 18: opentelemetry.proto.metrics.v1.Summary.data_points:type_name -> opentelemetry.proto.metrics.v1.SummaryDataPoint
-	20, // 19: opentelemetry.proto.metrics.v1.NumberDataPoint.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
-	15, // 20: opentelemetry.proto.metrics.v1.NumberDataPoint.exemplars:type_name -> opentelemetry.proto.metrics.v1.Exemplar
-	20, // 21: opentelemetry.proto.metrics.v1.HistogramDataPoint.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
-	15, // 22: opentelemetry.proto.metrics.v1.HistogramDataPoint.exemplars:type_name -> opentelemetry.proto.metrics.v1.Exemplar
-	20, // 23: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
-	16, // 24: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.positive:type_name -> opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.Buckets
-	16, // 25: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.negative:type_name -> opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.Buckets
-	15, // 26: opentelemetry.proto.metrics.v1.ExponentialHistogramDataPoint.exemplars:type_name -> opentelemetry.proto.metrics.v1.Exemplar
-	20, // 27: opentelemetry.proto.metrics.v1.SummaryDataPoint.attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
-	17, // 28: opentelemetry.proto.metrics.v1.SummaryDataPoint.quantile_values:type_name -> opentelemetry.proto.metrics.v1.SummaryDataPoint.ValueAtQuantile
-	20, // 29: opentelemetry.proto.metrics.v1.Exemplar.filtered_attributes:type_name -> opentelemetry.proto.common.v1.KeyValue
+var file_opentelemetry_proto_slim_metrics_v1_metrics_proto_depIdxs = []int32{
+	3,  // 0: opentelemetry.proto.slim.metrics.v1.MetricsData.resource_metrics:type_name -> opentelemetry.proto.slim.metrics.v1.ResourceMetrics
+	18, // 1: opentelemetry.proto.slim.metrics.v1.ResourceMetrics.resource:type_name -> opentelemetry.proto.slim.resource.v1.Resource
+	4,  // 2: opentelemetry.proto.slim.metrics.v1.ResourceMetrics.scope_metrics:type_name -> opentelemetry.proto.slim.metrics.v1.ScopeMetrics
+	19, // 3: opentelemetry.proto.slim.metrics.v1.ScopeMetrics.scope:type_name -> opentelemetry.proto.slim.common.v1.InstrumentationScope
+	5,  // 4: opentelemetry.proto.slim.metrics.v1.ScopeMetrics.metrics:type_name -> opentelemetry.proto.slim.metrics.v1.Metric
+	6,  // 5: opentelemetry.proto.slim.metrics.v1.Metric.gauge:type_name -> opentelemetry.proto.slim.metrics.v1.Gauge
+	7,  // 6: opentelemetry.proto.slim.metrics.v1.Metric.sum:type_name -> opentelemetry.proto.slim.metrics.v1.Sum
+	8,  // 7: opentelemetry.proto.slim.metrics.v1.Metric.histogram:type_name -> opentelemetry.proto.slim.metrics.v1.Histogram
+	9,  // 8: opentelemetry.proto.slim.metrics.v1.Metric.exponential_histogram:type_name -> opentelemetry.proto.slim.metrics.v1.ExponentialHistogram
+	10, // 9: opentelemetry.proto.slim.metrics.v1.Metric.summary:type_name -> opentelemetry.proto.slim.metrics.v1.Summary
+	20, // 10: opentelemetry.proto.slim.metrics.v1.Metric.metadata:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	11, // 11: opentelemetry.proto.slim.metrics.v1.Gauge.data_points:type_name -> opentelemetry.proto.slim.metrics.v1.NumberDataPoint
+	11, // 12: opentelemetry.proto.slim.metrics.v1.Sum.data_points:type_name -> opentelemetry.proto.slim.metrics.v1.NumberDataPoint
+	0,  // 13: opentelemetry.proto.slim.metrics.v1.Sum.aggregation_temporality:type_name -> opentelemetry.proto.slim.metrics.v1.AggregationTemporality
+	12, // 14: opentelemetry.proto.slim.metrics.v1.Histogram.data_points:type_name -> opentelemetry.proto.slim.metrics.v1.HistogramDataPoint
+	0,  // 15: opentelemetry.proto.slim.metrics.v1.Histogram.aggregation_temporality:type_name -> opentelemetry.proto.slim.metrics.v1.AggregationTemporality
+	13, // 16: opentelemetry.proto.slim.metrics.v1.ExponentialHistogram.data_points:type_name -> opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint
+	0,  // 17: opentelemetry.proto.slim.metrics.v1.ExponentialHistogram.aggregation_temporality:type_name -> opentelemetry.proto.slim.metrics.v1.AggregationTemporality
+	14, // 18: opentelemetry.proto.slim.metrics.v1.Summary.data_points:type_name -> opentelemetry.proto.slim.metrics.v1.SummaryDataPoint
+	20, // 19: opentelemetry.proto.slim.metrics.v1.NumberDataPoint.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	15, // 20: opentelemetry.proto.slim.metrics.v1.NumberDataPoint.exemplars:type_name -> opentelemetry.proto.slim.metrics.v1.Exemplar
+	20, // 21: opentelemetry.proto.slim.metrics.v1.HistogramDataPoint.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	15, // 22: opentelemetry.proto.slim.metrics.v1.HistogramDataPoint.exemplars:type_name -> opentelemetry.proto.slim.metrics.v1.Exemplar
+	20, // 23: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	16, // 24: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.positive:type_name -> opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.Buckets
+	16, // 25: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.negative:type_name -> opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.Buckets
+	15, // 26: opentelemetry.proto.slim.metrics.v1.ExponentialHistogramDataPoint.exemplars:type_name -> opentelemetry.proto.slim.metrics.v1.Exemplar
+	20, // 27: opentelemetry.proto.slim.metrics.v1.SummaryDataPoint.attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
+	17, // 28: opentelemetry.proto.slim.metrics.v1.SummaryDataPoint.quantile_values:type_name -> opentelemetry.proto.slim.metrics.v1.SummaryDataPoint.ValueAtQuantile
+	20, // 29: opentelemetry.proto.slim.metrics.v1.Exemplar.filtered_attributes:type_name -> opentelemetry.proto.slim.common.v1.KeyValue
 	30, // [30:30] is the sub-list for method output_type
 	30, // [30:30] is the sub-list for method input_type
 	30, // [30:30] is the sub-list for extension type_name
@@ -2127,25 +2127,25 @@ var file_opentelemetry_proto_metrics_v1_metrics_proto_depIdxs = []int32{
 	0,  // [0:30] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_metrics_v1_metrics_proto_init() }
-func file_opentelemetry_proto_metrics_v1_metrics_proto_init() {
+func init() { file_opentelemetry_proto_slim_metrics_v1_metrics_proto_init() }
+func file_opentelemetry_proto_slim_metrics_v1_metrics_proto_init() {
 	if File_opentelemetry_proto_metrics_v1_metrics_proto != nil {
 		return
 	}
-	file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[3].OneofWrappers = []any{
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[3].OneofWrappers = []any{
 		(*Metric_Gauge)(nil),
 		(*Metric_Sum)(nil),
 		(*Metric_Histogram)(nil),
 		(*Metric_ExponentialHistogram)(nil),
 		(*Metric_Summary)(nil),
 	}
-	file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[9].OneofWrappers = []any{
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[9].OneofWrappers = []any{
 		(*NumberDataPoint_AsDouble)(nil),
 		(*NumberDataPoint_AsInt)(nil),
 	}
-	file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[10].OneofWrappers = []any{}
-	file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[11].OneofWrappers = []any{}
-	file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes[13].OneofWrappers = []any{
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[10].OneofWrappers = []any{}
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[11].OneofWrappers = []any{}
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes[13].OneofWrappers = []any{
 		(*Exemplar_AsDouble)(nil),
 		(*Exemplar_AsInt)(nil),
 	}
@@ -2153,18 +2153,18 @@ func file_opentelemetry_proto_metrics_v1_metrics_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc), len(file_opentelemetry_proto_metrics_v1_metrics_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDesc), len(file_opentelemetry_proto_slim_metrics_v1_metrics_proto_rawDesc)),
 			NumEnums:      2,
 			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_opentelemetry_proto_metrics_v1_metrics_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_metrics_v1_metrics_proto_depIdxs,
-		EnumInfos:         file_opentelemetry_proto_metrics_v1_metrics_proto_enumTypes,
-		MessageInfos:      file_opentelemetry_proto_metrics_v1_metrics_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_metrics_v1_metrics_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_metrics_v1_metrics_proto_depIdxs,
+		EnumInfos:         file_opentelemetry_proto_slim_metrics_v1_metrics_proto_enumTypes,
+		MessageInfos:      file_opentelemetry_proto_slim_metrics_v1_metrics_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_metrics_v1_metrics_proto = out.File
-	file_opentelemetry_proto_metrics_v1_metrics_proto_goTypes = nil
-	file_opentelemetry_proto_metrics_v1_metrics_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_goTypes = nil
+	file_opentelemetry_proto_slim_metrics_v1_metrics_proto_depIdxs = nil
 }

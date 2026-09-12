@@ -50,9 +50,10 @@ PROTO_SOURCE_DIR   := $(GEN_TEMP_DIR)/proto
 SOURCE_PROTO_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTO_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
 OTLP_OUTPUT_DIR    := otlp
 
-PROTOSLIM_SOURCE_DIR   := $(GEN_TEMP_DIR)/slim/proto
-SOURCE_PROTOSLIM_FILES := $(subst $(OTEL_PROTO_SUBMODULE),$(PROTOSLIM_SOURCE_DIR),$(SUBMODULE_PROTO_FILES))
-OTLPSLIM_OUTPUT_DIR    := slim/otlp
+PROTOSLIM_SOURCE_DIR    := $(GEN_TEMP_DIR)/slim/proto
+PROTOSLIM_SOURCE_PREFIX := opentelemetry/proto/slim
+SOURCE_PROTOSLIM_FILES  := $(patsubst $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/%.proto,$(PROTOSLIM_SOURCE_DIR)/$(PROTOSLIM_SOURCE_PREFIX)/%.proto,$(SUBMODULE_PROTO_FILES))
+OTLPSLIM_OUTPUT_DIR     := slim/otlp
 
 # Function to execute a command. Note the empty line before endef to make sure each command
 # gets executed separately instead of concatenated with previous one.
@@ -105,17 +106,22 @@ $(PROTO_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
 	sed -e $(SED_EXPR) "$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
-# The sed expression for replacing the go_package option in proto
-# file with a one that's valid for us.
-SED_EXPR_SLIM := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPSLIM_OUTPUT_DIR)/,'
+# These expressions give the slim copy distinct source descriptor paths and
+# protobuf full names while preserving its existing Go import paths. The
+# generated messages remain wire-compatible with the canonical OTLP messages
+# because their field numbers and wire types are unchanged.
+SED_EXPR_SLIM_GO_PACKAGE := 's,go_package = "go.opentelemetry.io/proto/otlp/,go_package = "$(GO_MOD_ROOT)/$(OTLPSLIM_OUTPUT_DIR)/,'
+SED_EXPR_SLIM_IMPORT := 's,"opentelemetry/proto/,"$(PROTOSLIM_SOURCE_PREFIX)/,g'
+SED_EXPR_SLIM_PROTO_PACKAGE := 's,\([[:space:]]\)opentelemetry\.proto\.,\1opentelemetry.proto.slim.,g'
 
-# This copies proto files from submodule into $(PROTO_SOURCE_DIR),
-# thus satisfying the $(SOURCE_PROTOSLIM_FILES) prerequisite. The copies
-# have their package name replaced by go.opentelemetry.io/proto.
-$(PROTOSLIM_SOURCE_DIR)/%.proto: $(OTEL_PROTO_SUBMODULE)/%.proto
+$(PROTOSLIM_SOURCE_DIR)/$(PROTOSLIM_SOURCE_PREFIX)/%.proto: $(OTEL_PROTO_SUBMODULE)/opentelemetry/proto/%.proto
 	@ \
 	mkdir -p $(@D); \
-	sed -e $(SED_EXPR_SLIM) "$<" >"$@.tmp"; \
+	sed \
+		-e $(SED_EXPR_SLIM_GO_PACKAGE) \
+		-e $(SED_EXPR_SLIM_IMPORT) \
+		-e $(SED_EXPR_SLIM_PROTO_PACKAGE) \
+		"$<" >"$@.tmp"; \
 	mv "$@.tmp" "$@"
 
 .PHONY: gen-otlp-protobuf
@@ -133,20 +139,27 @@ gen-otlp-protobuf: $(SOURCE_PROTO_FILES)
 copy-otlp-protobuf:
 	rm -rf ./$(OTLP_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/otlp/ ./$(OTLP_OUTPUT_DIR)
-	@git restore $$(git ls-files --deleted | grep -E 'go\.(mod|sum)$$')
+	@git restore -- ':(glob)$(OTLP_OUTPUT_DIR)/**/go.mod' ':(glob)$(OTLP_OUTPUT_DIR)/**/go.sum'
 	cd ./$(OTLP_OUTPUT_DIR)	&& go mod tidy
 
+# Preserve the existing exported File_* Go identifiers. protoc derives these
+# names from the now-distinct source paths, but their descriptor values still
+# contain the slim paths and protobuf namespaces generated above.
 .PHONY: gen-otlp-protobuf-slim
 gen-otlp-protobuf-slim: $(SOURCE_PROTOSLIM_FILES)
 	rm -rf ./$(PROTOBUF_TEMP_DIR)
 	mkdir -p ./$(PROTOBUF_TEMP_DIR)
 	$(foreach file,$(SOURCE_PROTOSLIM_FILES),$(call exec-command,$(PROTOC_SLIM) $(PROTO_INCLUDES) --go_out=./$(PROTOBUF_TEMP_DIR) $(file)))
+	@for file in $$(find ./$(PROTOBUF_TEMP_DIR)/$(GO_MOD_ROOT)/$(OTLPSLIM_OUTPUT_DIR) -type f -name '*.pb.go'); do \
+		sed -e 's,File_opentelemetry_proto_slim_,File_opentelemetry_proto_,g' "$${file}" >"$${file}.tmp"; \
+		mv "$${file}.tmp" "$${file}"; \
+	done
 
 .PHONY: copy-otlp-protobuf-slim
 copy-otlp-protobuf-slim:
 	rm -rf $(OTLPSLIM_OUTPUT_DIR)/*/
 	@rsync -a $(PROTOBUF_TEMP_DIR)/go.opentelemetry.io/proto/slim/otlp/ ./$(OTLPSLIM_OUTPUT_DIR)
-	@git restore $$(git ls-files --deleted | grep -E 'go\.(mod|sum)$$')
+	@git restore -- ':(glob)$(OTLPSLIM_OUTPUT_DIR)/**/go.mod' ':(glob)$(OTLPSLIM_OUTPUT_DIR)/**/go.sum'
 	cd ./$(OTLPSLIM_OUTPUT_DIR)	&& go mod tidy
 
 .PHONY: toolchain-check

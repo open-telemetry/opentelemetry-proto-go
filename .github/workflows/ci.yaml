@@ -44,6 +44,8 @@ jobs:
         cache-dependency-path: "**/go.sum"
     - name: Generate
       run: make clean protobuf go-mod-tidy
+    - name: Check
+      run: make check-clean-work-tree
     - name: Run tests
       run: make test
   test-compatibility:

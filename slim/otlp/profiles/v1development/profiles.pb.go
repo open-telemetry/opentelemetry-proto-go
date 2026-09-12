@@ -32,7 +32,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v7.35.0
-// source: opentelemetry/proto/profiles/v1development/profiles.proto
+// source: opentelemetry/proto/slim/profiles/v1development/profiles.proto
 
 package v1development
 
@@ -140,7 +140,7 @@ type ProfilesDictionary struct {
 
 func (x *ProfilesDictionary) Reset() {
 	*x = ProfilesDictionary{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -152,7 +152,7 @@ func (x *ProfilesDictionary) String() string {
 func (*ProfilesDictionary) ProtoMessage() {}
 
 func (x *ProfilesDictionary) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[0]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -165,7 +165,7 @@ func (x *ProfilesDictionary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfilesDictionary.ProtoReflect.Descriptor instead.
 func (*ProfilesDictionary) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{0}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ProfilesDictionary) GetMappingTable() []*Mapping {
@@ -249,7 +249,7 @@ type ProfilesData struct {
 
 func (x *ProfilesData) Reset() {
 	*x = ProfilesData{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -261,7 +261,7 @@ func (x *ProfilesData) String() string {
 func (*ProfilesData) ProtoMessage() {}
 
 func (x *ProfilesData) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[1]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -274,7 +274,7 @@ func (x *ProfilesData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfilesData.ProtoReflect.Descriptor instead.
 func (*ProfilesData) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{1}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ProfilesData) GetResourceProfiles() []*ResourceProfiles {
@@ -314,7 +314,7 @@ type ResourceProfiles struct {
 
 func (x *ResourceProfiles) Reset() {
 	*x = ResourceProfiles{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -326,7 +326,7 @@ func (x *ResourceProfiles) String() string {
 func (*ResourceProfiles) ProtoMessage() {}
 
 func (x *ResourceProfiles) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[2]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +339,7 @@ func (x *ResourceProfiles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceProfiles.ProtoReflect.Descriptor instead.
 func (*ResourceProfiles) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{2}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResourceProfiles) GetResource() *v1.Resource {
@@ -387,7 +387,7 @@ type ScopeProfiles struct {
 
 func (x *ScopeProfiles) Reset() {
 	*x = ScopeProfiles{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -399,7 +399,7 @@ func (x *ScopeProfiles) String() string {
 func (*ScopeProfiles) ProtoMessage() {}
 
 func (x *ScopeProfiles) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[3]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -412,7 +412,7 @@ func (x *ScopeProfiles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScopeProfiles.ProtoReflect.Descriptor instead.
 func (*ScopeProfiles) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{3}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ScopeProfiles) GetScope() *v11.InstrumentationScope {
@@ -515,7 +515,7 @@ type Profile struct {
 
 func (x *Profile) Reset() {
 	*x = Profile{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[4]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -527,7 +527,7 @@ func (x *Profile) String() string {
 func (*Profile) ProtoMessage() {}
 
 func (x *Profile) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[4]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -540,7 +540,7 @@ func (x *Profile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Profile.ProtoReflect.Descriptor instead.
 func (*Profile) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{4}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Profile) GetSampleType() *ValueType {
@@ -637,7 +637,7 @@ type Link struct {
 
 func (x *Link) Reset() {
 	*x = Link{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[5]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -649,7 +649,7 @@ func (x *Link) String() string {
 func (*Link) ProtoMessage() {}
 
 func (x *Link) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[5]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -662,7 +662,7 @@ func (x *Link) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Link.ProtoReflect.Descriptor instead.
 func (*Link) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{5}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Link) GetTraceId() []byte {
@@ -694,7 +694,7 @@ type ValueType struct {
 
 func (x *ValueType) Reset() {
 	*x = ValueType{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[6]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -706,7 +706,7 @@ func (x *ValueType) String() string {
 func (*ValueType) ProtoMessage() {}
 
 func (x *ValueType) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[6]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -719,7 +719,7 @@ func (x *ValueType) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValueType.ProtoReflect.Descriptor instead.
 func (*ValueType) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{6}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ValueType) GetTypeStrindex() int32 {
@@ -791,7 +791,7 @@ type Sample struct {
 
 func (x *Sample) Reset() {
 	*x = Sample{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[7]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -803,7 +803,7 @@ func (x *Sample) String() string {
 func (*Sample) ProtoMessage() {}
 
 func (x *Sample) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[7]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -816,7 +816,7 @@ func (x *Sample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Sample.ProtoReflect.Descriptor instead.
 func (*Sample) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{7}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Sample) GetStackIndex() int32 {
@@ -878,7 +878,7 @@ type Mapping struct {
 
 func (x *Mapping) Reset() {
 	*x = Mapping{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[8]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -890,7 +890,7 @@ func (x *Mapping) String() string {
 func (*Mapping) ProtoMessage() {}
 
 func (x *Mapping) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[8]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -903,7 +903,7 @@ func (x *Mapping) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Mapping.ProtoReflect.Descriptor instead.
 func (*Mapping) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{8}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Mapping) GetMemoryStart() uint64 {
@@ -959,7 +959,7 @@ type Stack struct {
 
 func (x *Stack) Reset() {
 	*x = Stack{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[9]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -971,7 +971,7 @@ func (x *Stack) String() string {
 func (*Stack) ProtoMessage() {}
 
 func (x *Stack) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[9]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -984,7 +984,7 @@ func (x *Stack) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Stack.ProtoReflect.Descriptor instead.
 func (*Stack) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{9}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Stack) GetLocationIndices() []int32 {
@@ -1025,7 +1025,7 @@ type Location struct {
 
 func (x *Location) Reset() {
 	*x = Location{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[10]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1037,7 +1037,7 @@ func (x *Location) String() string {
 func (*Location) ProtoMessage() {}
 
 func (x *Location) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[10]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1050,7 +1050,7 @@ func (x *Location) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Location.ProtoReflect.Descriptor instead.
 func (*Location) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{10}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Location) GetMappingIndex() int32 {
@@ -1098,7 +1098,7 @@ type Line struct {
 
 func (x *Line) Reset() {
 	*x = Line{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[11]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1110,7 +1110,7 @@ func (x *Line) String() string {
 func (*Line) ProtoMessage() {}
 
 func (x *Line) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[11]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1123,7 +1123,7 @@ func (x *Line) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Line.ProtoReflect.Descriptor instead.
 func (*Line) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{11}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Line) GetFunctionIndex() int32 {
@@ -1169,7 +1169,7 @@ type Function struct {
 
 func (x *Function) Reset() {
 	*x = Function{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[12]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1181,7 +1181,7 @@ func (x *Function) String() string {
 func (*Function) ProtoMessage() {}
 
 func (x *Function) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[12]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1194,7 +1194,7 @@ func (x *Function) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Function.ProtoReflect.Descriptor instead.
 func (*Function) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{12}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Function) GetNameStrindex() int32 {
@@ -1226,7 +1226,7 @@ func (x *Function) GetStartLine() int64 {
 }
 
 // A custom 'dictionary native' style of encoding attributes which is more convenient
-// for profiles than opentelemetry.proto.common.v1.KeyValue
+// for profiles than opentelemetry.proto.slim.common.v1.KeyValue
 // Specifically, uses the ProfilesDictionary.string_table for keys
 // and allows optional unit information.
 //
@@ -1247,7 +1247,7 @@ type KeyValueAndUnit struct {
 
 func (x *KeyValueAndUnit) Reset() {
 	*x = KeyValueAndUnit{}
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[13]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1259,7 +1259,7 @@ func (x *KeyValueAndUnit) String() string {
 func (*KeyValueAndUnit) ProtoMessage() {}
 
 func (x *KeyValueAndUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes[13]
+	mi := &file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1272,7 +1272,7 @@ func (x *KeyValueAndUnit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KeyValueAndUnit.ProtoReflect.Descriptor instead.
 func (*KeyValueAndUnit) Descriptor() ([]byte, []int) {
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP(), []int{13}
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *KeyValueAndUnit) GetKeyStrindex() int32 {
@@ -1298,41 +1298,41 @@ func (x *KeyValueAndUnit) GetUnitStrindex() int32 {
 
 var File_opentelemetry_proto_profiles_v1development_profiles_proto protoreflect.FileDescriptor
 
-const file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc = "" +
+const file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDesc = "" +
 	"\n" +
-	"9opentelemetry/proto/profiles/v1development/profiles.proto\x12*opentelemetry.proto.profiles.v1development\x1a*opentelemetry/proto/common/v1/common.proto\x1a.opentelemetry/proto/resource/v1/resource.proto\"\xd6\x04\n" +
-	"\x12ProfilesDictionary\x12X\n" +
-	"\rmapping_table\x18\x01 \x03(\v23.opentelemetry.proto.profiles.v1development.MappingR\fmappingTable\x12[\n" +
-	"\x0elocation_table\x18\x02 \x03(\v24.opentelemetry.proto.profiles.v1development.LocationR\rlocationTable\x12[\n" +
-	"\x0efunction_table\x18\x03 \x03(\v24.opentelemetry.proto.profiles.v1development.FunctionR\rfunctionTable\x12O\n" +
+	">opentelemetry/proto/slim/profiles/v1development/profiles.proto\x12/opentelemetry.proto.slim.profiles.v1development\x1a/opentelemetry/proto/slim/common/v1/common.proto\x1a3opentelemetry/proto/slim/resource/v1/resource.proto\"\xf4\x04\n" +
+	"\x12ProfilesDictionary\x12]\n" +
+	"\rmapping_table\x18\x01 \x03(\v28.opentelemetry.proto.slim.profiles.v1development.MappingR\fmappingTable\x12`\n" +
+	"\x0elocation_table\x18\x02 \x03(\v29.opentelemetry.proto.slim.profiles.v1development.LocationR\rlocationTable\x12`\n" +
+	"\x0efunction_table\x18\x03 \x03(\v29.opentelemetry.proto.slim.profiles.v1development.FunctionR\rfunctionTable\x12T\n" +
 	"\n" +
-	"link_table\x18\x04 \x03(\v20.opentelemetry.proto.profiles.v1development.LinkR\tlinkTable\x12!\n" +
-	"\fstring_table\x18\x05 \x03(\tR\vstringTable\x12d\n" +
-	"\x0fattribute_table\x18\x06 \x03(\v2;.opentelemetry.proto.profiles.v1development.KeyValueAndUnitR\x0eattributeTable\x12R\n" +
-	"\vstack_table\x18\a \x03(\v21.opentelemetry.proto.profiles.v1development.StackR\n" +
-	"stackTable\"\xd9\x01\n" +
-	"\fProfilesData\x12i\n" +
-	"\x11resource_profiles\x18\x01 \x03(\v2<.opentelemetry.proto.profiles.v1development.ResourceProfilesR\x10resourceProfiles\x12^\n" +
+	"link_table\x18\x04 \x03(\v25.opentelemetry.proto.slim.profiles.v1development.LinkR\tlinkTable\x12!\n" +
+	"\fstring_table\x18\x05 \x03(\tR\vstringTable\x12i\n" +
+	"\x0fattribute_table\x18\x06 \x03(\v2@.opentelemetry.proto.slim.profiles.v1development.KeyValueAndUnitR\x0eattributeTable\x12W\n" +
+	"\vstack_table\x18\a \x03(\v26.opentelemetry.proto.slim.profiles.v1development.StackR\n" +
+	"stackTable\"\xe3\x01\n" +
+	"\fProfilesData\x12n\n" +
+	"\x11resource_profiles\x18\x01 \x03(\v2A.opentelemetry.proto.slim.profiles.v1development.ResourceProfilesR\x10resourceProfiles\x12c\n" +
 	"\n" +
-	"dictionary\x18\x02 \x01(\v2>.opentelemetry.proto.profiles.v1development.ProfilesDictionaryR\n" +
-	"dictionary\"\xe2\x01\n" +
-	"\x10ResourceProfiles\x12E\n" +
-	"\bresource\x18\x01 \x01(\v2).opentelemetry.proto.resource.v1.ResourceR\bresource\x12`\n" +
-	"\x0escope_profiles\x18\x02 \x03(\v29.opentelemetry.proto.profiles.v1development.ScopeProfilesR\rscopeProfiles\x12\x1d\n" +
+	"dictionary\x18\x02 \x01(\v2C.opentelemetry.proto.slim.profiles.v1development.ProfilesDictionaryR\n" +
+	"dictionary\"\xec\x01\n" +
+	"\x10ResourceProfiles\x12J\n" +
+	"\bresource\x18\x01 \x01(\v2..opentelemetry.proto.slim.resource.v1.ResourceR\bresource\x12e\n" +
+	"\x0escope_profiles\x18\x02 \x03(\v2>.opentelemetry.proto.slim.profiles.v1development.ScopeProfilesR\rscopeProfiles\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xca\x01\n" +
-	"\rScopeProfiles\x12I\n" +
-	"\x05scope\x18\x01 \x01(\v23.opentelemetry.proto.common.v1.InstrumentationScopeR\x05scope\x12O\n" +
-	"\bprofiles\x18\x02 \x03(\v23.opentelemetry.proto.profiles.v1development.ProfileR\bprofiles\x12\x1d\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrlJ\x06\b\xe8\a\x10\xe9\a\"\xd4\x01\n" +
+	"\rScopeProfiles\x12N\n" +
+	"\x05scope\x18\x01 \x01(\v28.opentelemetry.proto.slim.common.v1.InstrumentationScopeR\x05scope\x12T\n" +
+	"\bprofiles\x18\x02 \x03(\v28.opentelemetry.proto.slim.profiles.v1development.ProfileR\bprofiles\x12\x1d\n" +
 	"\n" +
-	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\xd3\x04\n" +
-	"\aProfile\x12V\n" +
-	"\vsample_type\x18\x01 \x01(\v25.opentelemetry.proto.profiles.v1development.ValueTypeR\n" +
-	"sampleType\x12L\n" +
-	"\asamples\x18\x02 \x03(\v22.opentelemetry.proto.profiles.v1development.SampleR\asamples\x12$\n" +
+	"schema_url\x18\x03 \x01(\tR\tschemaUrl\"\xe2\x04\n" +
+	"\aProfile\x12[\n" +
+	"\vsample_type\x18\x01 \x01(\v2:.opentelemetry.proto.slim.profiles.v1development.ValueTypeR\n" +
+	"sampleType\x12Q\n" +
+	"\asamples\x18\x02 \x03(\v27.opentelemetry.proto.slim.profiles.v1development.SampleR\asamples\x12$\n" +
 	"\x0etime_unix_nano\x18\x03 \x01(\x06R\ftimeUnixNano\x12#\n" +
-	"\rduration_nano\x18\x04 \x01(\x04R\fdurationNano\x12V\n" +
-	"\vperiod_type\x18\x05 \x01(\v25.opentelemetry.proto.profiles.v1development.ValueTypeR\n" +
+	"\rduration_nano\x18\x04 \x01(\x04R\fdurationNano\x12[\n" +
+	"\vperiod_type\x18\x05 \x01(\v2:.opentelemetry.proto.slim.profiles.v1development.ValueTypeR\n" +
 	"periodType\x12\x16\n" +
 	"\x06period\x18\x06 \x01(\x03R\x06period\x12\x1d\n" +
 	"\n" +
@@ -1364,11 +1364,11 @@ const file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc = "
 	"\x11filename_strindex\x18\x04 \x01(\x05R\x10filenameStrindex\x12+\n" +
 	"\x11attribute_indices\x18\x05 \x03(\x05R\x10attributeIndices\"2\n" +
 	"\x05Stack\x12)\n" +
-	"\x10location_indices\x18\x01 \x03(\x05R\x0flocationIndices\"\xbe\x01\n" +
+	"\x10location_indices\x18\x01 \x03(\x05R\x0flocationIndices\"\xc3\x01\n" +
 	"\bLocation\x12#\n" +
 	"\rmapping_index\x18\x01 \x01(\x05R\fmappingIndex\x12\x18\n" +
-	"\aaddress\x18\x02 \x01(\x04R\aaddress\x12F\n" +
-	"\x05lines\x18\x03 \x03(\v20.opentelemetry.proto.profiles.v1development.LineR\x05lines\x12+\n" +
+	"\aaddress\x18\x02 \x01(\x04R\aaddress\x12K\n" +
+	"\x05lines\x18\x03 \x03(\v25.opentelemetry.proto.slim.profiles.v1development.LineR\x05lines\x12+\n" +
 	"\x11attribute_indices\x18\x04 \x03(\x05R\x10attributeIndices\"Y\n" +
 	"\x04Line\x12%\n" +
 	"\x0efunction_index\x18\x01 \x01(\x05R\rfunctionIndex\x12\x12\n" +
@@ -1379,63 +1379,63 @@ const file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc = "
 	"\x14system_name_strindex\x18\x02 \x01(\x05R\x12systemNameStrindex\x12+\n" +
 	"\x11filename_strindex\x18\x03 \x01(\x05R\x10filenameStrindex\x12\x1d\n" +
 	"\n" +
-	"start_line\x18\x04 \x01(\x03R\tstartLine\"\x98\x01\n" +
+	"start_line\x18\x04 \x01(\x03R\tstartLine\"\x9d\x01\n" +
 	"\x0fKeyValueAndUnit\x12!\n" +
-	"\fkey_strindex\x18\x01 \x01(\x05R\vkeyStrindex\x12=\n" +
-	"\x05value\x18\x02 \x01(\v2'.opentelemetry.proto.common.v1.AnyValueR\x05value\x12#\n" +
+	"\fkey_strindex\x18\x01 \x01(\x05R\vkeyStrindex\x12B\n" +
+	"\x05value\x18\x02 \x01(\v2,.opentelemetry.proto.slim.common.v1.AnyValueR\x05value\x12#\n" +
 	"\runit_strindex\x18\x03 \x01(\x05R\funitStrindexB\xa9\x01\n" +
 	"-io.opentelemetry.proto.profiles.v1developmentB\rProfilesProtoP\x01Z:go.opentelemetry.io/proto/slim/otlp/profiles/v1development\xaa\x02*OpenTelemetry.Proto.Profiles.V1Developmentb\x06proto3"
 
 var (
-	file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescOnce sync.Once
-	file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescData []byte
+	file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescOnce sync.Once
+	file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescData []byte
 )
 
-func file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescGZIP() []byte {
-	file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescOnce.Do(func() {
-		file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc), len(file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc)))
+func file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescGZIP() []byte {
+	file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescOnce.Do(func() {
+		file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDesc), len(file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDesc)))
 	})
-	return file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDescData
+	return file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDescData
 }
 
-var file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
-var file_opentelemetry_proto_profiles_v1development_profiles_proto_goTypes = []any{
-	(*ProfilesDictionary)(nil),       // 0: opentelemetry.proto.profiles.v1development.ProfilesDictionary
-	(*ProfilesData)(nil),             // 1: opentelemetry.proto.profiles.v1development.ProfilesData
-	(*ResourceProfiles)(nil),         // 2: opentelemetry.proto.profiles.v1development.ResourceProfiles
-	(*ScopeProfiles)(nil),            // 3: opentelemetry.proto.profiles.v1development.ScopeProfiles
-	(*Profile)(nil),                  // 4: opentelemetry.proto.profiles.v1development.Profile
-	(*Link)(nil),                     // 5: opentelemetry.proto.profiles.v1development.Link
-	(*ValueType)(nil),                // 6: opentelemetry.proto.profiles.v1development.ValueType
-	(*Sample)(nil),                   // 7: opentelemetry.proto.profiles.v1development.Sample
-	(*Mapping)(nil),                  // 8: opentelemetry.proto.profiles.v1development.Mapping
-	(*Stack)(nil),                    // 9: opentelemetry.proto.profiles.v1development.Stack
-	(*Location)(nil),                 // 10: opentelemetry.proto.profiles.v1development.Location
-	(*Line)(nil),                     // 11: opentelemetry.proto.profiles.v1development.Line
-	(*Function)(nil),                 // 12: opentelemetry.proto.profiles.v1development.Function
-	(*KeyValueAndUnit)(nil),          // 13: opentelemetry.proto.profiles.v1development.KeyValueAndUnit
-	(*v1.Resource)(nil),              // 14: opentelemetry.proto.resource.v1.Resource
-	(*v11.InstrumentationScope)(nil), // 15: opentelemetry.proto.common.v1.InstrumentationScope
-	(*v11.AnyValue)(nil),             // 16: opentelemetry.proto.common.v1.AnyValue
+var file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_goTypes = []any{
+	(*ProfilesDictionary)(nil),       // 0: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary
+	(*ProfilesData)(nil),             // 1: opentelemetry.proto.slim.profiles.v1development.ProfilesData
+	(*ResourceProfiles)(nil),         // 2: opentelemetry.proto.slim.profiles.v1development.ResourceProfiles
+	(*ScopeProfiles)(nil),            // 3: opentelemetry.proto.slim.profiles.v1development.ScopeProfiles
+	(*Profile)(nil),                  // 4: opentelemetry.proto.slim.profiles.v1development.Profile
+	(*Link)(nil),                     // 5: opentelemetry.proto.slim.profiles.v1development.Link
+	(*ValueType)(nil),                // 6: opentelemetry.proto.slim.profiles.v1development.ValueType
+	(*Sample)(nil),                   // 7: opentelemetry.proto.slim.profiles.v1development.Sample
+	(*Mapping)(nil),                  // 8: opentelemetry.proto.slim.profiles.v1development.Mapping
+	(*Stack)(nil),                    // 9: opentelemetry.proto.slim.profiles.v1development.Stack
+	(*Location)(nil),                 // 10: opentelemetry.proto.slim.profiles.v1development.Location
+	(*Line)(nil),                     // 11: opentelemetry.proto.slim.profiles.v1development.Line
+	(*Function)(nil),                 // 12: opentelemetry.proto.slim.profiles.v1development.Function
+	(*KeyValueAndUnit)(nil),          // 13: opentelemetry.proto.slim.profiles.v1development.KeyValueAndUnit
+	(*v1.Resource)(nil),              // 14: opentelemetry.proto.slim.resource.v1.Resource
+	(*v11.InstrumentationScope)(nil), // 15: opentelemetry.proto.slim.common.v1.InstrumentationScope
+	(*v11.AnyValue)(nil),             // 16: opentelemetry.proto.slim.common.v1.AnyValue
 }
-var file_opentelemetry_proto_profiles_v1development_profiles_proto_depIdxs = []int32{
-	8,  // 0: opentelemetry.proto.profiles.v1development.ProfilesDictionary.mapping_table:type_name -> opentelemetry.proto.profiles.v1development.Mapping
-	10, // 1: opentelemetry.proto.profiles.v1development.ProfilesDictionary.location_table:type_name -> opentelemetry.proto.profiles.v1development.Location
-	12, // 2: opentelemetry.proto.profiles.v1development.ProfilesDictionary.function_table:type_name -> opentelemetry.proto.profiles.v1development.Function
-	5,  // 3: opentelemetry.proto.profiles.v1development.ProfilesDictionary.link_table:type_name -> opentelemetry.proto.profiles.v1development.Link
-	13, // 4: opentelemetry.proto.profiles.v1development.ProfilesDictionary.attribute_table:type_name -> opentelemetry.proto.profiles.v1development.KeyValueAndUnit
-	9,  // 5: opentelemetry.proto.profiles.v1development.ProfilesDictionary.stack_table:type_name -> opentelemetry.proto.profiles.v1development.Stack
-	2,  // 6: opentelemetry.proto.profiles.v1development.ProfilesData.resource_profiles:type_name -> opentelemetry.proto.profiles.v1development.ResourceProfiles
-	0,  // 7: opentelemetry.proto.profiles.v1development.ProfilesData.dictionary:type_name -> opentelemetry.proto.profiles.v1development.ProfilesDictionary
-	14, // 8: opentelemetry.proto.profiles.v1development.ResourceProfiles.resource:type_name -> opentelemetry.proto.resource.v1.Resource
-	3,  // 9: opentelemetry.proto.profiles.v1development.ResourceProfiles.scope_profiles:type_name -> opentelemetry.proto.profiles.v1development.ScopeProfiles
-	15, // 10: opentelemetry.proto.profiles.v1development.ScopeProfiles.scope:type_name -> opentelemetry.proto.common.v1.InstrumentationScope
-	4,  // 11: opentelemetry.proto.profiles.v1development.ScopeProfiles.profiles:type_name -> opentelemetry.proto.profiles.v1development.Profile
-	6,  // 12: opentelemetry.proto.profiles.v1development.Profile.sample_type:type_name -> opentelemetry.proto.profiles.v1development.ValueType
-	7,  // 13: opentelemetry.proto.profiles.v1development.Profile.samples:type_name -> opentelemetry.proto.profiles.v1development.Sample
-	6,  // 14: opentelemetry.proto.profiles.v1development.Profile.period_type:type_name -> opentelemetry.proto.profiles.v1development.ValueType
-	11, // 15: opentelemetry.proto.profiles.v1development.Location.lines:type_name -> opentelemetry.proto.profiles.v1development.Line
-	16, // 16: opentelemetry.proto.profiles.v1development.KeyValueAndUnit.value:type_name -> opentelemetry.proto.common.v1.AnyValue
+var file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_depIdxs = []int32{
+	8,  // 0: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.mapping_table:type_name -> opentelemetry.proto.slim.profiles.v1development.Mapping
+	10, // 1: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.location_table:type_name -> opentelemetry.proto.slim.profiles.v1development.Location
+	12, // 2: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.function_table:type_name -> opentelemetry.proto.slim.profiles.v1development.Function
+	5,  // 3: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.link_table:type_name -> opentelemetry.proto.slim.profiles.v1development.Link
+	13, // 4: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.attribute_table:type_name -> opentelemetry.proto.slim.profiles.v1development.KeyValueAndUnit
+	9,  // 5: opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary.stack_table:type_name -> opentelemetry.proto.slim.profiles.v1development.Stack
+	2,  // 6: opentelemetry.proto.slim.profiles.v1development.ProfilesData.resource_profiles:type_name -> opentelemetry.proto.slim.profiles.v1development.ResourceProfiles
+	0,  // 7: opentelemetry.proto.slim.profiles.v1development.ProfilesData.dictionary:type_name -> opentelemetry.proto.slim.profiles.v1development.ProfilesDictionary
+	14, // 8: opentelemetry.proto.slim.profiles.v1development.ResourceProfiles.resource:type_name -> opentelemetry.proto.slim.resource.v1.Resource
+	3,  // 9: opentelemetry.proto.slim.profiles.v1development.ResourceProfiles.scope_profiles:type_name -> opentelemetry.proto.slim.profiles.v1development.ScopeProfiles
+	15, // 10: opentelemetry.proto.slim.profiles.v1development.ScopeProfiles.scope:type_name -> opentelemetry.proto.slim.common.v1.InstrumentationScope
+	4,  // 11: opentelemetry.proto.slim.profiles.v1development.ScopeProfiles.profiles:type_name -> opentelemetry.proto.slim.profiles.v1development.Profile
+	6,  // 12: opentelemetry.proto.slim.profiles.v1development.Profile.sample_type:type_name -> opentelemetry.proto.slim.profiles.v1development.ValueType
+	7,  // 13: opentelemetry.proto.slim.profiles.v1development.Profile.samples:type_name -> opentelemetry.proto.slim.profiles.v1development.Sample
+	6,  // 14: opentelemetry.proto.slim.profiles.v1development.Profile.period_type:type_name -> opentelemetry.proto.slim.profiles.v1development.ValueType
+	11, // 15: opentelemetry.proto.slim.profiles.v1development.Location.lines:type_name -> opentelemetry.proto.slim.profiles.v1development.Line
+	16, // 16: opentelemetry.proto.slim.profiles.v1development.KeyValueAndUnit.value:type_name -> opentelemetry.proto.slim.common.v1.AnyValue
 	17, // [17:17] is the sub-list for method output_type
 	17, // [17:17] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
@@ -1443,8 +1443,8 @@ var file_opentelemetry_proto_profiles_v1development_profiles_proto_depIdxs = []i
 	0,  // [0:17] is the sub-list for field type_name
 }
 
-func init() { file_opentelemetry_proto_profiles_v1development_profiles_proto_init() }
-func file_opentelemetry_proto_profiles_v1development_profiles_proto_init() {
+func init() { file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_init() }
+func file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_init() {
 	if File_opentelemetry_proto_profiles_v1development_profiles_proto != nil {
 		return
 	}
@@ -1452,17 +1452,17 @@ func file_opentelemetry_proto_profiles_v1development_profiles_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc), len(file_opentelemetry_proto_profiles_v1development_profiles_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDesc), len(file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_opentelemetry_proto_profiles_v1development_profiles_proto_goTypes,
-		DependencyIndexes: file_opentelemetry_proto_profiles_v1development_profiles_proto_depIdxs,
-		MessageInfos:      file_opentelemetry_proto_profiles_v1development_profiles_proto_msgTypes,
+		GoTypes:           file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_goTypes,
+		DependencyIndexes: file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_depIdxs,
+		MessageInfos:      file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_msgTypes,
 	}.Build()
 	File_opentelemetry_proto_profiles_v1development_profiles_proto = out.File
-	file_opentelemetry_proto_profiles_v1development_profiles_proto_goTypes = nil
-	file_opentelemetry_proto_profiles_v1development_profiles_proto_depIdxs = nil
+	file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_goTypes = nil
+	file_opentelemetry_proto_slim_profiles_v1development_profiles_proto_depIdxs = nil
 }
