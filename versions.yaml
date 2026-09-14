@@ -30,3 +30,4 @@ module-sets:
       - go.opentelemetry.io/proto/slim/otlp/collector/profiles/v1development
 excluded-modules:
   - go.opentelemetry.io/proto/internal/tools
+  - go.opentelemetry.io/proto/internal/slimotlpcompat
