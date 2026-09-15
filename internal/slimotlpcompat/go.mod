@@ -1,6 +1,6 @@
 module go.opentelemetry.io/proto/internal/slimotlpcompat
 
-go 1.25.0
+go 1.26.0
 
 require (
 	go.opentelemetry.io/proto/otlp v1.11.0
