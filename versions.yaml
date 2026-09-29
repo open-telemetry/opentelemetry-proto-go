@@ -20,7 +20,7 @@ module-sets:
       - go.opentelemetry.io/proto/otlp
       - go.opentelemetry.io/proto/slim/otlp
   unstable:
-    version: v0.4.0
+    version: v0.4.1
     modules:
       - go.opentelemetry.io/proto/otlp/processcontext/v1development
       - go.opentelemetry.io/proto/otlp/profiles/v1development
