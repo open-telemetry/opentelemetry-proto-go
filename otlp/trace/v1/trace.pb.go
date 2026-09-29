@@ -51,6 +51,8 @@ const (
 // OpenTelemetry protocol.  Older Span producers do not set this
 // field, consequently consumers should not rely on the absence of a
 // particular flag bit to indicate the presence of a particular feature.
+//
+// [Since v1.1.0]
 type SpanFlags int32
 
 const (
@@ -62,8 +64,11 @@ const (
 	// Bits 8 and 9 are used to indicate that the parent span or link span is remote.
 	// Bit 8 (`HAS_IS_REMOTE`) indicates whether the value is known.
 	// Bit 9 (`IS_REMOTE`) indicates whether the span or link is remote.
+	//
+	// [Since v1.2.0]
 	SpanFlags_SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK SpanFlags = 256
-	SpanFlags_SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK     SpanFlags = 512
+	// [Since v1.2.0]
+	SpanFlags_SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK SpanFlags = 512
 )
 
 // Enum value maps for SpanFlags.
@@ -485,6 +490,8 @@ type Span struct {
 	// Readers MUST NOT assume that bits 10-31 (22 most significant bits) will be zero.
 	//
 	// [Optional].
+	//
+	// [Since v1.1.0]
 	Flags uint32 `protobuf:"fixed32,16,opt,name=flags,proto3" json:"flags,omitempty"`
 	// A description of the span's operation.
 	//
@@ -517,12 +524,12 @@ type Span struct {
 	// This field is semantically required and it is expected that end_time >= start_time.
 	EndTimeUnixNano uint64 `protobuf:"fixed64,8,opt,name=end_time_unix_nano,json=endTimeUnixNano,proto3" json:"end_time_unix_nano,omitempty"`
 	// A collection of key/value pairs. Note, global attributes
-	// like server name can be set using the resource API. Examples of attributes:
+	// like service name can be set using the resource API. Examples of attributes:
 	//
-	//	"/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-	//	"/http/server_latency": 300
-	//	"example.com/myattribute": true
-	//	"example.com/score": 10.239
+	//	"user_agent.original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+	//	"http.response.status_code": 200
+	//	"com.example.myattribute": true
+	//	"com.example.score": 10.239
 	//
 	// Attribute keys MUST be unique (it is not allowed to have more than one
 	// attribute with the same key).
@@ -865,6 +872,8 @@ type Span_Link struct {
 	// When creating new spans, bits 10-31 (most-significant 22-bits) MUST be zero.
 	//
 	// [Optional].
+	//
+	// [Since v1.1.0]
 	Flags         uint32 `protobuf:"fixed32,6,opt,name=flags,proto3" json:"flags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

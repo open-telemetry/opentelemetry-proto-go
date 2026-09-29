@@ -490,6 +490,8 @@ type LogRecord struct {
 	// as an event.
 	//
 	// [Optional].
+	//
+	// [Since v1.5.0]
 	EventName     string `protobuf:"bytes,12,opt,name=event_name,json=eventName,proto3" json:"event_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

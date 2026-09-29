@@ -37,6 +37,8 @@ const (
 )
 
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ExportProfilesServiceRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// An array of ResourceProfiles.
@@ -46,6 +48,8 @@ type ExportProfilesServiceRequest struct {
 	// in that case this array will contain multiple elements.
 	ResourceProfiles []*v1development.ResourceProfiles `protobuf:"bytes,1,rep,name=resource_profiles,json=resourceProfiles,proto3" json:"resource_profiles,omitempty"`
 	// The reference table containing all data shared by profiles across the message being sent.
+	//
+	// [Since v1.7.0]
 	Dictionary    *v1development.ProfilesDictionary `protobuf:"bytes,2,opt,name=dictionary,proto3" json:"dictionary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -96,6 +100,8 @@ func (x *ExportProfilesServiceRequest) GetDictionary() *v1development.ProfilesDi
 }
 
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ExportProfilesServiceResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The details of a partially successful export request.
@@ -156,6 +162,8 @@ func (x *ExportProfilesServiceResponse) GetPartialSuccess() *ExportProfilesParti
 }
 
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ExportProfilesPartialSuccess struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The number of rejected profiles.

@@ -49,6 +49,8 @@ const (
 // for details of this mechanism.
 //
 // Status: [Development]
+//
+// [Since v1.11.0]
 type ProcessContext struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource for this process.
