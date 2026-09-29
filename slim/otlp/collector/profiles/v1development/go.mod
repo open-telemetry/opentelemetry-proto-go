@@ -7,7 +7,7 @@ require (
 	google.golang.org/protobuf v1.36.12
 )
 
-require go.opentelemetry.io/proto/slim/otlp v1.11.0 // indirect
+require go.opentelemetry.io/proto/slim/otlp v1.11.1 // indirect
 
 replace go.opentelemetry.io/proto/slim/otlp => ../../../
 
