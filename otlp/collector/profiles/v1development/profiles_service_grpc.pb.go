@@ -42,6 +42,8 @@ const (
 //
 // Service that can be used to push profiles between one Application instrumented with
 // OpenTelemetry and a collector, or between a collector and a central collector.
+//
+// [Since v1.4.0]
 type ProfilesServiceClient interface {
 	Export(ctx context.Context, in *ExportProfilesServiceRequest, opts ...grpc.CallOption) (*ExportProfilesServiceResponse, error)
 }
@@ -70,6 +72,8 @@ func (c *profilesServiceClient) Export(ctx context.Context, in *ExportProfilesSe
 //
 // Service that can be used to push profiles between one Application instrumented with
 // OpenTelemetry and a collector, or between a collector and a central collector.
+//
+// [Since v1.4.0]
 type ProfilesServiceServer interface {
 	Export(context.Context, *ExportProfilesServiceRequest) (*ExportProfilesServiceResponse, error)
 	mustEmbedUnimplementedProfilesServiceServer()

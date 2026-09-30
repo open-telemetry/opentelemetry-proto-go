@@ -79,20 +79,28 @@ const (
 //     MUST NOT have any observable effects for consumers.
 //
 // Status: [Alpha]
+//
+// [Since v1.7.0]
 type ProfilesDictionary struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Mappings from address ranges to the image/binary/library mapped
 	// into that address range referenced by locations via Location.mapping_index.
 	//
 	// mapping_table[0] MUST be the zero value (Mapping{}) and present.
+	//
+	// [Since v1.7.0]
 	MappingTable []*Mapping `protobuf:"bytes,1,rep,name=mapping_table,json=mappingTable,proto3" json:"mapping_table,omitempty"`
 	// Locations referenced by samples via Stack.location_indices.
 	//
 	// location_table[0] MUST be the zero value (Location{}) and present.
+	//
+	// [Since v1.7.0]
 	LocationTable []*Location `protobuf:"bytes,2,rep,name=location_table,json=locationTable,proto3" json:"location_table,omitempty"`
 	// Functions referenced by locations via Line.function_index.
 	//
 	// function_table[0] MUST be the zero value (Function{}) and present.
+	//
+	// [Since v1.7.0]
 	FunctionTable []*Function `protobuf:"bytes,3,rep,name=function_table,json=functionTable,proto3" json:"function_table,omitempty"`
 	// Links referenced by samples via Sample.link_index.
 	//
@@ -102,10 +110,14 @@ type ProfilesDictionary struct {
 	// are both appropriate zero/invalid values per the trace.proto:Span definition,
 	// the latter SHOULD be used for link_table[0] for better compatibility with codecs
 	// strictly expecting 16/8 byte array lengths.
+	//
+	// [Since v1.7.0]
 	LinkTable []*Link `protobuf:"bytes,4,rep,name=link_table,json=linkTable,proto3" json:"link_table,omitempty"`
 	// A common table for strings referenced by various messages.
 	//
 	// string_table[0] MUST be "" and present.
+	//
+	// [Since v1.7.0]
 	StringTable []string `protobuf:"bytes,5,rep,name=string_table,json=stringTable,proto3" json:"string_table,omitempty"`
 	// A common table for attributes referenced by the Profile, Sample, Mapping
 	// and Location messages, through their attribute_indices field. Each entry is
@@ -124,15 +136,19 @@ type ProfilesDictionary struct {
 	//
 	// Examples of attributes:
 	//
-	//	"/http/user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-	//	"abc.com/myattribute": true
+	//	"user_agent.original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+	//	"com.example.myattribute": true
 	//	"allocation_size": 128 bytes
 	//
 	// attribute_table[0] MUST be the zero value (KeyValueAndUnit{}) and present.
+	//
+	// [Since v1.7.0]
 	AttributeTable []*KeyValueAndUnit `protobuf:"bytes,6,rep,name=attribute_table,json=attributeTable,proto3" json:"attribute_table,omitempty"`
 	// Stacks referenced by samples via Sample.stack_index.
 	//
 	// stack_table[0] MUST be the zero value (Stack{}) and present.
+	//
+	// [Since v1.8.0]
 	StackTable    []*Stack `protobuf:"bytes,7,rep,name=stack_table,json=stackTable,proto3" json:"stack_table,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -229,6 +245,8 @@ func (x *ProfilesDictionary) GetStackTable() []*Stack {
 // as well.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ProfilesData struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// An array of ResourceProfiles.
@@ -240,8 +258,12 @@ type ProfilesData struct {
 	// Resource.attributes and semantic conventions.
 	// Tools that visualize profiles SHOULD prefer displaying
 	// resources_profiles[0].scope_profiles[0].profiles[0] by default.
+	//
+	// [Since v1.4.0]
 	ResourceProfiles []*ResourceProfiles `protobuf:"bytes,1,rep,name=resource_profiles,json=resourceProfiles,proto3" json:"resource_profiles,omitempty"`
 	// A single instance of ProfilesDictionary shared across the entire message.
+	//
+	// [Since v1.7.0]
 	Dictionary    *ProfilesDictionary `protobuf:"bytes,2,opt,name=dictionary,proto3" json:"dictionary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -294,12 +316,18 @@ func (x *ProfilesData) GetDictionary() *ProfilesDictionary {
 // A collection of ScopeProfiles from a Resource.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ResourceProfiles struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The resource for the profiles in this message.
 	// If this field is not set then no resource info is known.
+	//
+	// [Since v1.4.0]
 	Resource *v1.Resource `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
 	// A list of ScopeProfiles that originate from this resource.
+	//
+	// [Since v1.4.0]
 	ScopeProfiles []*ScopeProfiles `protobuf:"bytes,2,rep,name=scope_profiles,json=scopeProfiles,proto3" json:"scope_profiles,omitempty"`
 	// The Schema URL, if known. This is the identifier of the Schema that the resource data
 	// is recorded in. Notably, the last part of the URL path is the version number of the
@@ -307,6 +335,8 @@ type ResourceProfiles struct {
 	// https://opentelemetry.io/docs/specs/otel/schemas/#schema-url
 	// This schema_url applies to the data in the "resource" field. It does not apply
 	// to the data in the "scope_profiles" field, which has its own schema_url field.
+	//
+	// [Since v1.4.0]
 	SchemaUrl     string `protobuf:"bytes,3,opt,name=schema_url,json=schemaUrl,proto3" json:"schema_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -366,13 +396,19 @@ func (x *ResourceProfiles) GetSchemaUrl() string {
 // A collection of Profiles produced by an InstrumentationScope.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ScopeProfiles struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The instrumentation scope information for the profiles in this message.
 	// Semantically when InstrumentationScope isn't set, it is equivalent with
 	// an empty instrumentation scope name (unknown).
+	//
+	// [Since v1.4.0]
 	Scope *v11.InstrumentationScope `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
 	// A list of Profiles that originate from this instrumentation scope.
+	//
+	// [Since v1.4.0]
 	Profiles []*Profile `protobuf:"bytes,2,rep,name=profiles,proto3" json:"profiles,omitempty"`
 	// The Schema URL, if known. This is the identifier of the Schema that the profile data
 	// is recorded in. Notably, the last part of the URL path is the version number of the
@@ -380,6 +416,8 @@ type ScopeProfiles struct {
 	// https://opentelemetry.io/docs/specs/otel/schemas/#schema-url
 	// This schema_url applies to the data in the "scope" field and all profiles in the
 	// "profiles" field.
+	//
+	// [Since v1.4.0]
 	SchemaUrl     string `protobuf:"bytes,3,opt,name=schema_url,json=schemaUrl,proto3" json:"schema_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -442,6 +480,8 @@ func (x *ScopeProfiles) GetSchemaUrl() string {
 // specific fields.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Profile struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The type and unit of all Sample.values in this profile.
@@ -452,16 +492,24 @@ type Profile struct {
 	// For a heap profile, this might be:
 	//
 	//	["allocated_objects","count"] or ["allocated_space","bytes"],
+	//
+	// [Since v1.4.0]
 	SampleType *ValueType `protobuf:"bytes,1,opt,name=sample_type,json=sampleType,proto3" json:"sample_type,omitempty"`
 	// The set of samples recorded in this profile.
+	//
+	// [Since v1.9.0]
 	Samples []*Sample `protobuf:"bytes,2,rep,name=samples,proto3" json:"samples,omitempty"`
 	// Time of collection (UTC) as nanoseconds since the UNIX epoch.
+	//
+	// [Since v1.4.0]
 	TimeUnixNano uint64 `protobuf:"fixed64,3,opt,name=time_unix_nano,json=timeUnixNano,proto3" json:"time_unix_nano,omitempty"`
 	// Duration of the profile in nanoseconds. For instant profiles like
 	// live heap snapshot, the duration can be zero but it may be preferable
 	// to set time_unix_nano to the process start time and duration_nano to
 	// the relative time when the profile was gathered so that Sample.timestamps_unix_nano
 	// values fall within the profile time range.
+	//
+	// [Since v1.8.0]
 	DurationNano uint64 `protobuf:"varint,4,opt,name=duration_nano,json=durationNano,proto3" json:"duration_nano,omitempty"`
 	// The type and the unit of the events between sampled occurrences for
 	// periodic sampling profiles. It can be the same as sample_type or it can be
@@ -477,9 +525,13 @@ type Profile struct {
 	//     period=262144 might represent a heap profile where the recorded sample
 	//     metric is the size of the live heap while the periodic sampling is done
 	//     using the number of cumulatively allocated bytes.
+	//
+	// [Since v1.8.0]
 	PeriodType *ValueType `protobuf:"bytes,5,opt,name=period_type,json=periodType,proto3" json:"period_type,omitempty"`
 	// The distance between sampled occurrences for periodic sampling profiles.
 	// The value is of the period_type type and unit.
+	//
+	// [Since v1.8.0]
 	Period int64 `protobuf:"varint,6,opt,name=period,proto3" json:"period,omitempty"`
 	// A globally unique identifier for a profile. The ID is a 16-byte array. An ID with
 	// all zeroes is considered invalid. It MAY be used for deduplication and signal
@@ -487,10 +539,14 @@ type Profile struct {
 	// in this field as not equal, even if they represented the same object at an earlier
 	// time.
 	// This field is optional; an ID may be assigned to an ID-less profile in a later step.
+	//
+	// [Since v1.9.0]
 	ProfileId []byte `protobuf:"bytes,7,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	// The number of attributes that were discarded. Attributes
 	// can be discarded because their keys are too long or because there are too many
 	// attributes. If this value is 0, then no attributes were dropped.
+	//
+	// [Since v1.9.0]
 	DroppedAttributesCount uint32 `protobuf:"varint,8,opt,name=dropped_attributes_count,json=droppedAttributesCount,proto3" json:"dropped_attributes_count,omitempty"`
 	// The original payload format. See also original_payload. It MUST be set
 	// together with original_payload or both left unset [optional].
@@ -503,11 +559,17 @@ type Profile struct {
 	// Profiles format. Including the original data allows receivers to store or
 	// reexport the data without loss. Because the original payload can be large,
 	// its inclusion is optional.
+	//
+	// [Since v1.9.0]
 	OriginalPayloadFormat string `protobuf:"bytes,9,opt,name=original_payload_format,json=originalPayloadFormat,proto3" json:"original_payload_format,omitempty"`
 	// The original payload bytes. See also original_payload_format. It MUST be set
 	// together with original_payload_format or both left unset [optional].
+	//
+	// [Since v1.9.0]
 	OriginalPayload []byte `protobuf:"bytes,10,opt,name=original_payload,json=originalPayload,proto3" json:"original_payload,omitempty"`
 	// References to attributes in attribute_table. [optional]
+	//
+	// [Since v1.9.0]
 	AttributeIndices []int32 `protobuf:"varint,11,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -624,12 +686,18 @@ func (x *Profile) GetAttributeIndices() []int32 {
 // Connects a profile sample to a trace span, identified by unique trace and span IDs.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Link struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// A unique identifier of the trace that this linked span is part of. The ID is a
 	// 16-byte array.
+	//
+	// [Since v1.4.0]
 	TraceId []byte `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
 	// A unique identifier for the linked span. The ID is an 8-byte array.
+	//
+	// [Since v1.4.0]
 	SpanId        []byte `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -682,11 +750,17 @@ func (x *Link) GetSpanId() []byte {
 // ValueType describes the type and units of a value.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type ValueType struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Index into ProfilesDictionary.string_table.
+	//
+	// [Since v1.4.0]
 	TypeStrindex int32 `protobuf:"varint,1,opt,name=type_strindex,json=typeStrindex,proto3" json:"type_strindex,omitempty"`
 	// Index into ProfilesDictionary.string_table.
+	//
+	// [Since v1.4.0]
 	UnitStrindex  int32 `protobuf:"varint,2,opt,name=unit_strindex,json=unitStrindex,proto3" json:"unit_strindex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -771,19 +845,31 @@ func (x *ValueType) GetUnitStrindex() int32 {
 // adopt the same data recording style.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Sample struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Reference to stack in ProfilesDictionary.stack_table.
+	//
+	// [Since v1.8.0]
 	StackIndex int32 `protobuf:"varint,1,opt,name=stack_index,json=stackIndex,proto3" json:"stack_index,omitempty"`
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
+	//
+	// [Since v1.5.0]
 	AttributeIndices []int32 `protobuf:"varint,2,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	// Reference to link in ProfilesDictionary.link_table. [optional]
 	// 0 means no link exists.
+	//
+	// [Since v1.10.0]
 	LinkIndex int32 `protobuf:"varint,3,opt,name=link_index,json=linkIndex,proto3" json:"link_index,omitempty"`
 	// Measured values. The type and unit of each value is defined by Profile.sample_type.
+	//
+	// [Since v1.10.0]
 	Values []int64 `protobuf:"varint,4,rep,packed,name=values,proto3" json:"values,omitempty"`
 	// Timestamps (UTC) as nanoseconds since the UNIX epoch. The timestamps SHOULD fall within the
 	// [Profile.time_unix_nano, Profile.time_unix_nano + Profile.duration_nano) interval.
+	//
+	// [Since v1.8.0]
 	TimestampsUnixNano []uint64 `protobuf:"fixed64,5,rep,packed,name=timestamps_unix_nano,json=timestampsUnixNano,proto3" json:"timestamps_unix_nano,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
@@ -858,19 +944,31 @@ func (x *Sample) GetTimestampsUnixNano() []uint64 {
 // file offset, and metadata like build ID
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Mapping struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Address at which the binary (or DLL) is loaded into memory.
+	//
+	// [Since v1.4.0]
 	MemoryStart uint64 `protobuf:"varint,1,opt,name=memory_start,json=memoryStart,proto3" json:"memory_start,omitempty"`
 	// The limit of the address range occupied by this mapping.
+	//
+	// [Since v1.4.0]
 	MemoryLimit uint64 `protobuf:"varint,2,opt,name=memory_limit,json=memoryLimit,proto3" json:"memory_limit,omitempty"`
 	// Offset in the binary that corresponds to the first mapped address.
+	//
+	// [Since v1.4.0]
 	FileOffset uint64 `protobuf:"varint,3,opt,name=file_offset,json=fileOffset,proto3" json:"file_offset,omitempty"`
 	// The object this entry is loaded from.  This can be a filename on
 	// disk for the main binary and shared libraries, or a virtual
 	// abstraction like "[vdso]".
+	//
+	// [Since v1.4.0]
 	FilenameStrindex int32 `protobuf:"varint,4,opt,name=filename_strindex,json=filenameStrindex,proto3" json:"filename_strindex,omitempty"` // Index into ProfilesDictionary.string_table.
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
+	//
+	// [Since v1.4.0]
 	AttributeIndices []int32 `protobuf:"varint,5,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -948,10 +1046,14 @@ func (x *Mapping) GetAttributeIndices() []int32 {
 // [Location{"main"}, Location{"foo"}, Location{"bar"}].
 //
 // Status: [Alpha]
+//
+// [Since v1.8.0]
 type Stack struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// References to locations in ProfilesDictionary.location_table.
 	// The first location is the leaf frame.
+	//
+	// [Since v1.8.0]
 	LocationIndices []int32 `protobuf:"varint,1,rep,packed,name=location_indices,json=locationIndices,proto3" json:"location_indices,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -997,16 +1099,22 @@ func (x *Stack) GetLocationIndices() []int32 {
 // Contains function and line table debug information for a single frame.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Location struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Reference to mapping in ProfilesDictionary.mapping_table.
 	// 0 means unknown or not applicable.
+	//
+	// [Since v1.4.0]
 	MappingIndex int32 `protobuf:"varint,1,opt,name=mapping_index,json=mappingIndex,proto3" json:"mapping_index,omitempty"`
 	// The instruction address for this location, if available.  It
 	// SHOULD be within [Mapping.memory_start, Mapping.memory_limit]
 	// for the corresponding mapping. A non-leaf address may be in the
 	// middle of a call instruction. It is up to display tools to find
 	// the beginning of the instruction if necessary.
+	//
+	// [Since v1.4.0]
 	Address uint64 `protobuf:"varint,2,opt,name=address,proto3" json:"address,omitempty"`
 	// Multiple lines indicate this location has inlined functions,
 	// where the last entry represents the caller into which the
@@ -1016,8 +1124,12 @@ type Location struct {
 	//
 	//	lines[0].function_name == "memcpy"
 	//	lines[1].function_name == "printf"
+	//
+	// [Since v1.9.0]
 	Lines []*Line `protobuf:"bytes,3,rep,name=lines,proto3" json:"lines,omitempty"`
 	// References to attributes in ProfilesDictionary.attribute_table. [optional]
+	//
+	// [Since v1.4.0]
 	AttributeIndices []int32 `protobuf:"varint,4,rep,packed,name=attribute_indices,json=attributeIndices,proto3" json:"attribute_indices,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -1084,13 +1196,21 @@ func (x *Location) GetAttributeIndices() []int32 {
 // Details a specific line in a source code, linked to a function.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Line struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Reference to function in ProfilesDictionary.function_table.
+	//
+	// [Since v1.4.0]
 	FunctionIndex int32 `protobuf:"varint,1,opt,name=function_index,json=functionIndex,proto3" json:"function_index,omitempty"`
 	// Line number in source code. 1-based, 0 means unset.
+	//
+	// [Since v1.4.0]
 	Line int64 `protobuf:"varint,2,opt,name=line,proto3" json:"line,omitempty"`
 	// Column number in source code. 1-based, 0 means unset.
+	//
+	// [Since v1.4.0]
 	Column        int64 `protobuf:"varint,3,opt,name=column,proto3" json:"column,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1152,16 +1272,26 @@ func (x *Line) GetColumn() int64 {
 // {name_strindex, system_name_strindex, filename_strindex} MUST be present.
 //
 // Status: [Alpha]
+//
+// [Since v1.4.0]
 type Function struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The function name. Empty string if not available.
+	//
+	// [Since v1.4.0]
 	NameStrindex int32 `protobuf:"varint,1,opt,name=name_strindex,json=nameStrindex,proto3" json:"name_strindex,omitempty"`
 	// Function name, as identified by the system. For instance,
 	// it can be a C++ mangled name. Empty string if not available.
+	//
+	// [Since v1.4.0]
 	SystemNameStrindex int32 `protobuf:"varint,2,opt,name=system_name_strindex,json=systemNameStrindex,proto3" json:"system_name_strindex,omitempty"`
 	// Source file containing the function. Empty string if not available.
+	//
+	// [Since v1.4.0]
 	FilenameStrindex int32 `protobuf:"varint,3,opt,name=filename_strindex,json=filenameStrindex,proto3" json:"filename_strindex,omitempty"`
 	// Line number in source file. 1-based, 0 means unset.
+	//
+	// [Since v1.4.0]
 	StartLine     int64 `protobuf:"varint,4,opt,name=start_line,json=startLine,proto3" json:"start_line,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1231,15 +1361,23 @@ func (x *Function) GetStartLine() int64 {
 // and allows optional unit information.
 //
 // Status: [Alpha]
+//
+// [Since v1.8.0]
 type KeyValueAndUnit struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The index into the string table for the attribute's key.
+	//
+	// [Since v1.8.0]
 	KeyStrindex int32 `protobuf:"varint,1,opt,name=key_strindex,json=keyStrindex,proto3" json:"key_strindex,omitempty"`
 	// The value of the attribute.
+	//
+	// [Since v1.8.0]
 	Value *v11.AnyValue `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 	// The index into the string table for the attribute's unit.
 	// zero indicates implicit (by semconv) or non-defined unit.
 	// If present, the unit string SHOULD be in UCUM format.
+	//
+	// [Since v1.8.0]
 	UnitStrindex  int32 `protobuf:"varint,3,opt,name=unit_strindex,json=unitStrindex,proto3" json:"unit_strindex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

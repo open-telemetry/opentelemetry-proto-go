@@ -522,7 +522,7 @@ type Metric struct {
 	// described by https://ucum.org/ucum and https://units-of-measurement.org/
 	Unit string `protobuf:"bytes,3,opt,name=unit,proto3" json:"unit,omitempty"`
 	// Data determines the aggregation type (if any) of the metric, what is the
-	// reported value type for the data points, as well as the relatationship to
+	// reported value type for the data points, as well as the relationship to
 	// the time interval over which they are reported.
 	//
 	// Types that are valid to be assigned to Data:
@@ -541,6 +541,8 @@ type Metric struct {
 	// Attribute keys MUST be unique (it is not allowed to have more than one
 	// attribute with the same key).
 	// The behavior of software that receives duplicated keys can be unpredictable.
+	//
+	// [Since v1.2.0]
 	Metadata      []*v11.KeyValue `protobuf:"bytes,12,rep,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

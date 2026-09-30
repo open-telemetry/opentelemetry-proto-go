@@ -210,6 +210,8 @@ type AnyValue_StringValueStrindex struct {
 	// empty, ignoring its semantic content for the non-Profiling signal.
 	//
 	// Status: [Alpha]
+	//
+	// [Since v1.10.0]
 	StringValueStrindex int32 `protobuf:"varint,8,opt,name=string_value_strindex,json=stringValueStrindex,proto3,oneof"`
 }
 
@@ -351,6 +353,8 @@ type KeyValue struct {
 	// empty, ignoring its semantic content for the non-Profiling signal.
 	//
 	// Status: [Alpha]
+	//
+	// [Since v1.10.0]
 	KeyStrindex   int32 `protobuf:"varint,3,opt,name=key_strindex,json=keyStrindex,proto3" json:"key_strindex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -492,6 +496,8 @@ func (x *InstrumentationScope) GetDroppedAttributesCount() uint32 {
 // Entity represents an object of interest associated with produced telemetry: e.g spans, metrics, profiles, or logs.
 //
 // Status: [Development]
+//
+// [Since v1.6.0]
 type EntityRef struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The Schema URL, if known. This is the identifier of the Schema that the entity data

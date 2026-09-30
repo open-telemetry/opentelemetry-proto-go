@@ -4,13 +4,13 @@ go 1.26.0
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.31.0
-	go.opentelemetry.io/proto/otlp/profiles/v1development v0.4.0
+	go.opentelemetry.io/proto/otlp/profiles/v1development v0.4.1
 	google.golang.org/grpc v1.84.0
 	google.golang.org/protobuf v1.36.12
 )
 
 require (
-	go.opentelemetry.io/proto/otlp v1.11.0 // indirect
+	go.opentelemetry.io/proto/otlp v1.11.1 // indirect
 	golang.org/x/net v0.59.0 // indirect
 	golang.org/x/sys v0.48.0 // indirect
 	golang.org/x/text v0.42.0 // indirect

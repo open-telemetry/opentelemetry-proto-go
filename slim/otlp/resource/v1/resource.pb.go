@@ -52,6 +52,8 @@ type Resource struct {
 	// Note: keys in the references MUST exist in attributes of this message.
 	//
 	// Status: [Development]
+	//
+	// [Since v1.6.0]
 	EntityRefs    []*v1.EntityRef `protobuf:"bytes,3,rep,name=entity_refs,json=entityRefs,proto3" json:"entity_refs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
