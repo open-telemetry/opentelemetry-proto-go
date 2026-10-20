@@ -123,7 +123,6 @@ For more information about the approver role, see the [community repository](htt
 
 ## Emeritus
 
-- [Flc゛](https://github.com/flc1125), Approver
 - [Mike Goldsmith](https://github.com/MikeGoldsmith), Maintainer
 
 For more information about the emeritus role, see the
