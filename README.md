@@ -112,7 +112,6 @@ are made for those systems currently.
 ## Maintainers
 
 - [OpenTelemetry Go Maintainers](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md#maintainers)
-- [Mike Goldsmith](https://github.com/MikeGoldsmith), Honeycomb
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
 
@@ -121,3 +120,10 @@ For more information about the maintainer role, see the [community repository](h
 - [OpenTelemetry Go Approvers](https://github.com/open-telemetry/opentelemetry-go/blob/main/CONTRIBUTING.md#approvers)
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
+
+## Emeritus
+
+- [Mike Goldsmith](https://github.com/MikeGoldsmith), Maintainer
+
+For more information about the emeritus role, see the
+[community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
