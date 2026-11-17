@@ -106,8 +106,8 @@ github.com/xanzy/ssh-agent v0.3.3 h1:+/15pJfg/RsTxqYcX6fHqOXZwwMP+2VyYWJeWM2qQFM
 github.com/xanzy/ssh-agent v0.3.3/go.mod h1:6dzNDKs0J9rVPHPhaGCukekBHKqfl+L3KghI1Bc68Uw=
 go.opentelemetry.io/build-tools v0.31.0 h1:kv+oGIfTIh8dNwxCkgb5fcVzKtNyQZWG6JRmd7Vhh2I=
 go.opentelemetry.io/build-tools v0.31.0/go.mod h1:ryPDuKcDi5m/a1BWYStrxL26SkeAq8m3d56j3ObYe1s=
-go.opentelemetry.io/build-tools/multimod v0.30.0 h1:f3L37C35ds33QIx2pwacH4F+EZp9BxGjbw3IIplu+uc=
-go.opentelemetry.io/build-tools/multimod v0.30.0/go.mod h1:1pbgfye9qeRAWWsiuzeZ4fxfoAqkKr0Lvl+JPLSpbs8=
+go.opentelemetry.io/build-tools/multimod v0.31.0 h1:eA/XcYZEuaRaBiD2X/Ghdj6Dze4yNA2Y2DPebj9OTRQ=
+go.opentelemetry.io/build-tools/multimod v0.31.0/go.mod h1:pJAWA3Y2FyHm0R0CzTr6sFALmqHL4kVOdSZktUUJZ7c=
 go.uber.org/multierr v1.11.0 h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=
 go.uber.org/multierr v1.11.0/go.mod h1:20+QtiLqy0Nd6FdQB9TLXag12DsQkrbs3htMFfDN80Y=
 go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=
